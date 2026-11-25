@@ -1,0 +1,4 @@
+interface:
+  display_name: Figma Onboarding Validation
+  short_description: Validate Flutter onboarding screens against a Figma prototype
+  default_prompt: Compare the onboarding implementation with the supplied Figma prototype, identify missing states and visual mismatches, implement the gaps, and run an independent end-to-end review.
