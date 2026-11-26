@@ -31,6 +31,7 @@ test:
 check:
 	$(MAKE) format-check
 	$(MAKE) analyze
+	$(DART) run tool/check_strings.dart
 	$(MAKE) test
 
 run:
