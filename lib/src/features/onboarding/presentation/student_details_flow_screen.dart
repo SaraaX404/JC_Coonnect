@@ -58,7 +58,7 @@ class _StudentDetailsFlowScreenState extends State<StudentDetailsFlowScreen> {
       ..academicTrack = academicTrack
       ..dateOfBirth = dateOfBirth.text.trim()
       ..address = address.text.trim();
-    unawaited(context.push(Routes.signUpTerms, extra: widget.data));
+    unawaited(context.push(Routes.signUpGuardians, extra: widget.data));
   }
 
   @override

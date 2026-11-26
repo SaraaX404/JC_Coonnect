@@ -760,6 +760,90 @@ abstract class AppLocalizations {
   /// **'Upload proof'**
   String get fileFieldUpload;
 
+  /// Guardian details screen (student sign-up): button that saves this guardian and opens a form for one more.
+  ///
+  /// In en, this message translates to:
+  /// **'Add another guardian'**
+  String get guardianAddAnother;
+
+  /// Guardian details screen (student sign-up): description under the heading.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll invite them to JC Connect so they can follow your school life.'**
+  String get guardianDescription;
+
+  /// Guardian details screen (student sign-up): helper under the email field.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll send them an invite to join.'**
+  String get guardianEmailHelp;
+
+  /// Guardian details screen (student sign-up): email placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'name@example.com'**
+  String get guardianEmailHint;
+
+  /// Guardian details screen (student sign-up): email label.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian’s email'**
+  String get guardianEmailLabel;
+
+  /// Guardian details screen (student sign-up): full name placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Andrea Brown'**
+  String get guardianFullNameHint;
+
+  /// Guardian details screen (student sign-up): full name label.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian’s full name'**
+  String get guardianFullNameLabel;
+
+  /// Guardian details screen (student sign-up): heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent or guardian'**
+  String get guardianHeading;
+
+  /// Guardian details screen (student sign-up): title of one guardian's card or form.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian {number}'**
+  String guardianNumber(int number);
+
+  /// Guardian details screen (student sign-up): error when the student enters their own email.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your email. Enter your guardian’s email.'**
+  String get guardianOwnEmail;
+
+  /// Guardian details screen (student sign-up): phone placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'+1 876 000 0000'**
+  String get guardianPhoneHint;
+
+  /// Guardian details screen (student sign-up): phone label.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian’s phone number'**
+  String get guardianPhoneLabel;
+
+  /// Guardian details screen (student sign-up): removes the guardian form being filled in.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get guardianRemove;
+
+  /// Guardian details screen (student sign-up): progress bar label.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian'**
+  String get guardianTitle;
+
   /// Lesson overview screen: about.
   ///
   /// In en, this message translates to:

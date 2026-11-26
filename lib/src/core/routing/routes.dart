@@ -11,6 +11,7 @@ abstract final class Routes {
   static const signUpAccount = '/sign-up/account';
   static const signUpVerify = '/sign-up/verify';
   static const signUpStudent = '/sign-up/student';
+  static const signUpGuardians = '/sign-up/guardians';
   static const signUpParent = '/sign-up/parent';
   static const signUpTeacher = '/sign-up/teacher';
   static const signUpOldBoy = '/sign-up/old-boy';

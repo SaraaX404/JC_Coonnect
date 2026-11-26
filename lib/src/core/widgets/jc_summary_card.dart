@@ -4,9 +4,16 @@ import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:material_ui/material_ui.dart';
 
 class JcSummaryCard extends StatelessWidget {
-  const JcSummaryCard({super.key, required this.title, required this.values});
+  const JcSummaryCard({
+    super.key,
+    required this.title,
+    required this.values,
+    this.onEdit,
+  });
   final String title;
   final Map<String, String> values;
+  final VoidCallback? onEdit;
+
   @override
   Widget build(BuildContext context) => Card(
     elevation: 0,
@@ -23,9 +30,12 @@ class JcSummaryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-              Text(
-                context.l10n.commonEdit,
-                style: const TextStyle(fontSize: 12, color: JcColors.primary),
+              InkWell(
+                onTap: onEdit,
+                child: Text(
+                  context.l10n.commonEdit,
+                  style: const TextStyle(fontSize: 12, color: JcColors.primary),
+                ),
               ),
             ],
           ),
@@ -35,12 +45,17 @@ class JcSummaryCard extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [
-                  Expanded(child: Text(entry.key, style: JcTextStyles.small)),
-                  Text(
-                    entry.value,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                  Text(entry.key, style: JcTextStyles.small),
+                  const SizedBox(width: 16),
+                  // Long values (emails, addresses) wrap instead of overflowing.
+                  Expanded(
+                    child: Text(
+                      entry.value,
+                      textAlign: TextAlign.end,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

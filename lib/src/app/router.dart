@@ -15,6 +15,7 @@ import 'package:jc_connect_app/src/features/events/presentation/event_donation_s
 import 'package:jc_connect_app/src/features/events/presentation/events_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/account_details_screen.dart';
+import 'package:jc_connect_app/src/features/onboarding/presentation/guardian_details_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/old_boy_details_flow_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/parent_details_flow_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/review_screen.dart';
@@ -65,6 +66,10 @@ GoRouter createRouter() => GoRouter(
     GoRoute(
       path: Routes.signUpStudent,
       builder: (_, state) => StudentDetailsFlowScreen(data: _signUpData(state)),
+    ),
+    GoRoute(
+      path: Routes.signUpGuardians,
+      builder: (_, state) => GuardianDetailsScreen(data: _signUpData(state)),
     ),
     GoRoute(
       path: Routes.signUpParent,

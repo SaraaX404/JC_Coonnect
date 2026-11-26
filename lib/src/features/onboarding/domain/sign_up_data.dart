@@ -1,3 +1,4 @@
+import 'package:jc_api/jc_api.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/jc_role.dart';
 
 class SignUpData {
@@ -22,4 +23,7 @@ class SignUpData {
   String teacherRole = '';
   String anotherSonName = '';
   bool proofUploaded = false;
+
+  /// A student's parents or guardians, invited once the school approves.
+  List<GuardianContactRequest> guardians = [];
 }

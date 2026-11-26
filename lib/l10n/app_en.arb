@@ -503,6 +503,67 @@
   "@fileFieldUpload": {
     "description": "Proof upload field: upload."
   },
+  "guardianAddAnother": "Add another guardian",
+  "@guardianAddAnother": {
+    "description": "Guardian details screen (student sign-up): button that saves this guardian and opens a form for one more."
+  },
+  "guardianDescription": "We’ll invite them to JC Connect so they can follow your school life.",
+  "@guardianDescription": {
+    "description": "Guardian details screen (student sign-up): description under the heading."
+  },
+  "guardianEmailHelp": "We’ll send them an invite to join.",
+  "@guardianEmailHelp": {
+    "description": "Guardian details screen (student sign-up): helper under the email field."
+  },
+  "guardianEmailHint": "name@example.com",
+  "@guardianEmailHint": {
+    "description": "Guardian details screen (student sign-up): email placeholder."
+  },
+  "guardianEmailLabel": "Guardian’s email",
+  "@guardianEmailLabel": {
+    "description": "Guardian details screen (student sign-up): email label."
+  },
+  "guardianFullNameHint": "e.g. Andrea Brown",
+  "@guardianFullNameHint": {
+    "description": "Guardian details screen (student sign-up): full name placeholder."
+  },
+  "guardianFullNameLabel": "Guardian’s full name",
+  "@guardianFullNameLabel": {
+    "description": "Guardian details screen (student sign-up): full name label."
+  },
+  "guardianHeading": "Parent or guardian",
+  "@guardianHeading": {
+    "description": "Guardian details screen (student sign-up): heading."
+  },
+  "guardianNumber": "Guardian {number}",
+  "@guardianNumber": {
+    "description": "Guardian details screen (student sign-up): title of one guardian's card or form.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "guardianOwnEmail": "This is your email. Enter your guardian’s email.",
+  "@guardianOwnEmail": {
+    "description": "Guardian details screen (student sign-up): error when the student enters their own email."
+  },
+  "guardianPhoneHint": "+1 876 000 0000",
+  "@guardianPhoneHint": {
+    "description": "Guardian details screen (student sign-up): phone placeholder."
+  },
+  "guardianPhoneLabel": "Guardian’s phone number",
+  "@guardianPhoneLabel": {
+    "description": "Guardian details screen (student sign-up): phone label."
+  },
+  "guardianRemove": "Remove",
+  "@guardianRemove": {
+    "description": "Guardian details screen (student sign-up): removes the guardian form being filled in."
+  },
+  "guardianTitle": "Guardian",
+  "@guardianTitle": {
+    "description": "Guardian details screen (student sign-up): progress bar label."
+  },
   "lessonAbout": "About this lesson",
   "@lessonAbout": {
     "description": "Lesson overview screen: about."

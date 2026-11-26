@@ -378,6 +378,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fileFieldUpload => 'Upload proof';
 
   @override
+  String get guardianAddAnother => 'Add another guardian';
+
+  @override
+  String get guardianDescription =>
+      'We’ll invite them to JC Connect so they can follow your school life.';
+
+  @override
+  String get guardianEmailHelp => 'We’ll send them an invite to join.';
+
+  @override
+  String get guardianEmailHint => 'name@example.com';
+
+  @override
+  String get guardianEmailLabel => 'Guardian’s email';
+
+  @override
+  String get guardianFullNameHint => 'e.g. Andrea Brown';
+
+  @override
+  String get guardianFullNameLabel => 'Guardian’s full name';
+
+  @override
+  String get guardianHeading => 'Parent or guardian';
+
+  @override
+  String guardianNumber(int number) {
+    return 'Guardian $number';
+  }
+
+  @override
+  String get guardianOwnEmail =>
+      'This is your email. Enter your guardian’s email.';
+
+  @override
+  String get guardianPhoneHint => '+1 876 000 0000';
+
+  @override
+  String get guardianPhoneLabel => 'Guardian’s phone number';
+
+  @override
+  String get guardianRemove => 'Remove';
+
+  @override
+  String get guardianTitle => 'Guardian';
+
+  @override
   String get lessonAbout => 'About this lesson';
 
   @override
