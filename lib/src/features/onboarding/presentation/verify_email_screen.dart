@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 
@@ -70,20 +71,11 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           ),
           const SizedBox(height: 20),
           Center(
-            child: Wrap(
-              children: [
-                Text(
-                  context.l10n.verifyEmailNoCodePrompt,
-                  style: JcTextStyles.small,
-                ),
-                TextButton(
-                  onPressed: () => showMessage(
-                    context,
-                    context.l10n.verifyEmailResentMessage,
-                  ),
-                  child: Text(context.l10n.verifyEmailResend),
-                ),
-              ],
+            child: JcPromptLink(
+              prompt: context.l10n.verifyEmailNoCodePrompt,
+              link: context.l10n.verifyEmailResend,
+              onTap: () =>
+                  showMessage(context, context.l10n.verifyEmailResentMessage),
             ),
           ),
           const SizedBox(height: 150),

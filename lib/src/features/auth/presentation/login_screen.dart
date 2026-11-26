@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
@@ -145,29 +146,10 @@ class _LoginScreenState extends State<LoginScreen> {
               showMessage(context, context.l10n.loginAppleSelectedMessage),
         ),
         const SizedBox(height: 32),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              context.l10n.loginNoAccountPrompt,
-              style: const TextStyle(
-                fontSize: 12,
-                height: 16 / 12,
-                color: JcColors.secondaryText,
-              ),
-            ),
-            const SizedBox(width: 10),
-            _TextLink(
-              label: context.l10n.loginSignUpLink,
-              style: const TextStyle(
-                fontSize: 12,
-                height: 16 / 12,
-                fontWeight: FontWeight.w600,
-                color: JcColors.navyDark,
-              ),
-              onTap: () => context.push(Routes.signUp),
-            ),
-          ],
+        JcPromptLink(
+          prompt: context.l10n.loginNoAccountPrompt,
+          link: context.l10n.loginSignUpLink,
+          onTap: () => context.push(Routes.signUp),
         ),
       ],
     ),

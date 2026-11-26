@@ -828,7 +828,7 @@
   "@signUpRoleDescription": {
     "description": "Sign-up role screen: description."
   },
-  "signUpRoleHaveAccount": "Already have an account? ",
+  "signUpRoleHaveAccount": "Already have an account?",
   "@signUpRoleHaveAccount": {
     "description": "Sign-up role screen: have account."
   },
@@ -1081,7 +1081,7 @@
   "@verifyEmailHeading": {
     "description": "Verify email screen: heading."
   },
-  "verifyEmailNoCodePrompt": "Didn’t receive the code? ",
+  "verifyEmailNoCodePrompt": "Didn’t receive the code?",
   "@verifyEmailNoCodePrompt": {
     "description": "Verify email screen: no code prompt."
   },

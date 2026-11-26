@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
@@ -66,18 +67,10 @@ class _SignUpRoleScreenState extends State<SignUpRoleScreen> {
                       context.push(Routes.signUpAccount, extra: widget.data),
                 ),
                 const SizedBox(height: 16),
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  children: [
-                    Text(
-                      context.l10n.signUpRoleHaveAccount,
-                      style: JcTextStyles.small,
-                    ),
-                    TextButton(
-                      onPressed: () => context.push(Routes.login),
-                      child: Text(context.l10n.signUpRoleLogIn),
-                    ),
-                  ],
+                JcPromptLink(
+                  prompt: context.l10n.signUpRoleHaveAccount,
+                  link: context.l10n.signUpRoleLogIn,
+                  onTap: () => context.push(Routes.login),
                 ),
               ],
             ),

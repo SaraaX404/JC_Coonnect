@@ -627,7 +627,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Tell us how you’re connected to Jamaica College.';
 
   @override
-  String get signUpRoleHaveAccount => 'Already have an account? ';
+  String get signUpRoleHaveAccount => 'Already have an account?';
 
   @override
   String get signUpRoleHeading => 'Join JC Connect';
@@ -837,7 +837,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verifyEmailHeading => 'Verify your email';
 
   @override
-  String get verifyEmailNoCodePrompt => 'Didn’t receive the code? ';
+  String get verifyEmailNoCodePrompt => 'Didn’t receive the code?';
 
   @override
   String get verifyEmailResend => 'Resend';

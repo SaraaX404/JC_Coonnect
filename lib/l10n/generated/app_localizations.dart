@@ -1243,7 +1243,7 @@ abstract class AppLocalizations {
   /// Sign-up role screen: have account.
   ///
   /// In en, this message translates to:
-  /// **'Already have an account? '**
+  /// **'Already have an account?'**
   String get signUpRoleHaveAccount;
 
   /// Sign-up role screen: heading.
@@ -1615,7 +1615,7 @@ abstract class AppLocalizations {
   /// Verify email screen: no code prompt.
   ///
   /// In en, this message translates to:
-  /// **'Didn’t receive the code? '**
+  /// **'Didn’t receive the code?'**
   String get verifyEmailNoCodePrompt;
 
   /// Verify email screen: resend.
