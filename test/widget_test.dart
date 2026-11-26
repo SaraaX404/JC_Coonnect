@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
-import 'package:jc_connect_app/main.dart';
+import 'package:jc_connect_app/src/app/app.dart';
 
 void main() {
   testWidgets('shows the JC Connect welcome screen', (tester) async {

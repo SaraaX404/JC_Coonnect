@@ -1,0 +1,33 @@
+import 'package:material_ui/material_ui.dart';
+
+class EducationSectionHeader extends StatelessWidget {
+  const EducationSectionHeader(this.title, {super.key, this.action});
+  final String title;
+  final String? action;
+
+  @override
+  Widget build(BuildContext context) => Row(
+    children: [
+      Container(
+        width: 5,
+        height: 16,
+        decoration: BoxDecoration(
+          color: const Color(0xFF0033A0),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      const SizedBox(width: 6),
+      Expanded(
+        child: Text(
+          title,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+      ),
+      if (action case final action?)
+        Text(
+          action,
+          style: const TextStyle(fontSize: 11, color: Color(0xFF0033A0)),
+        ),
+    ],
+  );
+}
