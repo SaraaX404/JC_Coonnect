@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:material_ui/material_ui.dart';
 
 class JcScaffold extends StatelessWidget {
@@ -43,7 +44,7 @@ class JcScaffold extends StatelessWidget {
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [Color(0xFFFFF8DF), Colors.white],
+                colors: [JcColors.softYellow, Colors.white],
               ),
             ),
           ),

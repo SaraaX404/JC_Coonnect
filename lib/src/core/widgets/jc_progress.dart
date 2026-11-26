@@ -39,9 +39,7 @@ class JcProgress extends StatelessWidget {
                 height: 4,
                 margin: EdgeInsets.only(right: index == total - 1 ? 0 : 6),
                 decoration: BoxDecoration(
-                  color: index < step
-                      ? JcColors.primary
-                      : const Color(0xFFF1F5F9),
+                  color: index < step ? JcColors.primary : JcColors.track,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),

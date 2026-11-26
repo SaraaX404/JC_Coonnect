@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
@@ -40,7 +41,7 @@ class _TermsScreenState extends State<TermsScreen> {
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: const BorderSide(color: Color(0xFFF1F5F9)),
+              side: const BorderSide(color: JcColors.track),
             ),
             child: const Padding(
               padding: EdgeInsets.all(12),

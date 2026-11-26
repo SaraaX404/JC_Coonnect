@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -7,12 +8,12 @@ class JcDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
     children: [
-      const Expanded(child: Divider(color: Color(0xFFEFEFEF))),
+      const Expanded(child: Divider(color: JcColors.divider)),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Text(label, style: JcTextStyles.small),
       ),
-      const Expanded(child: Divider(color: Color(0xFFEFEFEF))),
+      const Expanded(child: Divider(color: JcColors.divider)),
     ],
   );
 }

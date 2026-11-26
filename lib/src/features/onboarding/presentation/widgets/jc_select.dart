@@ -63,7 +63,7 @@ class JcSelect extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             boxShadow: const [
               BoxShadow(
-                color: Color(0x0A000000),
+                color: JcColors.shadow,
                 blurRadius: 2,
                 offset: Offset(0, 1),
               ),

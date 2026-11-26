@@ -28,7 +28,7 @@ class EventListCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
           BoxShadow(
-            color: Color(0x0A000000),
+            color: JcColors.shadow,
             blurRadius: 5,
             offset: Offset(0, 2),
           ),
@@ -81,7 +81,7 @@ class EventListCard extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE8F4FF),
+                          color: JcColors.selectedBlue,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(

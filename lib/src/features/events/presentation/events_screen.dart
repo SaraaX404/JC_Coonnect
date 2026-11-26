@@ -271,7 +271,7 @@ class _EventCategoryChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 13),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: selected ? const Color(0xFFE8F4FF) : Colors.white,
+        color: selected ? JcColors.selectedBlue : Colors.white,
         border: Border.all(
           color: selected ? JcColors.primary : const Color(0xFFE3E7EE),
         ),

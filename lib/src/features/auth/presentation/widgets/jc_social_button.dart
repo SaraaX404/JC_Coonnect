@@ -19,7 +19,7 @@ class JcSocialButton extends StatelessWidget {
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: JcColors.text,
-        side: const BorderSide(color: Color(0xFFEFEFEF)),
+        side: const BorderSide(color: JcColors.divider),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Row(

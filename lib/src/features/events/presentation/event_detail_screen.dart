@@ -65,7 +65,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFC72C),
+                      color: JcColors.gold,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -83,7 +83,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   style: const TextStyle(
                     fontSize: 24,
                     height: 1.3,
-                    color: Color(0xFF002273),
+                    color: JcColors.navyDark,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -110,7 +110,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   'About this event',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF002273),
+                    color: JcColors.navyDark,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -131,7 +131,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   label: const Text('Add to Calendar'),
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(48),
-                    foregroundColor: const Color(0xFF0033A0),
+                    foregroundColor: JcColors.navy,
                     side: const BorderSide(color: JcColors.border),
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -207,14 +207,14 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                         children: [
                           Icon(
                             Icons.volunteer_activism_outlined,
-                            color: Color(0xFF0033A0),
+                            color: JcColors.navy,
                           ),
                           SizedBox(width: 8),
                           Expanded(
                             child: Text(
                               'Community booster',
                               style: TextStyle(
-                                color: Color(0xFF0033A0),
+                                color: JcColors.navy,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -258,8 +258,8 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                         ),
                         label: const Text('Donate'),
                         style: FilledButton.styleFrom(
-                          backgroundColor: const Color(0xFFFFC72C),
-                          foregroundColor: const Color(0xFF002273),
+                          backgroundColor: JcColors.gold,
+                          foregroundColor: JcColors.navyDark,
                         ),
                       ),
                     ],
@@ -270,7 +270,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   'Reactions',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF002273),
+                    color: JcColors.navyDark,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -341,7 +341,7 @@ Widget _eventInfoCard(IconData icon, String label, String value) => Container(
     color: Colors.white,
     borderRadius: BorderRadius.circular(12),
     boxShadow: const [
-      BoxShadow(color: Color(0x0A000000), blurRadius: 2, offset: Offset(0, 1)),
+      BoxShadow(color: JcColors.shadow, blurRadius: 2, offset: Offset(0, 1)),
     ],
   ),
   child: Row(
@@ -350,10 +350,10 @@ Widget _eventInfoCard(IconData icon, String label, String value) => Container(
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: const Color(0xFFEBF1FF),
+          color: JcColors.pillBlue,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Icon(icon, size: 20, color: const Color(0xFF0033A0)),
+        child: Icon(icon, size: 20, color: JcColors.navy),
       ),
       const SizedBox(width: 12),
       Expanded(

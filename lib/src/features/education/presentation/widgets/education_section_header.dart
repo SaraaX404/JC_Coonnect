@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EducationSectionHeader extends StatelessWidget {
@@ -12,7 +13,7 @@ class EducationSectionHeader extends StatelessWidget {
         width: 5,
         height: 16,
         decoration: BoxDecoration(
-          color: const Color(0xFF0033A0),
+          color: JcColors.navy,
           borderRadius: BorderRadius.circular(8),
         ),
       ),
@@ -26,7 +27,7 @@ class EducationSectionHeader extends StatelessWidget {
       if (action case final action?)
         Text(
           action,
-          style: const TextStyle(fontSize: 11, color: Color(0xFF0033A0)),
+          style: const TextStyle(fontSize: 11, color: JcColors.navy),
         ),
     ],
   );

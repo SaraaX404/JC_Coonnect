@@ -31,7 +31,7 @@ class LessonOverviewScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 21,
             height: 1.3,
-            color: Color(0xFF002273),
+            color: JcColors.navyDark,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -109,7 +109,7 @@ class LessonOverviewScreen extends StatelessWidget {
         const Text(
           'About this lesson',
           style: TextStyle(
-            color: Color(0xFF002273),
+            color: JcColors.navyDark,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -174,7 +174,7 @@ class _LessonPart extends StatelessWidget {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: const Color(0xFFEAF1FF),
+            color: JcColors.tintBlue,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(icon, color: JcColors.primary),

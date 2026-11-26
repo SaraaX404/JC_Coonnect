@@ -100,7 +100,7 @@ class _EducationScreenState extends State<EducationScreen> {
                     completion: '8 of 12 done',
                     percent: 70,
                     icon: Icons.calculate_outlined,
-                    tint: Color(0xFFEAF1FF),
+                    tint: JcColors.tintBlue,
                   ),
                   _EducationSubjectCard(
                     title: 'English Language',
@@ -108,7 +108,7 @@ class _EducationScreenState extends State<EducationScreen> {
                     completion: '4 of 10 done',
                     percent: 40,
                     icon: Icons.menu_book_outlined,
-                    tint: Color(0xFFFFF8DF),
+                    tint: JcColors.softYellow,
                   ),
                   _EducationSubjectCard(
                     title: 'Information Technology',
@@ -138,7 +138,7 @@ class _EducationScreenState extends State<EducationScreen> {
                       width: 46,
                       height: 54,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEAF1FF),
+                        color: JcColors.tintBlue,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Column(
@@ -243,7 +243,7 @@ class _EducationChip extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: selected ? const Color(0xFFE6F4FF) : Colors.white,
+        color: selected ? JcColors.softBlue : Colors.white,
         border: Border.all(
           color: selected ? JcColors.primary : JcColors.border,
         ),
@@ -280,7 +280,7 @@ class _EducationLessonCard extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: const Color(0xFFEAF1FF),
+              color: JcColors.tintBlue,
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(
