@@ -80,6 +80,10 @@
   "@commonBack": {
     "description": "Shared: back."
   },
+  "commonBrand": "JC CONNECT",
+  "@commonBrand": {
+    "description": "Shared: product name shown as the welcome and login heading."
+  },
   "commonClass": "Class",
   "@commonClass": {
     "description": "Shared: class."
@@ -123,6 +127,10 @@
   "commonGraduationYear": "Graduation year",
   "@commonGraduationYear": {
     "description": "Shared: graduation year."
+  },
+  "commonHidePassword": "Hide password",
+  "@commonHidePassword": {
+    "description": "Shared: tooltip of the eye button that hides a password again."
   },
   "commonHouse": "House",
   "@commonHouse": {
@@ -169,6 +177,10 @@
   "@commonShare": {
     "description": "Shared: share."
   },
+  "commonShowPassword": "Show password",
+  "@commonShowPassword": {
+    "description": "Shared: tooltip of the eye button that reveals a password."
+  },
   "commonStaffId": "Staff ID",
   "@commonStaffId": {
     "description": "Shared: staff id."
@@ -188,6 +200,10 @@
   "commonStudentId": "Student ID",
   "@commonStudentId": {
     "description": "Shared: student id."
+  },
+  "commonTagline": "One College. One Community.",
+  "@commonTagline": {
+    "description": "Shared: tagline under the product name."
   },
   "commonYourDetails": "Your details",
   "@commonYourDetails": {
@@ -491,6 +507,10 @@
   "@loginAppleSelectedMessage": {
     "description": "Login screen: apple selected message."
   },
+  "loginButton": "Log in",
+  "@loginButton": {
+    "description": "Login screen: button that signs the user in."
+  },
   "loginContinueWithApple": "Continue with Apple",
   "@loginContinueWithApple": {
     "description": "Login screen: continue with apple."
@@ -499,9 +519,9 @@
   "@loginContinueWithGoogle": {
     "description": "Login screen: continue with google."
   },
-  "loginDescription": "Log in to stay connected to JC.",
-  "@loginDescription": {
-    "description": "Login screen: description."
+  "loginEmailInvalid": "Enter a valid email, like name@example.com.",
+  "@loginEmailInvalid": {
+    "description": "Login screen: error when the email is empty or not an email address."
   },
   "loginForgotPassword": "Forgot your password?",
   "@loginForgotPassword": {
@@ -511,29 +531,25 @@
   "@loginGoogleSelectedMessage": {
     "description": "Login screen: google selected message."
   },
-  "loginHeading": "Welcome back",
-  "@loginHeading": {
-    "description": "Login screen: heading."
-  },
-  "loginNoAccountPrompt": "Don’t have an account? ",
+  "loginNoAccountPrompt": "Don’t have an account?",
   "@loginNoAccountPrompt": {
     "description": "Login screen: no account prompt."
   },
-  "loginOrContinueWith": "Or Continue With",
+  "loginOrContinueWith": "Or continue with",
   "@loginOrContinueWith": {
     "description": "Login screen: or continue with."
+  },
+  "loginPasswordRequired": "Enter your password",
+  "@loginPasswordRequired": {
+    "description": "Login screen: error when the password is empty."
   },
   "loginReadyMessage": "Login is ready to connect.",
   "@loginReadyMessage": {
     "description": "Login screen: ready message."
   },
-  "loginSignUpLink": "Sign Up",
+  "loginSignUpLink": "Sign up",
   "@loginSignUpLink": {
     "description": "Login screen: sign up link."
-  },
-  "loginTitle": "Login",
-  "@loginTitle": {
-    "description": "Login screen: title."
   },
   "navChat": "Chat",
   "@navChat": {
@@ -1086,35 +1102,19 @@
       }
     }
   },
-  "welcomeBrand": "JC CONNECT",
-  "@welcomeBrand": {
-    "description": "Welcome screen: brand."
-  },
-  "welcomeBrowseEvents": "Browse events",
-  "@welcomeBrowseEvents": {
-    "description": "Welcome screen: browse events."
-  },
   "welcomeFooter": "Jamaica College • Founded 1789 • Kingston, JA",
   "@welcomeFooter": {
     "description": "Welcome screen: footer."
   },
-  "welcomeJoinButton": "Join as a Member",
+  "welcomeJoinButton": "Join JC Connect",
   "@welcomeJoinButton": {
     "description": "Welcome screen: join button."
   },
-  "welcomeLoginButton": "Login",
+  "welcomeLoginButton": "Log in",
   "@welcomeLoginButton": {
     "description": "Welcome screen: login button."
   },
-  "welcomeOpenEducation": "Open Education",
-  "@welcomeOpenEducation": {
-    "description": "Welcome screen: open education."
-  },
-  "welcomeTagline": "One College. One Community.",
-  "@welcomeTagline": {
-    "description": "Welcome screen: tagline."
-  },
-  "welcomeVersion": "●  v2.4.0 • True Blue Secure Connect",
+  "welcomeVersion": "v2.4.0 • True Blue Secure Connect",
   "@welcomeVersion": {
     "description": "Welcome screen: version."
   }

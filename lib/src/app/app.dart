@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/app/router.dart';
-import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
+import 'package:jc_connect_app/src/core/theme/jc_theme.dart';
 import 'package:material_ui/material_ui.dart';
 
 class JcConnectApp extends StatefulWidget {
@@ -27,12 +27,7 @@ class _JcConnectAppState extends State<JcConnectApp> {
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      useMaterial3: true,
-      scaffoldBackgroundColor: Colors.white,
-      fontFamily: 'Inter',
-      colorScheme: ColorScheme.fromSeed(seedColor: JcColors.primary),
-    ),
+    theme: jcTheme(),
     routerConfig: _router,
   );
 }

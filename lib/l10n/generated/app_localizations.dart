@@ -202,6 +202,12 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get commonBack;
 
+  /// Shared: product name shown as the welcome and login heading.
+  ///
+  /// In en, this message translates to:
+  /// **'JC CONNECT'**
+  String get commonBrand;
+
   /// Shared: class.
   ///
   /// In en, this message translates to:
@@ -268,6 +274,12 @@ abstract class AppLocalizations {
   /// **'Graduation year'**
   String get commonGraduationYear;
 
+  /// Shared: tooltip of the eye button that hides a password again.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get commonHidePassword;
+
   /// Shared: house.
   ///
   /// In en, this message translates to:
@@ -328,6 +340,12 @@ abstract class AppLocalizations {
   /// **'Share'**
   String get commonShare;
 
+  /// Shared: tooltip of the eye button that reveals a password.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get commonShowPassword;
+
   /// Shared: staff id.
   ///
   /// In en, this message translates to:
@@ -345,6 +363,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Student ID'**
   String get commonStudentId;
+
+  /// Shared: tagline under the product name.
+  ///
+  /// In en, this message translates to:
+  /// **'One College. One Community.'**
+  String get commonTagline;
 
   /// Shared: your details.
   ///
@@ -742,6 +766,12 @@ abstract class AppLocalizations {
   /// **'Apple sign-in selected.'**
   String get loginAppleSelectedMessage;
 
+  /// Login screen: button that signs the user in.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get loginButton;
+
   /// Login screen: continue with apple.
   ///
   /// In en, this message translates to:
@@ -754,11 +784,11 @@ abstract class AppLocalizations {
   /// **'Continue with Google'**
   String get loginContinueWithGoogle;
 
-  /// Login screen: description.
+  /// Login screen: error when the email is empty or not an email address.
   ///
   /// In en, this message translates to:
-  /// **'Log in to stay connected to JC.'**
-  String get loginDescription;
+  /// **'Enter a valid email, like name@example.com.'**
+  String get loginEmailInvalid;
 
   /// Login screen: forgot password.
   ///
@@ -772,23 +802,23 @@ abstract class AppLocalizations {
   /// **'Google sign-in selected.'**
   String get loginGoogleSelectedMessage;
 
-  /// Login screen: heading.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome back'**
-  String get loginHeading;
-
   /// Login screen: no account prompt.
   ///
   /// In en, this message translates to:
-  /// **'Don’t have an account? '**
+  /// **'Don’t have an account?'**
   String get loginNoAccountPrompt;
 
   /// Login screen: or continue with.
   ///
   /// In en, this message translates to:
-  /// **'Or Continue With'**
+  /// **'Or continue with'**
   String get loginOrContinueWith;
+
+  /// Login screen: error when the password is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get loginPasswordRequired;
 
   /// Login screen: ready message.
   ///
@@ -799,14 +829,8 @@ abstract class AppLocalizations {
   /// Login screen: sign up link.
   ///
   /// In en, this message translates to:
-  /// **'Sign Up'**
+  /// **'Sign up'**
   String get loginSignUpLink;
-
-  /// Login screen: title.
-  ///
-  /// In en, this message translates to:
-  /// **'Login'**
-  String get loginTitle;
 
   /// Bottom navigation: chat.
   ///
@@ -1612,18 +1636,6 @@ abstract class AppLocalizations {
   /// **'We sent a 6-digit code to\n{email}'**
   String verifyEmailSentTo(String email);
 
-  /// Welcome screen: brand.
-  ///
-  /// In en, this message translates to:
-  /// **'JC CONNECT'**
-  String get welcomeBrand;
-
-  /// Welcome screen: browse events.
-  ///
-  /// In en, this message translates to:
-  /// **'Browse events'**
-  String get welcomeBrowseEvents;
-
   /// Welcome screen: footer.
   ///
   /// In en, this message translates to:
@@ -1633,31 +1645,19 @@ abstract class AppLocalizations {
   /// Welcome screen: join button.
   ///
   /// In en, this message translates to:
-  /// **'Join as a Member'**
+  /// **'Join JC Connect'**
   String get welcomeJoinButton;
 
   /// Welcome screen: login button.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
+  /// **'Log in'**
   String get welcomeLoginButton;
-
-  /// Welcome screen: open education.
-  ///
-  /// In en, this message translates to:
-  /// **'Open Education'**
-  String get welcomeOpenEducation;
-
-  /// Welcome screen: tagline.
-  ///
-  /// In en, this message translates to:
-  /// **'One College. One Community.'**
-  String get welcomeTagline;
 
   /// Welcome screen: version.
   ///
   /// In en, this message translates to:
-  /// **'●  v2.4.0 • True Blue Secure Connect'**
+  /// **'v2.4.0 • True Blue Secure Connect'**
   String get welcomeVersion;
 }
 

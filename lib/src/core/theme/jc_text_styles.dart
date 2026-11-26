@@ -2,10 +2,15 @@ import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:material_ui/material_ui.dart';
 
 abstract final class JcTextStyles {
+  /// Font families bundled in pubspec.yaml. Inter is the app default (theme).
+  static const brandFont = 'BarlowCondensed';
+
+  /// Page headings ("JC CONNECT", "Verify your identity"): Barlow Condensed.
   static const title = TextStyle(
+    fontFamily: brandFont,
     fontSize: 30,
     height: 1,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w500,
     color: JcColors.titleBlue,
   );
   static const body = TextStyle(
@@ -15,8 +20,15 @@ abstract final class JcTextStyles {
   );
   static const label = TextStyle(
     fontSize: 14,
-    height: 1.4,
+    height: 1,
     fontWeight: FontWeight.w500,
+    color: JcColors.text,
+  );
+
+  /// Field value, placeholder, helper and error text (14/20).
+  static const input = TextStyle(
+    fontSize: 14,
+    height: 20 / 14,
     color: JcColors.text,
   );
   static const small = TextStyle(

@@ -106,7 +106,6 @@ class _EventsScreenState extends State<EventsScreen> {
   Widget build(BuildContext context) => JcScaffold(
     title: context.l10n.eventsTitle,
     showBack: false,
-    showHomeIndicator: false,
     child: Column(
       children: [
         Padding(

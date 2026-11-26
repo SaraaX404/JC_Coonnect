@@ -71,6 +71,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonBack => 'Back';
 
   @override
+  String get commonBrand => 'JC CONNECT';
+
+  @override
   String get commonClass => 'Class';
 
   @override
@@ -102,6 +105,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonGraduationYear => 'Graduation year';
+
+  @override
+  String get commonHidePassword => 'Hide password';
 
   @override
   String get commonHouse => 'House';
@@ -136,6 +142,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonShare => 'Share';
 
   @override
+  String get commonShowPassword => 'Show password';
+
+  @override
   String get commonStaffId => 'Staff ID';
 
   @override
@@ -145,6 +154,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonStudentId => 'Student ID';
+
+  @override
+  String get commonTagline => 'One College. One Community.';
 
   @override
   String get commonYourDetails => 'Your details';
@@ -368,13 +380,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginAppleSelectedMessage => 'Apple sign-in selected.';
 
   @override
+  String get loginButton => 'Log in';
+
+  @override
   String get loginContinueWithApple => 'Continue with Apple';
 
   @override
   String get loginContinueWithGoogle => 'Continue with Google';
 
   @override
-  String get loginDescription => 'Log in to stay connected to JC.';
+  String get loginEmailInvalid => 'Enter a valid email, like name@example.com.';
 
   @override
   String get loginForgotPassword => 'Forgot your password?';
@@ -383,22 +398,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginGoogleSelectedMessage => 'Google sign-in selected.';
 
   @override
-  String get loginHeading => 'Welcome back';
+  String get loginNoAccountPrompt => 'Don’t have an account?';
 
   @override
-  String get loginNoAccountPrompt => 'Don’t have an account? ';
+  String get loginOrContinueWith => 'Or continue with';
 
   @override
-  String get loginOrContinueWith => 'Or Continue With';
+  String get loginPasswordRequired => 'Enter your password';
 
   @override
   String get loginReadyMessage => 'Login is ready to connect.';
 
   @override
-  String get loginSignUpLink => 'Sign Up';
-
-  @override
-  String get loginTitle => 'Login';
+  String get loginSignUpLink => 'Sign up';
 
   @override
   String get navChat => 'Chat';
@@ -839,26 +851,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get welcomeBrand => 'JC CONNECT';
-
-  @override
-  String get welcomeBrowseEvents => 'Browse events';
-
-  @override
   String get welcomeFooter => 'Jamaica College • Founded 1789 • Kingston, JA';
 
   @override
-  String get welcomeJoinButton => 'Join as a Member';
+  String get welcomeJoinButton => 'Join JC Connect';
 
   @override
-  String get welcomeLoginButton => 'Login';
+  String get welcomeLoginButton => 'Log in';
 
   @override
-  String get welcomeOpenEducation => 'Open Education';
-
-  @override
-  String get welcomeTagline => 'One College. One Community.';
-
-  @override
-  String get welcomeVersion => '●  v2.4.0 • True Blue Secure Connect';
+  String get welcomeVersion => 'v2.4.0 • True Blue Secure Connect';
 }

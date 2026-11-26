@@ -1,5 +1,5 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:material_ui/material_ui.dart';
 
 class JcScaffold extends StatelessWidget {
@@ -8,51 +8,23 @@ class JcScaffold extends StatelessWidget {
     required this.child,
     this.title,
     this.showBack = true,
-    this.showHomeIndicator = true,
+    this.background = const JcBackgroundGlows(),
   });
   final Widget child;
   final String? title;
   final bool showBack;
-  final bool showHomeIndicator;
+
+  /// Decoration behind the content; the blue and amber glows by default.
+  final Widget background;
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    backgroundColor: Colors.white,
     body: Stack(
       children: [
-        const Positioned.fill(
-          child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),
-        ),
-        Positioned(
-          left: -90,
-          top: -146,
-          child: Container(
-            width: 372,
-            height: 372,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [Color(0xFFE7F0FF), Colors.white],
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          right: -200,
-          top: -146,
-          child: Container(
-            width: 372,
-            height: 372,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [JcColors.softYellow, Colors.white],
-              ),
-            ),
-          ),
-        ),
+        Positioned.fill(child: background),
         SafeArea(
           top: false,
-          bottom: false,
           child: Column(
             children: [
               JcAppHeader(title: title, showBack: showBack),
@@ -60,13 +32,38 @@ class JcScaffold extends StatelessWidget {
             ],
           ),
         ),
-        if (showHomeIndicator)
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: JcHomeIndicator(),
-          ),
       ],
     ),
+  );
+}
+
+/// Figma "Background Glow 1/2": 372px radial glows at the top corners.
+class JcBackgroundGlows extends StatelessWidget {
+  const JcBackgroundGlows({super.key});
+
+  @override
+  Widget build(BuildContext context) => Stack(
+    clipBehavior: Clip.none,
+    children: [
+      Positioned(
+        left: -93,
+        top: -146,
+        child: SvgPicture.asset(
+          'assets/backgrounds/login_glow_1.svg',
+          width: 372,
+          height: 372,
+        ),
+      ),
+      Positioned(
+        right: -172,
+        top: -146,
+        child: SvgPicture.asset(
+          'assets/backgrounds/login_glow_2.svg',
+          width: 372,
+          height: 372,
+        ),
+      ),
+    ],
   );
 }
 
@@ -79,47 +76,32 @@ class JcAppHeader extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     children: [
       SizedBox(height: MediaQuery.paddingOf(context).top),
-      SizedBox(
-        height: 36,
-        child: Row(
-          children: [
-            if (showBack)
-              IconButton(
-                tooltip: context.l10n.commonBack,
-                onPressed: () => Navigator.of(context).maybePop(),
-                icon: const Icon(Icons.arrow_back, size: 22),
-              ),
-            if (title != null)
-              Expanded(
-                child: Text(
-                  title!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+      if (showBack || title != null)
+        SizedBox(
+          height: 36,
+          child: Row(
+            children: [
+              if (showBack)
+                IconButton(
+                  tooltip: context.l10n.commonBack,
+                  onPressed: () => Navigator.of(context).maybePop(),
+                  icon: const Icon(Icons.arrow_back, size: 22),
+                ),
+              if (title != null)
+                Expanded(
+                  child: Text(
+                    title!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-            if (showBack) const SizedBox(width: 48),
-          ],
+              if (showBack) const SizedBox(width: 48),
+            ],
+          ),
         ),
-      ),
     ],
-  );
-}
-
-class JcHomeIndicator extends StatelessWidget {
-  const JcHomeIndicator({super.key});
-  @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(bottom: 8),
-    child: Container(
-      width: 144,
-      height: 5,
-      decoration: BoxDecoration(
-        color: const Color(0xFF292929),
-        borderRadius: BorderRadius.circular(100),
-      ),
-    ),
   );
 }

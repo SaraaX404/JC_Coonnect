@@ -18,4 +18,7 @@ abstract final class JcColors {
   static const shadow = Color(0x0A000000);
   static const gold = Color(0xFFFFC72C);
   static const track = Color(0xFFF1F5F9);
+  static const error = Color(0xFFDC2626);
+  static const subtleText = Color(0xFF656565);
+  static const secondaryText = Color(0xFF464646);
 }

@@ -49,7 +49,7 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 ### Principles
 - **KISS / YAGNI.** Build what the task needs, nothing "for later". No interfaces with one implementation, no use-case classes that only forward a call.
 - **Smallest complete change.** Touch only what the task needs, but finish it: strings, tests, this file if a convention changed.
-- **Figma is the visual truth.** Match spacing, copy, states and field order; don't redesign. The `skills/figma-onboarding-validation` workflow applies to onboarding UI.
+- **Figma is the visual truth.** File `UJQtvLPbyeS4uIIqyWYH1T` (Nexspace-Education), page "Mobile App": sections "Login" (welcome, login, MFA, password reset, system states) and "Registration Flow". Read exact values with the Figma MCP (`get_design_context`), match spacing, copy, states and field order; don't redesign. Download assets into `assets/` (icons `assets/icons/*.svg`, rendered with `flutter_svg`); never reference Figma asset URLs. The `skills/figma-onboarding-validation` workflow applies to onboarding UI.
 
 ### Structure
 - Import direction: `app` → `features` → `core`. `core` never imports a feature.
@@ -72,6 +72,7 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 - When an endpoint exists, replace the mock with real data; delete the mock constant once nothing uses it.
 
 ### Theme
+- Theme lives in `core/theme/jc_theme.dart` (used by the app and `test/helpers/pump_app.dart`). Fonts are bundled: Inter is the default; page headings use Barlow Condensed via `JcTextStyles.title`.
 - Colours come from `JcColors`, text styles from `JcTextStyles`. A colour used in two places is a token. One-off Figma colours (avatar tints, Google blue) may stay inline next to their widget.
 
 ### Style

@@ -1,22 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
-import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/app/router.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:material_ui/material_ui.dart';
 
-Future<GoRouter> pumpRouter(WidgetTester tester) async {
-  final router = createRouter();
-  addTearDown(router.dispose);
-  await tester.pumpWidget(
-    MaterialApp.router(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: router,
-    ),
-  );
-  return router;
-}
+import '../helpers/pump_app.dart';
 
 void main() {
   testWidgets('event route with a known id opens the event details', (
@@ -39,5 +25,37 @@ void main() {
 
     expect(find.text('Event details'), findsNothing);
     expect(find.text('This week'), findsOneWidget);
+  });
+
+  testWidgets('events supports search, calendar, and detail navigation', (
+    tester,
+  ) async {
+    await pumpRouter(tester, location: Routes.events);
+
+    expect(find.text('Events'), findsOneWidget);
+    expect(find.text('FTC Robotics Autonomous Demo'), findsOneWidget);
+
+    await tester.enterText(
+      find.byKey(const ValueKey('event-search-input')),
+      'FTC',
+    );
+    await tester.pump();
+    expect(find.text('Annual STEM & Science Carnival'), findsNothing);
+    expect(find.text('FTC Robotics Autonomous Demo'), findsOneWidget);
+
+    final eventCard = find.ancestor(
+      of: find.text('FTC Robotics Autonomous Demo'),
+      matching: find.byType(InkWell),
+    );
+    await tester.tap(eventCard.last);
+    await tester.pumpAndSettle();
+    expect(find.text('Event details'), findsOneWidget);
+    expect(find.text('Join Now'), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Calendar view'));
+    await tester.pumpAndSettle();
+    expect(find.text('November 2026'), findsOneWidget);
   });
 }
