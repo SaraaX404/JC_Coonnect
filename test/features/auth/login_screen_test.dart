@@ -1,7 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jc_connect_app/src/core/network/api.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
+import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../../helpers/fake_auth_repository.dart';
 import '../../helpers/pump_app.dart';
 
 const _invalidEmail = 'Enter a valid email, like name@example.com.';
@@ -49,13 +52,91 @@ void main() {
     expect(find.text(_invalidEmail), findsNothing);
   });
 
-  testWidgets('valid email and password show no field errors', (
+  testWidgets('log in with valid credentials signs in and opens events', (
     tester,
   ) async {
-    await pumpRouter(tester, location: Routes.login);
-    await _submit(tester, email: 'm.sterling@jc.edu.jm', password: 'secret12');
+    final auth = FakeAuthRepository();
+    final router = await pumpRouter(
+      tester,
+      location: Routes.login,
+      overrides: [auth.asOverride],
+    );
+    await _submit(
+      tester,
+      email: ' m.sterling@jc.edu.jm ',
+      password: 'secret12',
+    );
+    await tester.pumpAndSettle();
 
-    expect(find.text(_invalidEmail), findsNothing);
-    expect(find.text(_passwordRequired), findsNothing);
+    expect(auth.logins.single.email, 'm.sterling@jc.edu.jm');
+    expect(router.state.uri.path, Routes.events);
+  });
+
+  testWidgets('log in with wrong credentials shows the Figma error', (
+    tester,
+  ) async {
+    final auth = FakeAuthRepository(
+      onLogin: (_) async =>
+          throw const ApiException(401, 'invalid_credentials'),
+    );
+    await pumpRouter(
+      tester,
+      location: Routes.login,
+      overrides: [auth.asOverride],
+    );
+    await _submit(tester, email: 'm.sterling@jc.edu.jm', password: 'wrong');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Incorrect email or password. Try again or reset it.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('log in without a connection shows the offline message', (
+    tester,
+  ) async {
+    final auth = FakeAuthRepository(
+      onLogin: (_) async => throw const ApiException(null),
+    );
+    await pumpRouter(
+      tester,
+      location: Routes.login,
+      overrides: [auth.asOverride],
+    );
+    await _submit(tester, email: 'm.sterling@jc.edu.jm', password: 'secret12');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Check your internet connection and try again.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('log in for several schools asks which and retries with it', (
+    tester,
+  ) async {
+    final auth = FakeAuthRepository(
+      onLogin: (schoolId) async => schoolId == null
+          ? const LoginPickSchool([
+              School(id: 's1', name: 'Jamaica College'),
+              School(id: 's2', name: 'Test Prep School'),
+            ])
+          : const LoginSignedIn(),
+    );
+    final router = await pumpRouter(
+      tester,
+      location: Routes.login,
+      overrides: [auth.asOverride],
+    );
+    await _submit(tester, email: 'm.sterling@jc.edu.jm', password: 'secret12');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Choose your school'), findsOneWidget);
+    await tester.tap(find.text('Jamaica College'));
+    await tester.pumpAndSettle();
+
+    expect(auth.logins.map((l) => l.schoolId), [null, 's1']);
+    expect(router.state.uri.path, Routes.events);
   });
 }

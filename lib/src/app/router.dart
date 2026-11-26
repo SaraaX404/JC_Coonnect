@@ -33,7 +33,9 @@ GoRouter createRouter() => GoRouter(
     GoRoute(path: Routes.login, builder: (_, _) => const LoginScreen()),
     GoRoute(
       path: Routes.loginVerify,
-      builder: (_, _) => const MfaScreen(),
+      // The challenge comes from the login call; a cold deep link has none.
+      redirect: (_, state) => state.extra is String ? null : Routes.login,
+      builder: (_, state) => MfaScreen(challenge: state.extra! as String),
     ),
     GoRoute(
       path: Routes.sessionExpired,

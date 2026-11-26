@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The app talks to the JSC API. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="jc_connect_app"
         android:name="${applicationName}"

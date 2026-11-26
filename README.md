@@ -16,6 +16,8 @@ make run          # dev (env/dev.json); in VS Code pick "JC Connect (dev)"
 
 `env/dev.json` is committed. `env/prod.json` is git-ignored: copy `env/prod.json.example` and fill in the real values.
 
+`env/dev.json` points at the backend on `localhost:8000` (`cd ../jsc_be && make up`). The iOS simulator reaches it directly; for an Android emulator or a USB phone run `adb reverse tcp:8000 tcp:8000` once per device connection.
+
 ## Everyday commands
 
 | Command | Does |

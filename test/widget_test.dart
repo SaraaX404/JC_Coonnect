@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jc_connect_app/src/app/app.dart';
 import 'package:material_ui/material_ui.dart';
@@ -6,7 +7,7 @@ void main() {
   testWidgets('welcome screen shows the brand and both entry buttons', (
     tester,
   ) async {
-    await tester.pumpWidget(const JcConnectApp());
+    await tester.pumpWidget(const ProviderScope(child: JcConnectApp()));
 
     expect(find.text('JC CONNECT'), findsOneWidget);
     expect(find.text('One College. One Community.'), findsOneWidget);
@@ -17,7 +18,7 @@ void main() {
   testWidgets('role selection enables the onboarding continue action', (
     tester,
   ) async {
-    await tester.pumpWidget(const JcConnectApp());
+    await tester.pumpWidget(const ProviderScope(child: JcConnectApp()));
     await tester.tap(find.text('Join JC Connect'));
     await tester.pumpAndSettle();
 
@@ -38,7 +39,7 @@ void main() {
   });
 
   testWidgets('login exposes password reset navigation', (tester) async {
-    await tester.pumpWidget(const JcConnectApp());
+    await tester.pumpWidget(const ProviderScope(child: JcConnectApp()));
     await tester.tap(find.text('Log in'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Forgot your password?'));

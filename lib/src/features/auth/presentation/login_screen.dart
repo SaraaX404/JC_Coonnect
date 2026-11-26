@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/core/network/api.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
@@ -12,25 +13,30 @@ import 'package:jc_connect_app/src/core/utils/validators.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
+import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
+import 'package:jc_connect_app/src/features/auth/data/auth_repository.dart';
+import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/widgets/jc_divider.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/widgets/jc_social_button.dart';
+import 'package:jc_connect_app/src/features/auth/presentation/widgets/school_picker_sheet.dart';
 import 'package:material_ui/material_ui.dart';
 
-/// Figma: Login / Empty, Filled, Invalid Email, Password Required.
-/// Incorrect Credentials needs the auth API (not wired yet). A valid form
+/// Figma: Login / Empty, Filled, Invalid Email, Password Required,
+/// Incorrect Credentials. Signs in with `POST /auth/login`; with 2FA on it
 /// continues to [Routes.loginVerify].
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final email = TextEditingController();
   final password = TextEditingController();
   bool obscure = true;
+  bool busy = false;
   String? emailError;
   String? passwordError;
 
@@ -41,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _logIn() {
+  void _onLogIn() {
     setState(() {
       emailError = isValidEmail(email.text)
           ? null
@@ -51,9 +57,48 @@ class _LoginScreenState extends State<LoginScreen> {
           : null;
     });
     if (emailError != null || passwordError != null) return;
-    // shortcut: no auth call yet, so every valid form goes to the code step
-    // (the Figma flow). POST /auth/login decides this once it is wired.
-    unawaited(context.push(Routes.loginVerify));
+    unawaited(_logIn());
+  }
+
+  Future<void> _logIn({String? schoolId}) async {
+    setState(() => busy = true);
+    try {
+      final result = await ref
+          .read(authRepositoryProvider)
+          .login(
+            email: email.text.trim(),
+            password: password.text,
+            schoolId: schoolId,
+          );
+      if (!mounted) return;
+      switch (result) {
+        case LoginSignedIn():
+          context.go(Routes.events);
+        case LoginNeedsCode(:final challenge):
+          unawaited(context.push(Routes.loginVerify, extra: challenge));
+        case LoginPickSchool(:final schools):
+          final id = await showModalBottomSheet<String>(
+            context: context,
+            builder: (_) => SchoolPickerSheet(schools: schools),
+          );
+          if (id != null && mounted) await _logIn(schoolId: id);
+      }
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      final l10n = context.l10n;
+      switch (e.status) {
+        case 401:
+          setState(() => passwordError = l10n.loginIncorrectCredentials);
+        case 403:
+          showMessage(context, l10n.loginNotAllowed);
+        case 429:
+          showMessage(context, l10n.commonTooManyAttempts);
+        default:
+          showMessage(context, e.message(l10n));
+      }
+    } finally {
+      if (mounted) setState(() => busy = false);
+    }
   }
 
   @override
@@ -124,7 +169,11 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         const SizedBox(height: 32),
-        JcButton(label: context.l10n.loginButton, onPressed: _logIn),
+        JcButton(
+          label: context.l10n.loginButton,
+          enabled: !busy,
+          onPressed: _onLogIn,
+        ),
         const SizedBox(height: 32),
         JcDivider(label: context.l10n.loginOrContinueWith),
         const SizedBox(height: 16),

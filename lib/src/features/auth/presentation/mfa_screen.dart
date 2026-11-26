@@ -1,4 +1,10 @@
+import 'dart:async';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/core/network/api.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/show_message.dart';
@@ -8,6 +14,7 @@ import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_otp.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
+import 'package:jc_connect_app/src/features/auth/data/auth_repository.dart';
 import 'package:material_ui/material_ui.dart';
 
 /// Errors on the verify step. [enterCode] is the only one the app raises
@@ -17,16 +24,20 @@ enum MfaError { enterCode, incorrectCode, tooManyAttempts }
 
 /// Login step 2 (ADR 0005): a code from the authenticator app, or one of
 /// the recovery codes if the phone is lost.
-class MfaScreen extends StatefulWidget {
-  const MfaScreen({super.key});
+class MfaScreen extends ConsumerStatefulWidget {
+  const MfaScreen({super.key, required this.challenge});
+
+  /// From `POST /auth/login` (`mfa.challenge`).
+  final String challenge;
 
   @override
-  State<MfaScreen> createState() => _MfaScreenState();
+  ConsumerState<MfaScreen> createState() => _MfaScreenState();
 }
 
-class _MfaScreenState extends State<MfaScreen> {
+class _MfaScreenState extends ConsumerState<MfaScreen> {
   final code = TextEditingController();
   bool recovery = false;
+  bool busy = false;
   MfaError? error;
 
   @override
@@ -35,32 +46,62 @@ class _MfaScreenState extends State<MfaScreen> {
     super.dispose();
   }
 
-  void _verify() {
+  void _onVerify() {
     final text = code.text.trim();
     if (recovery ? text.isEmpty : text.length < JcOtp.length) {
       setState(() => error = MfaError.enterCode);
       return;
     }
-    // shortcut: no auth call yet. POST /auth/login/verify sets the server
-    // errors (incorrect, too many attempts) when it is wired.
-    showMessage(context, context.l10n.loginReadyMessage);
+    unawaited(_verify(text));
+  }
+
+  Future<void> _verify(String text) async {
+    setState(() => busy = true);
+    try {
+      await ref
+          .read(authRepositoryProvider)
+          .verify(
+            challenge: widget.challenge,
+            code: recovery ? null : text,
+            recoveryCode: recovery ? text : null,
+          );
+      if (mounted) context.go(Routes.events);
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      switch (e) {
+        // A wrong code, or a malformed one (400).
+        case ApiException(status: 400) ||
+            ApiException(status: 401, code: 'invalid_code'):
+          setState(() => error = MfaError.incorrectCode);
+        // The challenge expired (5 min) or was used: start over.
+        case ApiException(status: 401):
+          context.go(Routes.sessionExpired);
+        case ApiException(status: 429):
+          setState(() => error = MfaError.tooManyAttempts);
+        default:
+          showMessage(context, e.message(context.l10n));
+      }
+    } finally {
+      if (mounted) setState(() => busy = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) => MfaView(
     code: code,
     recovery: recovery,
+    busy: busy,
     error: error,
+    // Any edit clears the error; after a lockout the server answers 429
+    // again if the minute isn't up.
     onCodeChanged: (_) {
-      if (error != null && error != MfaError.tooManyAttempts) {
-        setState(() => error = null);
-      }
+      if (error != null) setState(() => error = null);
     },
-    onVerify: _verify,
+    onVerify: _onVerify,
     onToggleRecovery: () => setState(() {
       recovery = !recovery;
       code.clear();
-      if (error != MfaError.tooManyAttempts) error = null;
+      error = null;
     }),
   );
 }
@@ -74,6 +115,7 @@ class MfaView extends StatelessWidget {
     required this.onVerify,
     required this.onToggleRecovery,
     this.recovery = false,
+    this.busy = false,
     this.error,
   });
   final TextEditingController code;
@@ -83,6 +125,9 @@ class MfaView extends StatelessWidget {
 
   /// Recovery code instead of the authenticator code.
   final bool recovery;
+
+  /// A verify call is running.
+  final bool busy;
   final MfaError? error;
 
   bool get _locked => error == MfaError.tooManyAttempts;
@@ -91,7 +136,7 @@ class MfaView extends StatelessWidget {
     MfaError.enterCode =>
       recovery ? l10n.mfaEnterRecoveryCode : l10n.mfaEnterCode,
     MfaError.incorrectCode => l10n.mfaIncorrectCode,
-    MfaError.tooManyAttempts => l10n.mfaTooManyAttempts,
+    MfaError.tooManyAttempts => l10n.commonTooManyAttempts,
   };
 
   @override
@@ -146,7 +191,7 @@ class MfaView extends StatelessWidget {
                   const SizedBox(height: 24),
                   JcButton(
                     label: l10n.mfaVerifyButton,
-                    enabled: !_locked,
+                    enabled: !_locked && !busy,
                     onPressed: onVerify,
                   ),
                   const SizedBox(height: 24),

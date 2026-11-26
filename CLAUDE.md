@@ -34,10 +34,12 @@ lib/
       theme/                    JcColors, JcTextStyles
       widgets/                  Jc* components used by 2+ features (JcScaffold, JcButton, JcInput, JcPanel…)
       routing/routes.dart       Routes: every path (Routes.event(id))
+      network/api.dart          dioProvider (base URL, X-Client: mobile), apiPost, ApiException
+      session/token_store.dart  TokenStore: tokens in flutter_secure_storage only
       utils/show_message.dart   showMessage (snackbar)
     features/<name>/
       domain/                   pure Dart types (JcRole, SignUpData, EventRecord)
-      data/                     data sources; today only mock_<name>.dart demo content
+      data/                     <name>_repository.dart (API calls + its provider), mock_<name>.dart demo content
       presentation/             screens; presentation/widgets/ for widgets only this feature uses
 tool/check_strings.dart         fails CI on hard-coded user-facing strings
 ```
@@ -58,6 +60,12 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 - One public widget or class per file (small private helpers can stay). Files `snake_case.dart`; screens end in `Screen`.
 - Widgets are classes, not functions returning widgets.
 - Package imports only (`package:jc_connect_app/...`). Import Material from `package:material_ui/material_ui.dart`, never `package:flutter/material.dart` (deprecated; deprecated APIs are analyzer errors).
+
+### API and state
+- Backend contract: `../jsc_be/openapi.yml`. Every response is an envelope `{data, error: {code, detail}, meta}`.
+- Calls go through a repository in `features/<f>/data/` using `apiPost` (add `apiGet` etc. the same way when needed). Repositories throw only `ApiException(status, code)`; `status == null` means offline. Screens map it to copy; `ApiException.message` is the fallback.
+- State: `flutter_riverpod` plain providers (no codegen yet). Screens that call the API are `ConsumerStatefulWidget`s and read the repository with `ref.read`. Tests override the repository provider with a fake (`test/helpers/fake_auth_repository.dart`); never hit a real server in tests.
+- `API_BASE_URL` comes from `env/<env>.json` via `--dart-define-from-file`.
 
 ### Localisation
 - **No hard-coded user-facing strings.** Every visible or spoken string comes from `lib/l10n/app_en.arb` through `context.l10n`. `tool/check_strings.dart` fails `make check` otherwise.

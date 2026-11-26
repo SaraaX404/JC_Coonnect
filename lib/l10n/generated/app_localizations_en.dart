@@ -171,6 +171,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonTagline => 'One College. One Community.';
 
   @override
+  String get commonTooManyAttempts =>
+      'Too many attempts. Wait a minute and try again.';
+
+  @override
   String get commonYourDetails => 'Your details';
 
   @override
@@ -395,6 +399,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginButton => 'Log in';
 
   @override
+  String get loginChooseSchool => 'Choose your school';
+
+  @override
   String get loginContinueWithApple => 'Continue with Apple';
 
   @override
@@ -410,16 +417,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginGoogleSelectedMessage => 'Google sign-in selected.';
 
   @override
+  String get loginIncorrectCredentials =>
+      'Incorrect email or password. Try again or reset it.';
+
+  @override
   String get loginNoAccountPrompt => 'Don’t have an account?';
+
+  @override
+  String get loginNotAllowed =>
+      'This account can’t sign in to the app. Contact your school.';
 
   @override
   String get loginOrContinueWith => 'Or continue with';
 
   @override
   String get loginPasswordRequired => 'Enter your password';
-
-  @override
-  String get loginReadyMessage => 'Login is ready to connect.';
 
   @override
   String get loginSignUpLink => 'Sign up';
@@ -453,10 +465,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get mfaRecoveryPrompt =>
       'Enter one of the recovery codes\nyou saved when you set up 2FA';
-
-  @override
-  String get mfaTooManyAttempts =>
-      'Too many attempts. Wait a minute and try again.';
 
   @override
   String get mfaUseAppLink => 'Use authenticator app';

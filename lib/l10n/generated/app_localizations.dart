@@ -394,6 +394,12 @@ abstract class AppLocalizations {
   /// **'One College. One Community.'**
   String get commonTagline;
 
+  /// Login and MFA: the server is rate limiting sign-in attempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Wait a minute and try again.'**
+  String get commonTooManyAttempts;
+
   /// Shared: your details.
   ///
   /// In en, this message translates to:
@@ -796,6 +802,12 @@ abstract class AppLocalizations {
   /// **'Log in'**
   String get loginButton;
 
+  /// Login: heading of the sheet shown when the account belongs to several schools.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your school'**
+  String get loginChooseSchool;
+
   /// Login screen: continue with apple.
   ///
   /// In en, this message translates to:
@@ -826,11 +838,23 @@ abstract class AppLocalizations {
   /// **'Google sign-in selected.'**
   String get loginGoogleSelectedMessage;
 
+  /// Login screen: wrong email or password (Figma Login / Incorrect Credentials).
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect email or password. Try again or reset it.'**
+  String get loginIncorrectCredentials;
+
   /// Login screen: no account prompt.
   ///
   /// In en, this message translates to:
   /// **'Don’t have an account?'**
   String get loginNoAccountPrompt;
+
+  /// Login screen: the account has no active membership or no mobile access.
+  ///
+  /// In en, this message translates to:
+  /// **'This account can’t sign in to the app. Contact your school.'**
+  String get loginNotAllowed;
 
   /// Login screen: or continue with.
   ///
@@ -843,12 +867,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your password'**
   String get loginPasswordRequired;
-
-  /// Login screen: ready message.
-  ///
-  /// In en, this message translates to:
-  /// **'Login is ready to connect.'**
-  String get loginReadyMessage;
 
   /// Login screen: sign up link.
   ///
@@ -909,12 +927,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter one of the recovery codes\nyou saved when you set up 2FA'**
   String get mfaRecoveryPrompt;
-
-  /// MFA screen: lockout after too many wrong codes.
-  ///
-  /// In en, this message translates to:
-  /// **'Too many attempts. Wait a minute and try again.'**
-  String get mfaTooManyAttempts;
 
   /// MFA screen: link that switches back to the authenticator code.
   ///

@@ -221,6 +221,10 @@
   "@commonTagline": {
     "description": "Shared: tagline under the product name."
   },
+  "commonTooManyAttempts": "Too many attempts. Wait a minute and try again.",
+  "@commonTooManyAttempts": {
+    "description": "Login and MFA: the server is rate limiting sign-in attempts."
+  },
   "commonYourDetails": "Your details",
   "@commonYourDetails": {
     "description": "Shared: your details."
@@ -527,6 +531,10 @@
   "@loginButton": {
     "description": "Login screen: button that signs the user in."
   },
+  "loginChooseSchool": "Choose your school",
+  "@loginChooseSchool": {
+    "description": "Login: heading of the sheet shown when the account belongs to several schools."
+  },
   "loginContinueWithApple": "Continue with Apple",
   "@loginContinueWithApple": {
     "description": "Login screen: continue with apple."
@@ -547,9 +555,17 @@
   "@loginGoogleSelectedMessage": {
     "description": "Login screen: google selected message."
   },
+  "loginIncorrectCredentials": "Incorrect email or password. Try again or reset it.",
+  "@loginIncorrectCredentials": {
+    "description": "Login screen: wrong email or password (Figma Login / Incorrect Credentials)."
+  },
   "loginNoAccountPrompt": "Don’t have an account?",
   "@loginNoAccountPrompt": {
     "description": "Login screen: no account prompt."
+  },
+  "loginNotAllowed": "This account can’t sign in to the app. Contact your school.",
+  "@loginNotAllowed": {
+    "description": "Login screen: the account has no active membership or no mobile access."
   },
   "loginOrContinueWith": "Or continue with",
   "@loginOrContinueWith": {
@@ -558,10 +574,6 @@
   "loginPasswordRequired": "Enter your password",
   "@loginPasswordRequired": {
     "description": "Login screen: error when the password is empty."
-  },
-  "loginReadyMessage": "Login is ready to connect.",
-  "@loginReadyMessage": {
-    "description": "Login screen: ready message."
   },
   "loginSignUpLink": "Sign up",
   "@loginSignUpLink": {
@@ -602,10 +614,6 @@
   "mfaRecoveryPrompt": "Enter one of the recovery codes\nyou saved when you set up 2FA",
   "@mfaRecoveryPrompt": {
     "description": "MFA screen: subtitle when entering a recovery code."
-  },
-  "mfaTooManyAttempts": "Too many attempts. Wait a minute and try again.",
-  "@mfaTooManyAttempts": {
-    "description": "MFA screen: lockout after too many wrong codes."
   },
   "mfaUseAppLink": "Use authenticator app",
   "@mfaUseAppLink": {
