@@ -3142,57 +3142,6 @@ class _OldBoyDetailsFlowScreenState extends State<OldBoyDetailsFlowScreen> {
   );
 }
 
-class StudentDetailsScreen extends StatelessWidget {
-  const StudentDetailsScreen({super.key, required this.data});
-  final SignUpData data;
-
-  @override
-  Widget build(BuildContext context) => RoleDetailsScaffold(
-    progress: 2,
-    label: 'Your details',
-    title: 'Student details',
-    description:
-        'We’ll match this with school records to confirm you’re a JC student.',
-    children: [
-      const JcInput(label: 'Student ID', hint: 'e.g. JC-2026-0000'),
-      const JcHelper('You’ll find this on your school ID card.'),
-      const JcSelect(label: 'Grade', hint: 'Select your grade'),
-      const JcSelect(label: 'Class', hint: 'Select your class'),
-      const JcSelect(label: 'Academic year', hint: 'Select academic year'),
-      const JcSelect(label: 'Academic track', hint: 'Select academic track'),
-      const JcInput(label: 'Date of birth', hint: 'DD / MM / YYYY'),
-      const JcInput(label: 'Address', hint: 'e.g. 12 Hope Road, Kingston 6'),
-    ],
-    onContinue: () => _push(context, TermsScreen(data: data)),
-  );
-}
-
-class ParentDetailsScreen extends StatelessWidget {
-  const ParentDetailsScreen({super.key, required this.data});
-  final SignUpData data;
-
-  @override
-  Widget build(BuildContext context) => RoleDetailsScaffold(
-    progress: 2,
-    total: 4,
-    label: 'Your details',
-    title: 'Your son at JC',
-    description:
-        'Link your account to your son so you can follow his school life.',
-    children: [
-      const JcSelect(label: 'Relationship', hint: 'Mother'),
-      const JcInput(label: 'Son’s full name', hint: 'Kemar Brown'),
-      const JcInput(label: 'Son’s student ID', hint: 'JC-2026-4815'),
-      const JcHelper('Ask your son or check his report card.'),
-      const JcOutlinedAction(
-        label: 'Add another son',
-        icon: Icons.add_circle_outline,
-      ),
-    ],
-    onContinue: () => _push(context, TermsScreen(data: data)),
-  );
-}
-
 class TeacherDetailsScreen extends StatefulWidget {
   const TeacherDetailsScreen({super.key, required this.data});
   final SignUpData data;
@@ -3297,55 +3246,6 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
         'Pick at least one. We’ll ask a few questions about each.',
       ),
     ],
-  );
-}
-
-class OldBoyDetailsScreen extends StatelessWidget {
-  const OldBoyDetailsScreen({super.key, required this.data});
-  final SignUpData data;
-
-  @override
-  Widget build(BuildContext context) => RoleDetailsScaffold(
-    progress: 2,
-    total: 4,
-    label: 'Your details',
-    title: 'Your JC years',
-    description: 'Help us confirm you’re an Old Boy of Jamaica College.',
-    children: [
-      const JcSelect(label: 'Graduation year', hint: 'Select year'),
-      const JcSelect(label: 'Last grade completed', hint: 'Select grade'),
-      const JcSelect(label: 'House', hint: 'Select your house'),
-      const JcInput(
-        label: 'Former student ID (optional)',
-        hint: 'e.g. JC-2010-0000',
-        helper: 'Speeds up verification if you have it.',
-      ),
-      const JcFileField(),
-      const Divider(height: 32),
-      const Text('Your Old Boy profile (optional)', style: JcTextStyles.label),
-      const JcAccordion(
-        title: 'Clubs and sports',
-        subtitle: 'Teams and clubs you were part of',
-        icon: Icons.emoji_events_outlined,
-      ),
-      const JcAccordion(
-        title: 'Leadership',
-        subtitle: 'Roles you held at JC',
-        icon: Icons.star_border,
-      ),
-      const JcAccordion(
-        title: 'Career',
-        subtitle: 'What you do today',
-        icon: Icons.business_center_outlined,
-      ),
-      const JcAccordion(
-        title: 'Giving back',
-        subtitle: 'Mentorship, scholarships and events',
-        icon: Icons.favorite_border,
-      ),
-      const JcHelper('You can add or change these later in your profile.'),
-    ],
-    onContinue: () => _push(context, TermsScreen(data: data)),
   );
 }
 
