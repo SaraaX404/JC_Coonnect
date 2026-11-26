@@ -72,7 +72,7 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 - When an endpoint exists, replace the mock with real data; delete the mock constant once nothing uses it.
 
 ### Theme
-- Theme lives in `core/theme/jc_theme.dart` (used by the app and `test/helpers/pump_app.dart`). Fonts are bundled: Inter is the default; page headings use Barlow Condensed via `JcTextStyles.title`.
+- Theme lives in `core/theme/jc_theme.dart` (used by the app and `test/helpers/pump_app.dart`). Fonts are bundled: Inter is the default; page headings use Barlow Condensed via `JcTextStyles.title`; the code-screen footer uses Public Sans via `JcTextStyles.secureFooter`.
 - Colours come from `JcColors`, text styles from `JcTextStyles`. A colour used in two places is a token. One-off Figma colours (avatar tints, Google blue) may stay inline next to their widget.
 
 ### Style

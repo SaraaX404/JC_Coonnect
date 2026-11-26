@@ -328,6 +328,12 @@ abstract class AppLocalizations {
   /// **'School email'**
   String get commonSchoolEmail;
 
+  /// Shared: footer on the code verification screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Jamaica College • True Blue Secure Access'**
+  String get commonSecureFooter;
+
   /// Shared: message asking the user to pick a value for a field.
   ///
   /// In en, this message translates to:
@@ -831,6 +837,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign up'**
   String get loginSignUpLink;
+
+  /// MFA screen: confirmation right after a new code was sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Code sent'**
+  String get mfaCodeSent;
+
+  /// MFA screen: error when fewer than six digits were entered.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code.'**
+  String get mfaEnterCode;
+
+  /// MFA screen: error for an expired code.
+  ///
+  /// In en, this message translates to:
+  /// **'This code has expired. Tap Resend to get a new one.'**
+  String get mfaExpiredCode;
+
+  /// MFA screen: heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your identity'**
+  String get mfaHeading;
+
+  /// MFA screen: error for a wrong code.
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn’t right. Check it and try again.'**
+  String get mfaIncorrectCode;
+
+  /// MFA screen: prompt before the resend link.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn’t receive the code?'**
+  String get mfaNoCodePrompt;
+
+  /// MFA screen: link that sends a new code.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get mfaResend;
+
+  /// MFA screen: wait before another resend is allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds, plural, =1{You can resend a code in 1 second.} other{You can resend a code in {seconds} seconds.}}'**
+  String mfaResendCooldown(int seconds);
+
+  /// MFA screen: no more resends allowed for now.
+  ///
+  /// In en, this message translates to:
+  /// **'You’ve reached the resend limit. Try again later.'**
+  String get mfaResendLimit;
+
+  /// MFA screen: where the code went; the email is masked (m***@jc.edu.jm).
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a 6-digit code to\nyour email {email}'**
+  String mfaSentTo(String email);
+
+  /// MFA screen: lockout after too many wrong codes.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many incorrect attempts. Try again in 15 minutes.'**
+  String get mfaTooManyAttempts;
+
+  /// MFA screen: button that checks the code and signs in.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify and log in'**
+  String get mfaVerifyButton;
 
   /// Bottom navigation: chat.
   ///
@@ -1599,12 +1677,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter the 6-digit code.'**
   String get verifyEmailEnterCode;
-
-  /// Verify email screen: footer.
-  ///
-  /// In en, this message translates to:
-  /// **'Jamaica College • True Blue Secure Access'**
-  String get verifyEmailFooter;
 
   /// Verify email screen: heading.
   ///

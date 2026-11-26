@@ -164,6 +164,10 @@
   "@commonSchoolEmail": {
     "description": "Shared: school email."
   },
+  "commonSecureFooter": "Jamaica College • True Blue Secure Access",
+  "@commonSecureFooter": {
+    "description": "Shared: footer on the code verification screens."
+  },
   "commonSelectField": "Select {field}",
   "@commonSelectField": {
     "description": "Shared: message asking the user to pick a value for a field.",
@@ -550,6 +554,64 @@
   "loginSignUpLink": "Sign up",
   "@loginSignUpLink": {
     "description": "Login screen: sign up link."
+  },
+  "mfaCodeSent": "Code sent",
+  "@mfaCodeSent": {
+    "description": "MFA screen: confirmation right after a new code was sent."
+  },
+  "mfaEnterCode": "Enter the 6-digit code.",
+  "@mfaEnterCode": {
+    "description": "MFA screen: error when fewer than six digits were entered."
+  },
+  "mfaExpiredCode": "This code has expired. Tap Resend to get a new one.",
+  "@mfaExpiredCode": {
+    "description": "MFA screen: error for an expired code."
+  },
+  "mfaHeading": "Verify your identity",
+  "@mfaHeading": {
+    "description": "MFA screen: heading."
+  },
+  "mfaIncorrectCode": "That code isn’t right. Check it and try again.",
+  "@mfaIncorrectCode": {
+    "description": "MFA screen: error for a wrong code."
+  },
+  "mfaNoCodePrompt": "Didn’t receive the code?",
+  "@mfaNoCodePrompt": {
+    "description": "MFA screen: prompt before the resend link."
+  },
+  "mfaResend": "Resend",
+  "@mfaResend": {
+    "description": "MFA screen: link that sends a new code."
+  },
+  "mfaResendCooldown": "{seconds, plural, =1{You can resend a code in 1 second.} other{You can resend a code in {seconds} seconds.}}",
+  "@mfaResendCooldown": {
+    "description": "MFA screen: wait before another resend is allowed.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "mfaResendLimit": "You’ve reached the resend limit. Try again later.",
+  "@mfaResendLimit": {
+    "description": "MFA screen: no more resends allowed for now."
+  },
+  "mfaSentTo": "We sent a 6-digit code to\nyour email {email}",
+  "@mfaSentTo": {
+    "description": "MFA screen: where the code went; the email is masked (m***@jc.edu.jm).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "mfaTooManyAttempts": "Too many incorrect attempts. Try again in 15 minutes.",
+  "@mfaTooManyAttempts": {
+    "description": "MFA screen: lockout after too many wrong codes."
+  },
+  "mfaVerifyButton": "Verify and log in",
+  "@mfaVerifyButton": {
+    "description": "MFA screen: button that checks the code and signs in."
   },
   "navChat": "Chat",
   "@navChat": {
@@ -1072,10 +1134,6 @@
   "verifyEmailEnterCode": "Enter the 6-digit code.",
   "@verifyEmailEnterCode": {
     "description": "Verify email screen: enter code."
-  },
-  "verifyEmailFooter": "Jamaica College • True Blue Secure Access",
-  "@verifyEmailFooter": {
-    "description": "Verify email screen: footer."
   },
   "verifyEmailHeading": "Verify your email",
   "@verifyEmailHeading": {

@@ -9,10 +9,14 @@ class JcPromptLink extends StatelessWidget {
     required this.prompt,
     required this.link,
     required this.onTap,
+    this.promptColor = JcColors.secondaryText,
   });
   final String prompt;
   final String link;
   final VoidCallback onTap;
+
+  /// Login uses #464646; the MFA resend row uses the muted grey.
+  final Color promptColor;
 
   @override
   Widget build(BuildContext context) => Wrap(
@@ -22,11 +26,7 @@ class JcPromptLink extends StatelessWidget {
     children: [
       Text(
         prompt,
-        style: const TextStyle(
-          fontSize: 12,
-          height: 16 / 12,
-          color: JcColors.secondaryText,
-        ),
+        style: TextStyle(fontSize: 12, height: 16 / 12, color: promptColor),
       ),
       Semantics(
         button: true,

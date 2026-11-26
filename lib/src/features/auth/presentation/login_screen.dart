@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +18,8 @@ import 'package:jc_connect_app/src/features/auth/presentation/widgets/jc_social_
 import 'package:material_ui/material_ui.dart';
 
 /// Figma: Login / Empty, Filled, Invalid Email, Password Required.
-/// Incorrect Credentials needs the auth API (not wired yet).
+/// Incorrect Credentials needs the auth API (not wired yet). A valid form
+/// continues to [Routes.loginVerify].
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -48,8 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
           : null;
     });
     if (emailError != null || passwordError != null) return;
-    // shortcut: no auth call yet; replaced when the login API is wired.
-    showMessage(context, context.l10n.loginReadyMessage);
+    // shortcut: no auth call yet, so every valid form goes to the code step
+    // (the Figma flow). POST /auth/login decides this once it is wired.
+    unawaited(context.push(Routes.loginVerify, extra: email.text.trim()));
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/login_screen.dart';
+import 'package:jc_connect_app/src/features/auth/presentation/mfa_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/reset_password_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/welcome_screen.dart';
 import 'package:jc_connect_app/src/features/education/presentation/education_screen.dart';
@@ -29,6 +30,13 @@ GoRouter createRouter() => GoRouter(
       builder: (_, _) => const WelcomeScreen(),
     ),
     GoRoute(path: Routes.login, builder: (_, _) => const LoginScreen()),
+    GoRoute(
+      path: Routes.loginVerify,
+      // The email comes from the login form; without it there is nothing
+      // to verify, so a cold deep link goes back to login.
+      redirect: (_, state) => state.extra is String ? null : Routes.login,
+      builder: (_, state) => MfaScreen(email: state.extra! as String),
+    ),
     GoRoute(
       path: Routes.resetPassword,
       builder: (_, _) => const ResetPasswordScreen(),

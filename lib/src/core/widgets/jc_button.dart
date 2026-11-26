@@ -73,7 +73,10 @@ class JcButton extends StatelessWidget {
                 onPressed: enabled ? onPressed : null,
                 style: FilledButton.styleFrom(
                   backgroundColor: JcColors.primary,
-                  disabledBackgroundColor: const Color(0xFF7DB5F7),
+                  // Figma disabled button: the primary button at 50% opacity.
+                  disabledBackgroundColor: JcColors.primary.withValues(
+                    alpha: 0.5,
+                  ),
                   foregroundColor: Colors.white,
                   disabledForegroundColor: Colors.white,
                   padding: _padding,

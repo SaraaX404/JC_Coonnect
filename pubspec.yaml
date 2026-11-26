@@ -44,3 +44,7 @@ flutter:
           weight: 500
         - asset: assets/fonts/BarlowCondensed-Bold.ttf
           weight: 700
+    - family: PublicSans
+      fonts:
+        - asset: assets/fonts/PublicSans-Medium.ttf
+          weight: 500

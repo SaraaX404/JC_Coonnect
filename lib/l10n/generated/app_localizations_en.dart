@@ -134,6 +134,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonSchoolEmail => 'School email';
 
   @override
+  String get commonSecureFooter => 'Jamaica College • True Blue Secure Access';
+
+  @override
   String commonSelectField(String field) {
     return 'Select $field';
   }
@@ -411,6 +414,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loginSignUpLink => 'Sign up';
+
+  @override
+  String get mfaCodeSent => 'Code sent';
+
+  @override
+  String get mfaEnterCode => 'Enter the 6-digit code.';
+
+  @override
+  String get mfaExpiredCode =>
+      'This code has expired. Tap Resend to get a new one.';
+
+  @override
+  String get mfaHeading => 'Verify your identity';
+
+  @override
+  String get mfaIncorrectCode =>
+      'That code isn’t right. Check it and try again.';
+
+  @override
+  String get mfaNoCodePrompt => 'Didn’t receive the code?';
+
+  @override
+  String get mfaResend => 'Resend';
+
+  @override
+  String mfaResendCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can resend a code in $seconds seconds.',
+      one: 'You can resend a code in 1 second.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mfaResendLimit =>
+      'You’ve reached the resend limit. Try again later.';
+
+  @override
+  String mfaSentTo(String email) {
+    return 'We sent a 6-digit code to\nyour email $email';
+  }
+
+  @override
+  String get mfaTooManyAttempts =>
+      'Too many incorrect attempts. Try again in 15 minutes.';
+
+  @override
+  String get mfaVerifyButton => 'Verify and log in';
 
   @override
   String get navChat => 'Chat';
@@ -829,9 +882,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get verifyEmailEnterCode => 'Enter the 6-digit code.';
-
-  @override
-  String get verifyEmailFooter => 'Jamaica College • True Blue Secure Access';
 
   @override
   String get verifyEmailHeading => 'Verify your email';

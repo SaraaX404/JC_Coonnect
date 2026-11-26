@@ -13,7 +13,7 @@ import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/jc_role.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_otp.dart';
+import 'package:jc_connect_app/src/core/widgets/jc_otp.dart';
 import 'package:material_ui/material_ui.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
@@ -81,7 +81,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           const SizedBox(height: 150),
           Center(
             child: Text(
-              context.l10n.verifyEmailFooter,
+              context.l10n.commonSecureFooter,
               style: const TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
             ),
           ),
