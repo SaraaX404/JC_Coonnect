@@ -51,12 +51,118 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountTitle => 'Account details';
 
   @override
+  String get calendarAssigned => 'Assigned';
+
+  @override
+  String get calendarBrowseEvents => 'Browse events';
+
+  @override
   String get calendarEmptyDay =>
       'No events, sport fixtures or club meetings on this day.';
 
   @override
   String calendarEventsOnDay(String month, int day) {
     return 'Events on $month $day';
+  }
+
+  @override
+  String get calendarFilterAll => 'All';
+
+  @override
+  String get calendarGoing => 'Going';
+
+  @override
+  String calendarItems(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get calendarJoined => 'Joined';
+
+  @override
+  String get calendarKindClubs => 'Clubs';
+
+  @override
+  String get calendarKindEvents => 'Events';
+
+  @override
+  String get calendarKindSport => 'Sport';
+
+  @override
+  String get calendarNext => 'Next';
+
+  @override
+  String get calendarNothingBody =>
+      'You have no events, sport fixtures or club meetings on this day.';
+
+  @override
+  String get calendarNothingHeading => 'Nothing scheduled';
+
+  @override
+  String calendarPeopleGoing(int count) {
+    return '+$count going';
+  }
+
+  @override
+  String calendarPeopleMembers(int count) {
+    return '+$count members';
+  }
+
+  @override
+  String calendarPeopleSquad(int count) {
+    return '$count in squad';
+  }
+
+  @override
+  String get calendarPrevious => 'Previous';
+
+  @override
+  String get calendarShowMonth => 'Show month';
+
+  @override
+  String get calendarShowWeek => 'Show week';
+
+  @override
+  String calendarTimeRange(DateTime start, DateTime end) {
+    final intl.DateFormat startDateFormat = intl.DateFormat.jm(localeName);
+    final String startString = startDateFormat.format(start);
+    final intl.DateFormat endDateFormat = intl.DateFormat.jm(localeName);
+    final String endString = endDateFormat.format(end);
+
+    return '$startString – $endString';
+  }
+
+  @override
+  String get calendarTitle => 'My calendar';
+
+  @override
+  String calendarWeekSameMonth(DateTime start, DateTime endDay, DateTime year) {
+    final intl.DateFormat startDateFormat = intl.DateFormat.MMMd(localeName);
+    final String startString = startDateFormat.format(start);
+    final intl.DateFormat endDayDateFormat = intl.DateFormat.d(localeName);
+    final String endDayString = endDayDateFormat.format(endDay);
+    final intl.DateFormat yearDateFormat = intl.DateFormat.y(localeName);
+    final String yearString = yearDateFormat.format(year);
+
+    return '$startString – $endDayString, $yearString';
+  }
+
+  @override
+  String calendarWeekTwoMonths(DateTime start, DateTime end, DateTime year) {
+    final intl.DateFormat startDateFormat = intl.DateFormat.MMMd(localeName);
+    final String startString = startDateFormat.format(start);
+    final intl.DateFormat endDateFormat = intl.DateFormat.MMMd(localeName);
+    final String endString = endDateFormat.format(end);
+    final intl.DateFormat yearDateFormat = intl.DateFormat.y(localeName);
+    final String yearString = yearDateFormat.format(year);
+
+    return '$startString – $endString, $yearString';
   }
 
   @override

@@ -9,6 +9,7 @@ abstract final class JcColors {
   static const softBlue = Color(0xFFE6F4FF);
   static const softYellow = Color(0xFFFFF8DF);
   static const green = Color(0xFF028902);
+  static const purple = Color(0xFF7C3AED);
   static const navy = Color(0xFF0033A0);
   static const navyDark = Color(0xFF002273);
   static const tintBlue = Color(0xFFEAF1FF);

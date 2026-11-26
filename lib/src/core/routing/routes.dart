@@ -25,4 +25,6 @@ abstract final class Routes {
 
   static const education = '/education';
   static const lesson = '/education/lesson';
+
+  static const calendar = '/calendar';
 }

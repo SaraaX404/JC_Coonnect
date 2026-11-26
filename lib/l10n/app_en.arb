@@ -48,6 +48,14 @@
   "@accountTitle": {
     "description": "Account details screen: title."
   },
+  "calendarAssigned": "Assigned",
+  "@calendarAssigned": {
+    "description": "My calendar screen: status on a sport card."
+  },
+  "calendarBrowseEvents": "Browse events",
+  "@calendarBrowseEvents": {
+    "description": "My calendar screen: empty day button that opens events."
+  },
   "calendarEmptyDay": "No events, sport fixtures or club meetings on this day.",
   "@calendarEmptyDay": {
     "description": "Events calendar: empty day."
@@ -61,6 +69,144 @@
       },
       "day": {
         "type": "int"
+      }
+    }
+  },
+  "calendarFilterAll": "All",
+  "@calendarFilterAll": {
+    "description": "My calendar screen: filter chip showing every kind."
+  },
+  "calendarGoing": "Going",
+  "@calendarGoing": {
+    "description": "My calendar screen: status on an event card."
+  },
+  "calendarItems": "{count, plural, =1{1 item} other{{count} items}}",
+  "@calendarItems": {
+    "description": "My calendar screen: how many items a day has.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarJoined": "Joined",
+  "@calendarJoined": {
+    "description": "My calendar screen: status on a club card."
+  },
+  "calendarKindClubs": "Clubs",
+  "@calendarKindClubs": {
+    "description": "My calendar screen: filter chip and legend: meetings of clubs the user is in."
+  },
+  "calendarKindEvents": "Events",
+  "@calendarKindEvents": {
+    "description": "My calendar screen: filter chip and legend: events the user joined."
+  },
+  "calendarKindSport": "Sport",
+  "@calendarKindSport": {
+    "description": "My calendar screen: filter chip and legend: sport fixtures the user is assigned to."
+  },
+  "calendarNext": "Next",
+  "@calendarNext": {
+    "description": "My calendar screen: tooltip of the arrow to the next week or month."
+  },
+  "calendarNothingBody": "You have no events, sport fixtures or club meetings on this day.",
+  "@calendarNothingBody": {
+    "description": "My calendar screen: empty day text."
+  },
+  "calendarNothingHeading": "Nothing scheduled",
+  "@calendarNothingHeading": {
+    "description": "My calendar screen: empty day heading."
+  },
+  "calendarPeopleGoing": "+{count} going",
+  "@calendarPeopleGoing": {
+    "description": "My calendar screen: people going to an event.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarPeopleMembers": "+{count} members",
+  "@calendarPeopleMembers": {
+    "description": "My calendar screen: members of a club.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarPeopleSquad": "{count} in squad",
+  "@calendarPeopleSquad": {
+    "description": "My calendar screen: players in a sport squad.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "calendarPrevious": "Previous",
+  "@calendarPrevious": {
+    "description": "My calendar screen: tooltip of the arrow to the previous week or month."
+  },
+  "calendarShowMonth": "Show month",
+  "@calendarShowMonth": {
+    "description": "My calendar screen: accessibility label of the handle that expands the week to a month."
+  },
+  "calendarShowWeek": "Show week",
+  "@calendarShowWeek": {
+    "description": "My calendar screen: accessibility label of the handle that collapses the month to a week."
+  },
+  "calendarTimeRange": "{start} – {end}",
+  "@calendarTimeRange": {
+    "description": "My calendar screen: when an item starts and ends.",
+    "placeholders": {
+      "start": {
+        "type": "DateTime",
+        "format": "jm"
+      },
+      "end": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
+  },
+  "calendarTitle": "My calendar",
+  "@calendarTitle": {
+    "description": "My calendar screen: title."
+  },
+  "calendarWeekSameMonth": "{start} – {endDay}, {year}",
+  "@calendarWeekSameMonth": {
+    "description": "My calendar screen: week header when the week is in one month, like \"Nov 16 – 22, 2026\".",
+    "placeholders": {
+      "start": {
+        "type": "DateTime",
+        "format": "MMMd"
+      },
+      "endDay": {
+        "type": "DateTime",
+        "format": "d"
+      },
+      "year": {
+        "type": "DateTime",
+        "format": "y"
+      }
+    }
+  },
+  "calendarWeekTwoMonths": "{start} – {end}, {year}",
+  "@calendarWeekTwoMonths": {
+    "description": "My calendar screen: week header when the week spans two months, like \"Nov 29 – Dec 5, 2026\".",
+    "placeholders": {
+      "start": {
+        "type": "DateTime",
+        "format": "MMMd"
+      },
+      "end": {
+        "type": "DateTime",
+        "format": "MMMd"
+      },
+      "year": {
+        "type": "DateTime",
+        "format": "y"
       }
     }
   },

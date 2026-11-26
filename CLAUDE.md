@@ -48,7 +48,7 @@ api/                            openapi.yaml (copy of the backend's), swagger_pa
 packages/jc_api/                GENERATED API client (never edit)
 ```
 
-Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up flow: role → account → verify → role details (students then add guardians) → terms → review → submitted), `events` (list, calendar, detail, donation), `education` (subjects, lesson overview).
+Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up flow: role → account → verify → role details (students then add guardians) → terms → review → submitted), `events` (list, calendar, detail, donation), `education` (subjects, lesson overview), `calendar` (my calendar: week/month, filters).
 
 ## Rules
 
