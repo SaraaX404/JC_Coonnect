@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
@@ -44,10 +45,11 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
       ..staffId = staffId.text.trim()
       ..schoolEmail = schoolEmail.text.trim()
       ..address = address.text.trim()
-      ..teacherRole = [
-        if (teacher) 'Teacher',
-        if (coach) 'Coach',
-      ].join(' and ');
+      ..teacherRole = context.l10n.teacherRoleSummary(
+        teacher && coach
+            ? 'both'
+            : (teacher ? 'teacher' : (coach ? 'coach' : 'none')),
+      );
     pushScreen(context, TermsScreen(data: widget.data));
   }
 
@@ -64,52 +66,52 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
   Widget build(BuildContext context) => RoleDetailsScaffold(
     progress: 2,
     total: 4,
-    label: 'Your details',
-    title: 'Teacher or coach details',
-    description: 'We’ll confirm your role with the school administration.',
+    label: context.l10n.commonYourDetails,
+    title: context.l10n.teacherHeading,
+    description: context.l10n.teacherDescription,
     enabled: canContinue,
     onContinue: () => _continue(context),
     children: [
       JcInput(
-        label: 'Staff ID',
-        hint: 'e.g. JC-STF-0000',
-        helper: 'Your JC employee number.',
+        label: context.l10n.commonStaffId,
+        hint: context.l10n.teacherStaffIdHint,
+        helper: context.l10n.teacherStaffIdHelp,
         controller: staffId,
       ),
       JcInput(
-        label: 'School email',
-        hint: 'name@jc.edu.jm',
-        helper: 'Your @jc.edu.jm email speeds up approval.',
+        label: context.l10n.commonSchoolEmail,
+        hint: context.l10n.teacherSchoolEmailHint,
+        helper: context.l10n.teacherSchoolEmailHelp,
         controller: schoolEmail,
         keyboardType: TextInputType.emailAddress,
       ),
       JcInput(
-        label: 'Address',
-        hint: 'e.g. 12 Hope Road, Kingston 6',
+        label: context.l10n.commonAddress,
+        hint: context.l10n.commonAddressHint,
         controller: address,
       ),
       const SizedBox(height: 8),
-      const Row(
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('What do you do at JC?', style: JcTextStyles.label),
-          Text('Select all that apply', style: JcTextStyles.small),
+          Text(context.l10n.teacherWhatDoYouDo, style: JcTextStyles.label),
+          Text(context.l10n.teacherSelectAll, style: JcTextStyles.small),
         ],
       ),
       JcCheckCard(
-        title: 'Teacher',
-        description: 'I teach subjects and classes',
+        title: context.l10n.teacherTeacher,
+        description: context.l10n.teacherTeacherDescription,
         value: teacher,
         onChanged: (value) => setState(() => teacher = value),
       ),
       JcCheckCard(
-        title: 'Coach',
-        description: 'I coach a sports team',
+        title: context.l10n.teacherCoach,
+        description: context.l10n.teacherCoachDescription,
         value: coach,
         onChanged: (value) => setState(() => coach = value),
       ),
-      const JcHelper(
-        'Pick at least one. We’ll ask a few questions about each.',
+      JcHelper(
+        context.l10n.teacherPickOne,
       ),
     ],
   );

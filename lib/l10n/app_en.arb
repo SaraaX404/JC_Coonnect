@@ -1,0 +1,1121 @@
+{
+  "@@locale": "en",
+  "appName": "JC Connect",
+  "@appName": {
+    "description": "App name: launcher, task switcher and window title."
+  },
+  "accordionLaterHelp": "You can add these details after your account is approved.",
+  "@accordionLaterHelp": {
+    "description": "Optional details accordion: later help."
+  },
+  "accountConfirmPasswordLabel": "Confirm password",
+  "@accountConfirmPasswordLabel": {
+    "description": "Account details screen: confirm password label."
+  },
+  "accountDescription": "Use an email you check often. We’ll send a code to verify it.",
+  "@accountDescription": {
+    "description": "Account details screen: description."
+  },
+  "accountEmailHint": "you@example.com",
+  "@accountEmailHint": {
+    "description": "Account details screen: email hint."
+  },
+  "accountFullNameHint": "e.g. Kemar Brown",
+  "@accountFullNameHint": {
+    "description": "Account details screen: full name hint."
+  },
+  "accountHeading": "Create your account",
+  "@accountHeading": {
+    "description": "Account details screen: heading."
+  },
+  "accountPasswordHelp": "At least 8 characters, with an uppercase letter, a number and a symbol.",
+  "@accountPasswordHelp": {
+    "description": "Account details screen: password help."
+  },
+  "accountPhoneLabel": "Phone number",
+  "@accountPhoneLabel": {
+    "description": "Account details screen: phone label."
+  },
+  "accountRequiredFieldsMessage": "Complete the required fields to continue.",
+  "@accountRequiredFieldsMessage": {
+    "description": "Account details screen: required fields message."
+  },
+  "accountTitle": "Account details",
+  "@accountTitle": {
+    "description": "Account details screen: title."
+  },
+  "calendarEmptyDay": "No events, sport fixtures or club meetings on this day.",
+  "@calendarEmptyDay": {
+    "description": "Events calendar: empty day."
+  },
+  "calendarEventsOnDay": "Events on {month} {day}",
+  "@calendarEventsOnDay": {
+    "description": "Events calendar: header for the selected day.",
+    "placeholders": {
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "commonAcademicTrack": "Academic track",
+  "@commonAcademicTrack": {
+    "description": "Shared: academic track."
+  },
+  "commonAcademicYear": "Academic year",
+  "@commonAcademicYear": {
+    "description": "Shared: academic year."
+  },
+  "commonAddress": "Address",
+  "@commonAddress": {
+    "description": "Shared: address."
+  },
+  "commonAddressHint": "e.g. 12 Hope Road, Kingston 6",
+  "@commonAddressHint": {
+    "description": "Shared: address hint."
+  },
+  "commonBack": "Back",
+  "@commonBack": {
+    "description": "Shared: back."
+  },
+  "commonClass": "Class",
+  "@commonClass": {
+    "description": "Shared: class."
+  },
+  "commonContinue": "Continue",
+  "@commonContinue": {
+    "description": "Shared: continue."
+  },
+  "commonDate": "Date",
+  "@commonDate": {
+    "description": "Shared: date."
+  },
+  "commonDateOfBirth": "Date of birth",
+  "@commonDateOfBirth": {
+    "description": "Shared: date of birth."
+  },
+  "commonEdit": "Edit",
+  "@commonEdit": {
+    "description": "Shared: edit."
+  },
+  "commonEmailHint": "Enter your email",
+  "@commonEmailHint": {
+    "description": "Shared: email hint."
+  },
+  "commonEmailLabel": "Email",
+  "@commonEmailLabel": {
+    "description": "Shared: email label."
+  },
+  "commonFullName": "Full name",
+  "@commonFullName": {
+    "description": "Shared: full name."
+  },
+  "commonFullNameExample": "Kemar Brown",
+  "@commonFullNameExample": {
+    "description": "Shared: full name example."
+  },
+  "commonGrade": "Grade",
+  "@commonGrade": {
+    "description": "Shared: grade."
+  },
+  "commonGraduationYear": "Graduation year",
+  "@commonGraduationYear": {
+    "description": "Shared: graduation year."
+  },
+  "commonHouse": "House",
+  "@commonHouse": {
+    "description": "Shared: house."
+  },
+  "commonLocation": "Location",
+  "@commonLocation": {
+    "description": "Shared: location."
+  },
+  "commonOptional": "Optional",
+  "@commonOptional": {
+    "description": "Shared: optional."
+  },
+  "commonPasswordLabel": "Password",
+  "@commonPasswordLabel": {
+    "description": "Shared: password label."
+  },
+  "commonProofOfAttendance": "Proof of attendance",
+  "@commonProofOfAttendance": {
+    "description": "Shared: proof of attendance."
+  },
+  "commonRelationship": "Relationship",
+  "@commonRelationship": {
+    "description": "Shared: relationship."
+  },
+  "commonSave": "Save",
+  "@commonSave": {
+    "description": "Shared: save."
+  },
+  "commonSchoolEmail": "School email",
+  "@commonSchoolEmail": {
+    "description": "Shared: school email."
+  },
+  "commonSelectField": "Select {field}",
+  "@commonSelectField": {
+    "description": "Shared: message asking the user to pick a value for a field.",
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "commonShare": "Share",
+  "@commonShare": {
+    "description": "Shared: share."
+  },
+  "commonStaffId": "Staff ID",
+  "@commonStaffId": {
+    "description": "Shared: staff id."
+  },
+  "commonStepOfTotal": "Step {step} of {total}",
+  "@commonStepOfTotal": {
+    "description": "Shared: progress through a multi-step flow.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "commonStudentId": "Student ID",
+  "@commonStudentId": {
+    "description": "Shared: student id."
+  },
+  "commonYourDetails": "Your details",
+  "@commonYourDetails": {
+    "description": "Shared: your details."
+  },
+  "donationAmountHint": "Enter amount",
+  "@donationAmountHint": {
+    "description": "Event donation screen: amount hint."
+  },
+  "donationAmountLabel": "Amount",
+  "@donationAmountLabel": {
+    "description": "Event donation screen: amount label."
+  },
+  "donationChooseAmount": "Choose an amount",
+  "@donationChooseAmount": {
+    "description": "Event donation screen: choose amount."
+  },
+  "donationContinueToPayment": "Continue to payment",
+  "@donationContinueToPayment": {
+    "description": "Event donation screen: continue to payment."
+  },
+  "donationDescription": "Every contribution helps JC keep community events accessible.",
+  "@donationDescription": {
+    "description": "Event donation screen: description."
+  },
+  "donationHeading": "Support this event",
+  "@donationHeading": {
+    "description": "Event donation screen: heading."
+  },
+  "donationOtherAmount": "Other",
+  "@donationOtherAmount": {
+    "description": "Event donation screen: other amount."
+  },
+  "donationStepTitle": "Donation",
+  "@donationStepTitle": {
+    "description": "Event donation screen: step title."
+  },
+  "donationThanksMessage": "Thank you. Your donation has been recorded.",
+  "@donationThanksMessage": {
+    "description": "Event donation screen: thanks message."
+  },
+  "donationTitle": "Donate to event",
+  "@donationTitle": {
+    "description": "Event donation screen: title."
+  },
+  "educationChange": "Change",
+  "@educationChange": {
+    "description": "Education screen: change."
+  },
+  "educationContinueLearning": "Continue learning",
+  "@educationContinueLearning": {
+    "description": "Education screen: continue learning."
+  },
+  "educationExams": "Exams",
+  "@educationExams": {
+    "description": "Education screen: exams."
+  },
+  "educationGradeSetting": "Grade",
+  "@educationGradeSetting": {
+    "description": "Education screen: grade setting."
+  },
+  "educationMySubjects": "My subjects",
+  "@educationMySubjects": {
+    "description": "Education screen: my subjects."
+  },
+  "educationMySubjectsTerm": "My subjects · Term {term}",
+  "@educationMySubjectsTerm": {
+    "description": "Education screen: subjects section header for a term.",
+    "placeholders": {
+      "term": {
+        "type": "int"
+      }
+    }
+  },
+  "educationSearchHint": "Search lessons, subjects…",
+  "@educationSearchHint": {
+    "description": "Education screen: search hint."
+  },
+  "educationSettings": "Settings",
+  "@educationSettings": {
+    "description": "Education screen: settings."
+  },
+  "educationTerm": "Term {number}",
+  "@educationTerm": {
+    "description": "Education screen: school term filter chip.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "educationTitle": "Education",
+  "@educationTitle": {
+    "description": "Education screen: title."
+  },
+  "educationViewTimetable": "View timetable ›",
+  "@educationViewTimetable": {
+    "description": "Education screen: view timetable."
+  },
+  "eventCardRsvp": "+ RSVP",
+  "@eventCardRsvp": {
+    "description": "Event list card: rsvp."
+  },
+  "eventDetailAbout": "About this event",
+  "@eventDetailAbout": {
+    "description": "Event detail screen: about."
+  },
+  "eventDetailAddComment": "Add a comment…",
+  "@eventDetailAddComment": {
+    "description": "Event detail screen: add comment."
+  },
+  "eventDetailAddToCalendar": "Add to Calendar",
+  "@eventDetailAddToCalendar": {
+    "description": "Event detail screen: add to calendar."
+  },
+  "eventDetailAddedToCalendar": "Event added to your calendar.",
+  "@eventDetailAddedToCalendar": {
+    "description": "Event detail screen: added to calendar."
+  },
+  "eventDetailAreYouGoing": "Are you going?",
+  "@eventDetailAreYouGoing": {
+    "description": "Event detail screen: are you going."
+  },
+  "eventDetailComments": "Comments",
+  "@eventDetailComments": {
+    "description": "Event detail screen: comments."
+  },
+  "eventDetailCommunityBooster": "Community booster",
+  "@eventDetailCommunityBooster": {
+    "description": "Event detail screen: community booster."
+  },
+  "eventDetailDateTime": "Date & time",
+  "@eventDetailDateTime": {
+    "description": "Event detail screen: date time."
+  },
+  "eventDetailDateTimeValue": "{date} · {time} EST",
+  "@eventDetailDateTimeValue": {
+    "description": "Event detail screen: event date and time.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "eventDetailDonate": "Donate",
+  "@eventDetailDonate": {
+    "description": "Event detail screen: donate."
+  },
+  "eventDetailFunded": "{percent}% Funded",
+  "@eventDetailFunded": {
+    "description": "Event detail screen: how much of the fundraising goal is met.",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "eventDetailGoal": "{amount} goal",
+  "@eventDetailGoal": {
+    "description": "Event detail screen: fundraising goal, already formatted.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "eventDetailHelpFund": "Help Fund This Event",
+  "@eventDetailHelpFund": {
+    "description": "Event detail screen: help fund."
+  },
+  "eventDetailJoinNow": "Join Now",
+  "@eventDetailJoinNow": {
+    "description": "Event detail screen: join now."
+  },
+  "eventDetailJustNow": "Just now",
+  "@eventDetailJustNow": {
+    "description": "Event detail screen: just now."
+  },
+  "eventDetailOpenToAll": "● Open to All",
+  "@eventDetailOpenToAll": {
+    "description": "Event detail screen: open to all."
+  },
+  "eventDetailOrganizer": "Organizer",
+  "@eventDetailOrganizer": {
+    "description": "Event detail screen: organizer."
+  },
+  "eventDetailRaised": "{amount} raised",
+  "@eventDetailRaised": {
+    "description": "Event detail screen: money raised so far, already formatted.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "eventDetailReactions": "Reactions",
+  "@eventDetailReactions": {
+    "description": "Event detail screen: reactions."
+  },
+  "eventDetailSeeAll": "See all  ›",
+  "@eventDetailSeeAll": {
+    "description": "Event detail screen: see all."
+  },
+  "eventDetailTitle": "Event details",
+  "@eventDetailTitle": {
+    "description": "Event detail screen: title."
+  },
+  "eventDetailYoureGoing": "You’re going",
+  "@eventDetailYoureGoing": {
+    "description": "Event detail screen: youre going."
+  },
+  "eventsAllCategories": "All",
+  "@eventsAllCategories": {
+    "description": "Events screen: filter option that shows every category."
+  },
+  "eventsCalendarView": "Calendar view",
+  "@eventsCalendarView": {
+    "description": "Events screen: calendar view."
+  },
+  "eventsCount": "{count, plural, =1{1 Event} other{{count} Events}}",
+  "@eventsCount": {
+    "description": "Events screen: number of events in the list.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "eventsEmptyDescription": "Try another search or clear your filters to see more of the JC community calendar.",
+  "@eventsEmptyDescription": {
+    "description": "Events screen: empty description."
+  },
+  "eventsEmptyTitle": "No events found",
+  "@eventsEmptyTitle": {
+    "description": "Events screen: empty title."
+  },
+  "eventsFilterTitle": "Filter events",
+  "@eventsFilterTitle": {
+    "description": "Events screen: filter title."
+  },
+  "eventsMyCalendar": "My calendar",
+  "@eventsMyCalendar": {
+    "description": "Events screen: my calendar."
+  },
+  "eventsSearchHint": "Search events",
+  "@eventsSearchHint": {
+    "description": "Events screen: search hint."
+  },
+  "eventsThisWeek": "This week",
+  "@eventsThisWeek": {
+    "description": "Events screen: this week."
+  },
+  "eventsTitle": "Events",
+  "@eventsTitle": {
+    "description": "Events screen: title."
+  },
+  "fileFieldHelp": "PDF, JPG or PNG, up to 5 MB.",
+  "@fileFieldHelp": {
+    "description": "Proof upload field: help."
+  },
+  "fileFieldMarkedMessage": "Proof marked for upload.",
+  "@fileFieldMarkedMessage": {
+    "description": "Proof upload field: marked message."
+  },
+  "fileFieldNoFile": "No file chosen",
+  "@fileFieldNoFile": {
+    "description": "Proof upload field: no file."
+  },
+  "fileFieldSelected": "Proof selected",
+  "@fileFieldSelected": {
+    "description": "Proof upload field: selected."
+  },
+  "fileFieldUpload": "Upload proof",
+  "@fileFieldUpload": {
+    "description": "Proof upload field: upload."
+  },
+  "lessonAbout": "About this lesson",
+  "@lessonAbout": {
+    "description": "Lesson overview screen: about."
+  },
+  "lessonAutoCompletes": "Auto-completes when you finish all parts",
+  "@lessonAutoCompletes": {
+    "description": "Lesson overview screen: auto completes."
+  },
+  "lessonContent": "Lesson content",
+  "@lessonContent": {
+    "description": "Lesson overview screen: content."
+  },
+  "lessonTitle": "Lesson",
+  "@lessonTitle": {
+    "description": "Lesson overview screen: title."
+  },
+  "lessonYourProgress": "Your progress",
+  "@lessonYourProgress": {
+    "description": "Lesson overview screen: your progress."
+  },
+  "loginAppleSelectedMessage": "Apple sign-in selected.",
+  "@loginAppleSelectedMessage": {
+    "description": "Login screen: apple selected message."
+  },
+  "loginContinueWithApple": "Continue with Apple",
+  "@loginContinueWithApple": {
+    "description": "Login screen: continue with apple."
+  },
+  "loginContinueWithGoogle": "Continue with Google",
+  "@loginContinueWithGoogle": {
+    "description": "Login screen: continue with google."
+  },
+  "loginDescription": "Log in to stay connected to JC.",
+  "@loginDescription": {
+    "description": "Login screen: description."
+  },
+  "loginForgotPassword": "Forgot your password?",
+  "@loginForgotPassword": {
+    "description": "Login screen: forgot password."
+  },
+  "loginGoogleSelectedMessage": "Google sign-in selected.",
+  "@loginGoogleSelectedMessage": {
+    "description": "Login screen: google selected message."
+  },
+  "loginHeading": "Welcome back",
+  "@loginHeading": {
+    "description": "Login screen: heading."
+  },
+  "loginNoAccountPrompt": "Don’t have an account? ",
+  "@loginNoAccountPrompt": {
+    "description": "Login screen: no account prompt."
+  },
+  "loginOrContinueWith": "Or Continue With",
+  "@loginOrContinueWith": {
+    "description": "Login screen: or continue with."
+  },
+  "loginReadyMessage": "Login is ready to connect.",
+  "@loginReadyMessage": {
+    "description": "Login screen: ready message."
+  },
+  "loginSignUpLink": "Sign Up",
+  "@loginSignUpLink": {
+    "description": "Login screen: sign up link."
+  },
+  "loginTitle": "Login",
+  "@loginTitle": {
+    "description": "Login screen: title."
+  },
+  "navChat": "Chat",
+  "@navChat": {
+    "description": "Bottom navigation: chat."
+  },
+  "navFeed": "Feed",
+  "@navFeed": {
+    "description": "Bottom navigation: feed."
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Bottom navigation: home."
+  },
+  "navProfile": "Profile",
+  "@navProfile": {
+    "description": "Bottom navigation: profile."
+  },
+  "navSport": "Sport",
+  "@navSport": {
+    "description": "Bottom navigation: sport."
+  },
+  "oldBoyCareer": "Career",
+  "@oldBoyCareer": {
+    "description": "Old Boy details screen: career."
+  },
+  "oldBoyCareerDescription": "What you do today",
+  "@oldBoyCareerDescription": {
+    "description": "Old Boy details screen: career description."
+  },
+  "oldBoyClubs": "Clubs and sports",
+  "@oldBoyClubs": {
+    "description": "Old Boy details screen: clubs."
+  },
+  "oldBoyClubsDescription": "Teams and clubs you were part of",
+  "@oldBoyClubsDescription": {
+    "description": "Old Boy details screen: clubs description."
+  },
+  "oldBoyDescription": "Help us confirm you’re an Old Boy of Jamaica College.",
+  "@oldBoyDescription": {
+    "description": "Old Boy details screen: description."
+  },
+  "oldBoyFormerStudentId": "Former student ID (optional)",
+  "@oldBoyFormerStudentId": {
+    "description": "Old Boy details screen: former student id."
+  },
+  "oldBoyFormerStudentIdHelp": "Speeds up verification if you have it.",
+  "@oldBoyFormerStudentIdHelp": {
+    "description": "Old Boy details screen: former student id help."
+  },
+  "oldBoyFormerStudentIdHint": "e.g. JC-2010-0000",
+  "@oldBoyFormerStudentIdHint": {
+    "description": "Old Boy details screen: former student id hint."
+  },
+  "oldBoyGivingBack": "Giving back",
+  "@oldBoyGivingBack": {
+    "description": "Old Boy details screen: giving back."
+  },
+  "oldBoyGivingBackDescription": "Mentorship, scholarships and events",
+  "@oldBoyGivingBackDescription": {
+    "description": "Old Boy details screen: giving back description."
+  },
+  "oldBoyHeading": "Your JC years",
+  "@oldBoyHeading": {
+    "description": "Old Boy details screen: heading."
+  },
+  "oldBoyLastGrade": "Last grade completed",
+  "@oldBoyLastGrade": {
+    "description": "Old Boy details screen: last grade."
+  },
+  "oldBoyLeadership": "Leadership",
+  "@oldBoyLeadership": {
+    "description": "Old Boy details screen: leadership."
+  },
+  "oldBoyLeadershipDescription": "Roles you held at JC",
+  "@oldBoyLeadershipDescription": {
+    "description": "Old Boy details screen: leadership description."
+  },
+  "oldBoyProfileHelp": "You can add or change these later in your profile.",
+  "@oldBoyProfileHelp": {
+    "description": "Old Boy details screen: profile help."
+  },
+  "oldBoyProfileTitle": "Your Old Boy profile (optional)",
+  "@oldBoyProfileTitle": {
+    "description": "Old Boy details screen: profile title."
+  },
+  "oldBoySelectGrade": "Select grade",
+  "@oldBoySelectGrade": {
+    "description": "Old Boy details screen: select grade."
+  },
+  "oldBoySelectHouse": "Select your house",
+  "@oldBoySelectHouse": {
+    "description": "Old Boy details screen: select house."
+  },
+  "oldBoySelectYear": "Select year",
+  "@oldBoySelectYear": {
+    "description": "Old Boy details screen: select year."
+  },
+  "parentAddAnotherSon": "Add another son",
+  "@parentAddAnotherSon": {
+    "description": "Parent details screen: add another son."
+  },
+  "parentAnotherSonName": "Another son’s name",
+  "@parentAnotherSonName": {
+    "description": "Parent details screen: another son name."
+  },
+  "parentDescription": "Link your account to your son so you can follow his school life.",
+  "@parentDescription": {
+    "description": "Parent details screen: description."
+  },
+  "parentFather": "Father",
+  "@parentFather": {
+    "description": "Parent details screen: father."
+  },
+  "parentGuardian": "Guardian",
+  "@parentGuardian": {
+    "description": "Parent details screen: guardian."
+  },
+  "parentHeading": "Your son at JC",
+  "@parentHeading": {
+    "description": "Parent details screen: heading."
+  },
+  "parentMother": "Mother",
+  "@parentMother": {
+    "description": "Parent details screen: mother."
+  },
+  "parentRemoveAnotherSon": "Remove another son",
+  "@parentRemoveAnotherSon": {
+    "description": "Parent details screen: remove another son."
+  },
+  "parentSelectRelationship": "Select relationship",
+  "@parentSelectRelationship": {
+    "description": "Parent details screen: select relationship."
+  },
+  "parentSonName": "Son’s full name",
+  "@parentSonName": {
+    "description": "Parent details screen: son name."
+  },
+  "parentSonStudentId": "Son’s student ID",
+  "@parentSonStudentId": {
+    "description": "Parent details screen: son student id."
+  },
+  "parentSonStudentIdHelp": "Ask your son or check his report card.",
+  "@parentSonStudentIdHelp": {
+    "description": "Parent details screen: son student id help."
+  },
+  "parentSonStudentIdHint": "JC-2026-4815",
+  "@parentSonStudentIdHint": {
+    "description": "Parent details screen: son student id hint."
+  },
+  "resetPasswordDescription": "Enter your email and we’ll send you a reset link.",
+  "@resetPasswordDescription": {
+    "description": "Reset password screen: description."
+  },
+  "resetPasswordHeading": "Reset your password",
+  "@resetPasswordHeading": {
+    "description": "Reset password screen: heading."
+  },
+  "resetPasswordSendButton": "Send reset link",
+  "@resetPasswordSendButton": {
+    "description": "Reset password screen: send button."
+  },
+  "resetPasswordSentMessage": "Reset link requested.",
+  "@resetPasswordSentMessage": {
+    "description": "Reset password screen: sent message."
+  },
+  "resetPasswordTitle": "Password reset",
+  "@resetPasswordTitle": {
+    "description": "Reset password screen: title."
+  },
+  "reviewAccount": "Account",
+  "@reviewAccount": {
+    "description": "Review screen: account."
+  },
+  "reviewAnotherSon": "Another son",
+  "@reviewAnotherSon": {
+    "description": "Review screen: another son."
+  },
+  "reviewDescription": "Check your details before we send them to the school for approval.",
+  "@reviewDescription": {
+    "description": "Review screen: description."
+  },
+  "reviewFormerStudentId": "Former student ID",
+  "@reviewFormerStudentId": {
+    "description": "Review screen: former student id."
+  },
+  "reviewHeading": "Review and submit",
+  "@reviewHeading": {
+    "description": "Review screen: heading."
+  },
+  "reviewLastGrade": "Last grade",
+  "@reviewLastGrade": {
+    "description": "Review screen: last grade."
+  },
+  "reviewMember": "Member",
+  "@reviewMember": {
+    "description": "Review screen: role name used when no role was chosen."
+  },
+  "reviewNotSelected": "Not selected",
+  "@reviewNotSelected": {
+    "description": "Review screen: not selected."
+  },
+  "reviewPhone": "Phone",
+  "@reviewPhone": {
+    "description": "Review screen: phone."
+  },
+  "reviewReady": "Ready for review",
+  "@reviewReady": {
+    "description": "Review screen: ready."
+  },
+  "reviewRole": "Role",
+  "@reviewRole": {
+    "description": "Review screen: role."
+  },
+  "reviewRoleDetails": "{role} details",
+  "@reviewRoleDetails": {
+    "description": "Review screen: title of the role-specific summary card.",
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "reviewSelected": "Selected",
+  "@reviewSelected": {
+    "description": "Review screen: selected."
+  },
+  "reviewSon": "Son",
+  "@reviewSon": {
+    "description": "Review screen: son."
+  },
+  "reviewStatus": "Status",
+  "@reviewStatus": {
+    "description": "Review screen: status."
+  },
+  "reviewSubmit": "Submit application",
+  "@reviewSubmit": {
+    "description": "Review screen: submit."
+  },
+  "reviewTitle": "Review",
+  "@reviewTitle": {
+    "description": "Review screen: title."
+  },
+  "roleOldBoy": "Old Boy",
+  "@roleOldBoy": {
+    "description": "Role name: alumnus of the college."
+  },
+  "roleOldBoyDescription": "I’m a JC alumnus",
+  "@roleOldBoyDescription": {
+    "description": "Sign-up role option: Old Boy description."
+  },
+  "roleParent": "Parent or guardian",
+  "@roleParent": {
+    "description": "Role name: parent or guardian."
+  },
+  "roleParentDescription": "I have a son at JC",
+  "@roleParentDescription": {
+    "description": "Sign-up role option: parent description."
+  },
+  "roleStudent": "Student",
+  "@roleStudent": {
+    "description": "Role name: student."
+  },
+  "roleStudentDescription": "I’m currently enrolled at JC",
+  "@roleStudentDescription": {
+    "description": "Sign-up role option: student description."
+  },
+  "roleTeacher": "Teacher or coach",
+  "@roleTeacher": {
+    "description": "Role name: teacher or coach."
+  },
+  "roleTeacherDescription": "I teach or coach at Jamaica College",
+  "@roleTeacherDescription": {
+    "description": "Sign-up role option: teacher description."
+  },
+  "signUpRoleDescription": "Tell us how you’re connected to Jamaica College.",
+  "@signUpRoleDescription": {
+    "description": "Sign-up role screen: description."
+  },
+  "signUpRoleHaveAccount": "Already have an account? ",
+  "@signUpRoleHaveAccount": {
+    "description": "Sign-up role screen: have account."
+  },
+  "signUpRoleHeading": "Join JC Connect",
+  "@signUpRoleHeading": {
+    "description": "Sign-up role screen: heading."
+  },
+  "signUpRoleLogIn": "Log in",
+  "@signUpRoleLogIn": {
+    "description": "Sign-up role screen: log in."
+  },
+  "studentDateOfBirthHint": "DD / MM / YYYY",
+  "@studentDateOfBirthHint": {
+    "description": "Student details screen: date of birth hint."
+  },
+  "studentDescription": "We’ll match this with school records to confirm you’re a JC student.",
+  "@studentDescription": {
+    "description": "Student details screen: description."
+  },
+  "studentHeading": "Student details",
+  "@studentHeading": {
+    "description": "Student details screen: heading."
+  },
+  "studentIdHelp": "You’ll find this on your school ID card.",
+  "@studentIdHelp": {
+    "description": "Student details screen: id help."
+  },
+  "studentIdHint": "e.g. JC-2026-0000",
+  "@studentIdHint": {
+    "description": "Student details screen: id hint."
+  },
+  "studentSelectAcademicTrack": "Select academic track",
+  "@studentSelectAcademicTrack": {
+    "description": "Student details screen: select academic track."
+  },
+  "studentSelectAcademicYear": "Select academic year",
+  "@studentSelectAcademicYear": {
+    "description": "Student details screen: select academic year."
+  },
+  "studentSelectClass": "Select your class",
+  "@studentSelectClass": {
+    "description": "Student details screen: select class."
+  },
+  "studentSelectGrade": "Select your grade",
+  "@studentSelectGrade": {
+    "description": "Student details screen: select grade."
+  },
+  "submittedAccountStatus": "Account status",
+  "@submittedAccountStatus": {
+    "description": "Submitted screen: account status."
+  },
+  "submittedContactSupport": "Contact support",
+  "@submittedContactSupport": {
+    "description": "Submitted screen: contact support."
+  },
+  "submittedDescription": "Your account is being reviewed by the JC admin team.",
+  "@submittedDescription": {
+    "description": "Submitted screen: description."
+  },
+  "submittedDone": "Done",
+  "@submittedDone": {
+    "description": "Submitted screen: done."
+  },
+  "submittedHeading": "Thanks, we’ve got your details",
+  "@submittedHeading": {
+    "description": "Submitted screen: heading."
+  },
+  "submittedInProgress": "In progress",
+  "@submittedInProgress": {
+    "description": "Submitted screen: in progress."
+  },
+  "submittedKeepPosted": "We’ll keep you posted",
+  "@submittedKeepPosted": {
+    "description": "Submitted screen: keep posted."
+  },
+  "submittedKeepPostedDescription": "You’ll get an email and a notification as soon as there’s an update.",
+  "@submittedKeepPostedDescription": {
+    "description": "Submitted screen: keep posted description."
+  },
+  "submittedReadyDescription": "Full access to JC Connect",
+  "@submittedReadyDescription": {
+    "description": "Submitted screen: ready description."
+  },
+  "submittedReviewTime": "Usually 1 to 2 business days",
+  "@submittedReviewTime": {
+    "description": "Submitted screen: review time."
+  },
+  "submittedStepReady": "Account ready",
+  "@submittedStepReady": {
+    "description": "Submitted screen: step ready."
+  },
+  "submittedStepReview": "Under review",
+  "@submittedStepReview": {
+    "description": "Submitted screen: step review."
+  },
+  "submittedStepSubmitted": "Submitted",
+  "@submittedStepSubmitted": {
+    "description": "Submitted screen: step submitted."
+  },
+  "submittedSupportMessage": "Support request started.",
+  "@submittedSupportMessage": {
+    "description": "Submitted screen: support message."
+  },
+  "submittedUpcoming": "Upcoming",
+  "@submittedUpcoming": {
+    "description": "Submitted screen: upcoming."
+  },
+  "teacherCoach": "Coach",
+  "@teacherCoach": {
+    "description": "Teacher details screen: coach option."
+  },
+  "teacherCoachDescription": "I coach a sports team",
+  "@teacherCoachDescription": {
+    "description": "Teacher details screen: coach description."
+  },
+  "teacherDescription": "We’ll confirm your role with the school administration.",
+  "@teacherDescription": {
+    "description": "Teacher details screen: description."
+  },
+  "teacherHeading": "Teacher or coach details",
+  "@teacherHeading": {
+    "description": "Teacher details screen: heading."
+  },
+  "teacherPickOne": "Pick at least one. We’ll ask a few questions about each.",
+  "@teacherPickOne": {
+    "description": "Teacher details screen: pick one."
+  },
+  "teacherRoleSummary": "{role, select, teacher{Teacher} coach{Coach} both{Teacher and Coach} other{}}",
+  "@teacherRoleSummary": {
+    "description": "Teacher details screen: chosen staff roles, shown on the review screen.",
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "teacherSchoolEmailHelp": "Your @jc.edu.jm email speeds up approval.",
+  "@teacherSchoolEmailHelp": {
+    "description": "Teacher details screen: school email help."
+  },
+  "teacherSchoolEmailHint": "name@jc.edu.jm",
+  "@teacherSchoolEmailHint": {
+    "description": "Teacher details screen: school email hint."
+  },
+  "teacherSelectAll": "Select all that apply",
+  "@teacherSelectAll": {
+    "description": "Teacher details screen: select all."
+  },
+  "teacherStaffIdHelp": "Your JC employee number.",
+  "@teacherStaffIdHelp": {
+    "description": "Teacher details screen: staff id help."
+  },
+  "teacherStaffIdHint": "e.g. JC-STF-0000",
+  "@teacherStaffIdHint": {
+    "description": "Teacher details screen: staff id hint."
+  },
+  "teacherTeacher": "Teacher",
+  "@teacherTeacher": {
+    "description": "Teacher details screen: teacher option."
+  },
+  "teacherTeacherDescription": "I teach subjects and classes",
+  "@teacherTeacherDescription": {
+    "description": "Teacher details screen: teacher description."
+  },
+  "teacherWhatDoYouDo": "What do you do at JC?",
+  "@teacherWhatDoYouDo": {
+    "description": "Teacher details screen: what do you do."
+  },
+  "termsAgreeButton": "Agree and continue",
+  "@termsAgreeButton": {
+    "description": "Terms screen: agree button."
+  },
+  "termsAgreePrivacy": "I agree to the Privacy Policy and how my collegiate data is stored and utilized",
+  "@termsAgreePrivacy": {
+    "description": "Terms screen: agree privacy."
+  },
+  "termsAgreeTerms": "I have read and agree to the Terms of Use",
+  "@termsAgreeTerms": {
+    "description": "Terms screen: agree terms."
+  },
+  "termsConductBody": "In adherence to the motto “For Ever Upwards” members pledge respect, integrity, and good faith.",
+  "@termsConductBody": {
+    "description": "Terms screen: conduct body."
+  },
+  "termsConductTitle": "Community conduct and honor code",
+  "@termsConductTitle": {
+    "description": "Terms screen: conduct title."
+  },
+  "termsDescription": "Please read how JC Connect works before you continue.",
+  "@termsDescription": {
+    "description": "Terms screen: description."
+  },
+  "termsDonationsBody": "Contributions toward collegiate athletic sponsorships, campus restoration, and student bursary grants represent irrevocable settlements overseen by the Board of Trustees.",
+  "@termsDonationsBody": {
+    "description": "Terms screen: donations body."
+  },
+  "termsDonationsTitle": "Donations and bursary payments",
+  "@termsDonationsTitle": {
+    "description": "Terms screen: donations title."
+  },
+  "termsHeading": "Terms and privacy",
+  "@termsHeading": {
+    "description": "Terms screen: heading."
+  },
+  "termsPrivacyBody": "All member directories, graduation cohort numbers, and academic achievements are protected with multi-layer cryptographic authentication.",
+  "@termsPrivacyBody": {
+    "description": "Terms screen: privacy body."
+  },
+  "termsPrivacyTitle": "Privacy and data safeguards",
+  "@termsPrivacyTitle": {
+    "description": "Terms screen: privacy title."
+  },
+  "termsReviewBody": "System moderators reserve the authority to verify cohort identity cards, inspect reported behavior, and temporarily restrict feed publishing.",
+  "@termsReviewBody": {
+    "description": "Terms screen: review body."
+  },
+  "termsReviewLater": "ⓘ  You can review these anytime in Settings",
+  "@termsReviewLater": {
+    "description": "Terms screen: review later."
+  },
+  "termsReviewTitle": "Account review and auditing",
+  "@termsReviewTitle": {
+    "description": "Terms screen: review title."
+  },
+  "termsTitle": "Terms",
+  "@termsTitle": {
+    "description": "Terms screen: title."
+  },
+  "termsUsingBody": "JC Connect serves as the private collegiate and alumni assembly. Membership is restricted to verified students, faculty, staff, and Old Boys.",
+  "@termsUsingBody": {
+    "description": "Terms screen: using body."
+  },
+  "termsUsingTitle": "Using the app",
+  "@termsUsingTitle": {
+    "description": "Terms screen: using title."
+  },
+  "verifyEmailButton": "Verify email",
+  "@verifyEmailButton": {
+    "description": "Verify email screen: button."
+  },
+  "verifyEmailEnterCode": "Enter the 6-digit code.",
+  "@verifyEmailEnterCode": {
+    "description": "Verify email screen: enter code."
+  },
+  "verifyEmailFooter": "Jamaica College • True Blue Secure Access",
+  "@verifyEmailFooter": {
+    "description": "Verify email screen: footer."
+  },
+  "verifyEmailHeading": "Verify your email",
+  "@verifyEmailHeading": {
+    "description": "Verify email screen: heading."
+  },
+  "verifyEmailNoCodePrompt": "Didn’t receive the code? ",
+  "@verifyEmailNoCodePrompt": {
+    "description": "Verify email screen: no code prompt."
+  },
+  "verifyEmailResend": "Resend",
+  "@verifyEmailResend": {
+    "description": "Verify email screen: resend."
+  },
+  "verifyEmailResentMessage": "A new code has been sent.",
+  "@verifyEmailResentMessage": {
+    "description": "Verify email screen: resent message."
+  },
+  "verifyEmailSentTo": "We sent a 6-digit code to\n{email}",
+  "@verifyEmailSentTo": {
+    "description": "Verify email screen: where the code was sent.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeBrand": "JC CONNECT",
+  "@welcomeBrand": {
+    "description": "Welcome screen: brand."
+  },
+  "welcomeBrowseEvents": "Browse events",
+  "@welcomeBrowseEvents": {
+    "description": "Welcome screen: browse events."
+  },
+  "welcomeFooter": "Jamaica College • Founded 1789 • Kingston, JA",
+  "@welcomeFooter": {
+    "description": "Welcome screen: footer."
+  },
+  "welcomeJoinButton": "Join as a Member",
+  "@welcomeJoinButton": {
+    "description": "Welcome screen: join button."
+  },
+  "welcomeLoginButton": "Login",
+  "@welcomeLoginButton": {
+    "description": "Welcome screen: login button."
+  },
+  "welcomeOpenEducation": "Open Education",
+  "@welcomeOpenEducation": {
+    "description": "Welcome screen: open education."
+  },
+  "welcomeTagline": "One College. One Community.",
+  "@welcomeTagline": {
+    "description": "Welcome screen: tagline."
+  },
+  "welcomeVersion": "●  v2.4.0 • True Blue Secure Connect",
+  "@welcomeVersion": {
+    "description": "Welcome screen: version."
+  }
+}

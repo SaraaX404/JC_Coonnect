@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -23,24 +24,24 @@ class WelcomeScreen extends StatelessWidget {
           const Spacer(flex: 3),
           const JcLogo(),
           const SizedBox(height: 32),
-          const Text(
-            'JC CONNECT',
-            style: TextStyle(
+          Text(
+            context.l10n.welcomeBrand,
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w800,
               color: JcColors.titleBlue,
             ),
           ),
           const SizedBox(height: 8),
-          const Text('One College. One Community.', style: JcTextStyles.body),
+          Text(context.l10n.welcomeTagline, style: JcTextStyles.body),
           const Spacer(flex: 4),
           JcButton(
-            label: 'Login',
+            label: context.l10n.welcomeLoginButton,
             onPressed: () => pushScreen(context, const LoginScreen()),
           ),
           const SizedBox(height: 12),
           JcButton(
-            label: 'Join as a Member',
+            label: context.l10n.welcomeJoinButton,
             outlined: true,
             onPressed: () =>
                 pushScreen(context, SignUpRoleScreen(data: SignUpData())),
@@ -49,21 +50,21 @@ class WelcomeScreen extends StatelessWidget {
           TextButton.icon(
             onPressed: () => pushScreen(context, const EventsScreen()),
             icon: const Icon(Icons.event_outlined, size: 18),
-            label: const Text('Browse events'),
+            label: Text(context.l10n.welcomeBrowseEvents),
           ),
           TextButton.icon(
             onPressed: () => pushScreen(context, const EducationScreen()),
             icon: const Icon(Icons.school_outlined, size: 18),
-            label: const Text('Open Education'),
+            label: Text(context.l10n.welcomeOpenEducation),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Jamaica College • Founded 1789 • Kingston, JA',
+          Text(
+            context.l10n.welcomeFooter,
             style: JcTextStyles.small,
           ),
           const SizedBox(height: 4),
-          const Text(
-            '●  v2.4.0 • True Blue Secure Connect',
+          Text(
+            context.l10n.welcomeVersion,
             style: JcTextStyles.small,
           ),
           const SizedBox(height: 28),

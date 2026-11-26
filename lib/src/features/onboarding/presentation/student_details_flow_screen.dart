@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/src/features/onboarding/data/mock_onboarding.dart';
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
@@ -68,63 +70,55 @@ class _StudentDetailsFlowScreenState extends State<StudentDetailsFlowScreen> {
   @override
   Widget build(BuildContext context) => RoleDetailsScaffold(
     progress: 2,
-    label: 'Your details',
-    title: 'Student details',
-    description:
-        'We’ll match this with school records to confirm you’re a JC student.',
+    label: context.l10n.commonYourDetails,
+    title: context.l10n.studentHeading,
+    description: context.l10n.studentDescription,
     enabled: canContinue,
     onContinue: () => _continue(context),
     children: [
       JcInput(
-        label: 'Student ID',
-        hint: 'e.g. JC-2026-0000',
+        label: context.l10n.commonStudentId,
+        hint: context.l10n.studentIdHint,
         controller: studentId,
       ),
-      const JcHelper('You’ll find this on your school ID card.'),
+      JcHelper(context.l10n.studentIdHelp),
       JcSelect(
-        label: 'Grade',
-        hint: 'Select your grade',
+        label: context.l10n.commonGrade,
+        hint: context.l10n.studentSelectGrade,
         value: grade,
-        options: const [
-          'First Form',
-          'Second Form',
-          'Third Form',
-          'Fourth Form',
-          'Lower Sixth',
-          'Upper Sixth',
-        ],
+        options: mockGrades,
         onSelected: (value) => setState(() => grade = value),
       ),
       JcSelect(
-        label: 'Class',
-        hint: 'Select your class',
+        label: context.l10n.commonClass,
+        hint: context.l10n.studentSelectClass,
         value: className,
-        options: const ['A', 'B', 'C', 'D', 'E'],
+        options: mockClasses,
         onSelected: (value) => setState(() => className = value),
       ),
       JcSelect(
-        label: 'Academic year',
-        hint: 'Select academic year',
+        label: context.l10n.commonAcademicYear,
+        hint: context.l10n.studentSelectAcademicYear,
         value: academicYear,
-        options: const ['2026', '2027', '2028'],
+        options: mockAcademicYears,
         onSelected: (value) => setState(() => academicYear = value),
       ),
       JcSelect(
-        label: 'Academic track',
-        hint: 'Select academic track',
+        label: context.l10n.commonAcademicTrack,
+        hint: context.l10n.studentSelectAcademicTrack,
         value: academicTrack,
-        options: const ['General', 'Sciences', 'Humanities', 'Business'],
+        options: mockAcademicTracks,
         onSelected: (value) => setState(() => academicTrack = value),
       ),
       JcInput(
-        label: 'Date of birth',
-        hint: 'DD / MM / YYYY',
+        label: context.l10n.commonDateOfBirth,
+        hint: context.l10n.studentDateOfBirthHint,
         controller: dateOfBirth,
         keyboardType: TextInputType.datetime,
       ),
       JcInput(
-        label: 'Address',
-        hint: 'e.g. 12 Hope Road, Kingston 6',
+        label: context.l10n.commonAddress,
+        hint: context.l10n.commonAddressHint,
         controller: address,
       ),
     ],

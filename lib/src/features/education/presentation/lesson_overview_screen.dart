@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/features/education/data/mock_education.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -12,22 +14,22 @@ class LessonOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => JcScaffold(
-    title: 'Lesson',
+    title: context.l10n.lessonTitle,
     child: ListView(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
       children: [
         const Row(
           children: [
-            JcPill('Mathematics'),
+            JcPill(mockSubjectMathematics),
             SizedBox(width: 6),
-            JcPill('Term 1'),
+            JcPill(mockLessonTerm),
             SizedBox(width: 6),
-            JcPill('5 parts'),
+            JcPill(mockLessonParts),
           ],
         ),
         const SizedBox(height: 8),
         const Text(
-          'Solving quadratic equations by factorising',
+          mockLessonTitle,
           style: TextStyle(
             fontSize: 21,
             height: 1.3,
@@ -35,9 +37,9 @@ class LessonOverviewScreen extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const Text('Mr. Williams · Updated Nov 12', style: JcTextStyles.small),
+        const Text(mockLessonAuthor, style: JcTextStyles.small),
         const SizedBox(height: 14),
-        const JcPanel(
+        JcPanel(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,29 +47,29 @@ class LessonOverviewScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'Your progress',
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      context.l10n.lessonYourProgress,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Text('2 of 5 parts', style: JcTextStyles.small),
+                  const Text(mockLessonProgress, style: JcTextStyles.small),
                 ],
               ),
-              SizedBox(height: 8),
-              LinearProgressIndicator(
+              const SizedBox(height: 8),
+              const LinearProgressIndicator(
                 value: .4,
                 minHeight: 8,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
               Row(
                 children: [
                   Expanded(
                     child: Text(
-                      'Auto-completes when you finish all parts',
+                      context.l10n.lessonAutoCompletes,
                       style: JcTextStyles.small,
                     ),
                   ),
-                  Text(
+                  const Text(
                     '40%',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                   ),
@@ -77,45 +79,45 @@ class LessonOverviewScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        const EducationSectionHeader('Lesson content'),
+        EducationSectionHeader(context.l10n.lessonContent),
         const SizedBox(height: 8),
         const _LessonPart(
           icon: Icons.videocam_outlined,
-          title: 'Factorising basics — watch first',
-          meta: 'Video · 11 min',
+          title: mockLessonPart1,
+          meta: mockLessonPart1Meta,
           done: true,
         ),
         const SizedBox(height: 10),
         const _LessonPart(
           icon: Icons.article_outlined,
-          title: 'Key terms and rules',
-          meta: 'Article · 5 min read',
+          title: mockLessonPart2,
+          meta: mockLessonPart2Meta,
           done: true,
         ),
         const SizedBox(height: 10),
         const _LessonPart(
           icon: Icons.image_outlined,
-          title: 'Worked example diagrams',
-          meta: 'Images · 3 of 8 viewed',
+          title: mockLessonPart3,
+          meta: mockLessonPart3Meta,
           progress: '45%',
         ),
         const SizedBox(height: 10),
         const _LessonPart(
           icon: Icons.headphones_outlined,
-          title: 'Teacher’s audio recap',
-          meta: 'Audio · 6 min',
+          title: mockLessonPart4,
+          meta: mockLessonPart4Meta,
         ),
         const SizedBox(height: 12),
-        const Text(
-          'About this lesson',
-          style: TextStyle(
+        Text(
+          context.l10n.lessonAbout,
+          style: const TextStyle(
             color: JcColors.navyDark,
             fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 4),
         const Text(
-          'Learn to solve quadratic equations by factorising. You’ll practise spotting common factors, using the zero-product property and checking your answers.',
+          mockLessonAbout,
           style: TextStyle(color: JcColors.muted, height: 1.4),
         ),
         const SizedBox(height: 12),
@@ -124,13 +126,13 @@ class LessonOverviewScreen extends StatelessWidget {
             OutlinedButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.share_outlined, size: 18),
-              label: const Text('Share'),
+              label: Text(context.l10n.commonShare),
             ),
             const SizedBox(width: 8),
             OutlinedButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.bookmark_border, size: 18),
-              label: const Text('Save'),
+              label: Text(context.l10n.commonSave),
             ),
           ],
         ),
@@ -138,9 +140,9 @@ class LessonOverviewScreen extends StatelessWidget {
         SizedBox(
           height: 48,
           child: FilledButton.icon(
-            onPressed: () => showMessage(context, 'Part 3 is ready.'),
+            onPressed: () => showMessage(context, mockLessonNextPartMessage),
             icon: const Icon(Icons.play_arrow),
-            label: const Text('Continue · Part 3 of 5'),
+            label: const Text(mockLessonContinueLabel),
             style: FilledButton.styleFrom(
               backgroundColor: JcColors.primary,
               shape: RoundedRectangleBorder(

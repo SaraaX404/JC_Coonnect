@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:material_ui/material_ui.dart';
@@ -22,9 +23,9 @@ class JcSummaryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-              const Text(
-                'Edit',
-                style: TextStyle(fontSize: 12, color: JcColors.primary),
+              Text(
+                context.l10n.commonEdit,
+                style: const TextStyle(fontSize: 12, color: JcColors.primary),
               ),
             ],
           ),

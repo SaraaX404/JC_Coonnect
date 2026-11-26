@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
@@ -62,7 +63,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
         email.text.trim().isEmpty ||
         password.text.length < 8 ||
         password.text != confirm.text) {
-      showMessage(context, 'Complete the required fields to continue.');
+      showMessage(context, context.l10n.accountRequiredFieldsMessage);
       return;
     }
     widget.data.name = name.text.trim();
@@ -77,36 +78,35 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
         children: [
-          const JcProgress(step: 1, label: 'Account details'),
+          JcProgress(step: 1, label: context.l10n.accountTitle),
           const SizedBox(height: 24),
-          const JcHeading(
-            title: 'Create your account',
-            description:
-                'Use an email you check often. We’ll send a code to verify it.',
+          JcHeading(
+            title: context.l10n.accountHeading,
+            description: context.l10n.accountDescription,
           ),
           const SizedBox(height: 24),
           JcInput(
-            label: 'Full name',
-            hint: 'e.g. Kemar Brown',
+            label: context.l10n.commonFullName,
+            hint: context.l10n.accountFullNameHint,
             controller: name,
           ),
           const SizedBox(height: 16),
           JcInput(
-            label: 'Email',
-            hint: 'you@example.com',
+            label: context.l10n.commonEmailLabel,
+            hint: context.l10n.accountEmailHint,
             controller: email,
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
           JcInput(
-            label: 'Phone number',
+            label: context.l10n.accountPhoneLabel,
             hint: '+1 876 000 0000',
             controller: phone,
             keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 16),
           JcInput(
-            label: 'Password',
+            label: context.l10n.commonPasswordLabel,
             controller: password,
             obscureText: obscure,
             trailing: IconButton(
@@ -118,11 +118,11 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                 size: 18,
               ),
             ),
-            helper: 'At least 8 characters, with an uppercase letter, a number and a symbol.',
+            helper: context.l10n.accountPasswordHelp,
           ),
           const SizedBox(height: 16),
           JcInput(
-            label: 'Confirm password',
+            label: context.l10n.accountConfirmPasswordLabel,
             controller: confirm,
             obscureText: obscure,
             trailing: Icon(
@@ -133,7 +133,11 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
             ),
           ),
           const SizedBox(height: 24),
-          JcButton(label: 'Continue', enabled: canContinue, onPressed: next),
+          JcButton(
+            label: context.l10n.commonContinue,
+            enabled: canContinue,
+            onPressed: next,
+          ),
         ],
       ),
     );

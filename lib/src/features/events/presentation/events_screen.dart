@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_nav_item.dart';
@@ -15,9 +16,12 @@ class EventsScreen extends StatefulWidget {
   State<EventsScreen> createState() => _EventsScreenState();
 }
 
+// Not shown to users; the chip label comes from eventsAllCategories.
+const _allCategories = 'all';
+
 class _EventsScreenState extends State<EventsScreen> {
   final search = TextEditingController();
-  String selectedCategory = 'All';
+  String selectedCategory = _allCategories;
   bool calendar = false;
   bool searchFocused = false;
 
@@ -25,7 +29,8 @@ class _EventsScreenState extends State<EventsScreen> {
     final query = search.text.trim().toLowerCase();
     return mockEvents.where((event) {
       final categoryMatches =
-          selectedCategory == 'All' || event.filterCategory == selectedCategory;
+          selectedCategory == _allCategories ||
+          event.filterCategory == selectedCategory;
       final queryMatches =
           query.isEmpty ||
           event.title.toLowerCase().contains(query) ||
@@ -43,6 +48,9 @@ class _EventsScreenState extends State<EventsScreen> {
 
   void _refresh() => setState(() {});
 
+  String _categoryLabel(String category) =>
+      category == _allCategories ? context.l10n.eventsAllCategories : category;
+
   @override
   void dispose() {
     search.removeListener(_refresh);
@@ -51,7 +59,7 @@ class _EventsScreenState extends State<EventsScreen> {
   }
 
   Future<void> _showFilters() async {
-    final categories = ['All', 'Academic', 'Alumni', 'PTA', 'Sports'];
+    final categories = [_allCategories, ...mockEventCategories];
     final result = await showModalBottomSheet<String>(
       context: context,
       builder: (context) => SafeArea(
@@ -67,7 +75,10 @@ class _EventsScreenState extends State<EventsScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Filter events', style: JcTextStyles.title),
+                    Text(
+                      context.l10n.eventsFilterTitle,
+                      style: JcTextStyles.title,
+                    ),
                     IconButton(
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(Icons.close),
@@ -78,7 +89,7 @@ class _EventsScreenState extends State<EventsScreen> {
                 ...categories.map(
                   (category) => RadioListTile<String>(
                     value: category,
-                    title: Text(category),
+                    title: Text(_categoryLabel(category)),
                     contentPadding: EdgeInsets.zero,
                   ),
                 ),
@@ -93,7 +104,7 @@ class _EventsScreenState extends State<EventsScreen> {
 
   @override
   Widget build(BuildContext context) => JcScaffold(
-    title: 'Events',
+    title: context.l10n.eventsTitle,
     showBack: false,
     showHomeIndicator: false,
     child: Column(
@@ -110,7 +121,7 @@ class _EventsScreenState extends State<EventsScreen> {
                     controller: search,
                     onTap: () => setState(() => searchFocused = true),
                     decoration: InputDecoration(
-                      hintText: 'Search events',
+                      hintText: context.l10n.eventsSearchHint,
                       prefixIcon: const Icon(Icons.search, size: 18),
                       suffixIcon: search.text.isEmpty
                           ? null
@@ -135,15 +146,15 @@ class _EventsScreenState extends State<EventsScreen> {
               ),
               const SizedBox(width: 6),
               _EventIconButton(
-                tooltip: 'Calendar view',
+                tooltip: context.l10n.eventsCalendarView,
                 icon: Icons.calendar_today_outlined,
                 onPressed: () => setState(() => calendar = true),
               ),
               const SizedBox(width: 6),
               _EventIconButton(
-                tooltip: 'Filter events',
+                tooltip: context.l10n.eventsFilterTitle,
                 icon: Icons.tune_outlined,
-                active: selectedCategory != 'All',
+                active: selectedCategory != _allCategories,
                 onPressed: _showFilters,
               ),
             ],
@@ -155,19 +166,13 @@ class _EventsScreenState extends State<EventsScreen> {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             scrollDirection: Axis.horizontal,
-            itemCount: const [
-              'All',
-              'Academic',
-              'Alumni',
-              'PTA',
-              'Sports',
-            ].length,
+            itemCount: mockEventCategories.length + 1,
             separatorBuilder: (_, index) => const SizedBox(width: 8),
             itemBuilder: (context, index) {
-              const categories = ['All', 'Academic', 'Alumni', 'PTA', 'Sports'];
+              const categories = [_allCategories, ...mockEventCategories];
               final category = categories[index];
               return _EventCategoryChip(
-                label: category,
+                label: _categoryLabel(category),
                 selected: selectedCategory == category,
                 onTap: () => setState(() => selectedCategory = category),
               );
@@ -180,7 +185,9 @@ class _EventsScreenState extends State<EventsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                calendar ? 'My calendar' : 'This week',
+                calendar
+                    ? context.l10n.eventsMyCalendar
+                    : context.l10n.eventsThisWeek,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -197,7 +204,7 @@ class _EventsScreenState extends State<EventsScreen> {
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Text(
-                    '${visibleEvents.length} Events',
+                    context.l10n.eventsCount(visibleEvents.length),
                     style: const TextStyle(
                       fontSize: 11,
                       color: JcColors.primary,
@@ -308,14 +315,21 @@ class _EventsBottomNav extends StatelessWidget {
       color: Colors.white,
       border: Border(top: BorderSide(color: JcColors.border)),
     ),
-    child: const Row(
+    child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        JcNavItem(icon: Icons.rss_feed_outlined, label: 'Feed'),
-        JcNavItem(icon: Icons.chat_bubble_outline, label: 'Chat'),
-        JcNavItem(icon: Icons.home_outlined, label: 'Home', selected: true),
-        JcNavItem(icon: Icons.emoji_events_outlined, label: 'Sport'),
-        JcNavItem(icon: Icons.person_outline, label: 'Profile'),
+        JcNavItem(icon: Icons.rss_feed_outlined, label: context.l10n.navFeed),
+        JcNavItem(icon: Icons.chat_bubble_outline, label: context.l10n.navChat),
+        JcNavItem(
+          icon: Icons.home_outlined,
+          label: context.l10n.navHome,
+          selected: true,
+        ),
+        JcNavItem(
+          icon: Icons.emoji_events_outlined,
+          label: context.l10n.navSport,
+        ),
+        JcNavItem(icon: Icons.person_outline, label: context.l10n.navProfile),
       ],
     ),
   );
@@ -341,21 +355,25 @@ class _EmptyEventsState extends StatelessWidget {
   const _EmptyEventsState();
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
     child: Padding(
-      padding: EdgeInsets.all(32),
+      padding: const EdgeInsets.all(32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.event_busy_outlined, size: 48, color: JcColors.primary),
-          SizedBox(height: 16),
-          Text(
-            'No events found',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          const Icon(
+            Icons.event_busy_outlined,
+            size: 48,
+            color: JcColors.primary,
           ),
-          SizedBox(height: 6),
+          const SizedBox(height: 16),
           Text(
-            'Try another search or clear your filters to see more of the JC community calendar.',
+            context.l10n.eventsEmptyTitle,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            context.l10n.eventsEmptyDescription,
             textAlign: TextAlign.center,
             style: JcTextStyles.body,
           ),

@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
@@ -13,67 +14,76 @@ class ReviewScreen extends StatelessWidget {
   const ReviewScreen({super.key, required this.data});
   final SignUpData data;
 
-  Map<String, String> get roleDetails => switch (data.role) {
-    JcRole.student => {
-      'Student ID': data.studentId,
-      'Grade': data.grade,
-      'Class': data.className,
-      'Academic year': data.academicYear,
-      'Academic track': data.academicTrack,
-      'Date of birth': data.dateOfBirth,
-      'Address': data.address,
-    },
-    JcRole.parent => {
-      'Relationship': data.relationship,
-      'Son': data.sonName,
-      'Student ID': data.studentId,
-      if (data.anotherSonName.isNotEmpty) 'Another son': data.anotherSonName,
-    },
-    JcRole.teacher => {
-      'Staff ID': data.staffId,
-      'School email': data.schoolEmail,
-      'Address': data.address,
-      'Role': data.teacherRole,
-    },
-    JcRole.oldBoy => {
-      'Graduation year': data.graduationYear,
-      'Last grade': data.lastGrade,
-      'House': data.house,
-      'Former student ID': data.studentId,
-      'Proof of attendance': data.proofUploaded ? 'Selected' : 'Not selected',
-    },
-    null => <String, String>{},
-  };
+  Map<String, String> _roleDetails(AppLocalizations l10n) =>
+      switch (data.role) {
+        JcRole.student => {
+          l10n.commonStudentId: data.studentId,
+          l10n.commonGrade: data.grade,
+          l10n.commonClass: data.className,
+          l10n.commonAcademicYear: data.academicYear,
+          l10n.commonAcademicTrack: data.academicTrack,
+          l10n.commonDateOfBirth: data.dateOfBirth,
+          l10n.commonAddress: data.address,
+        },
+        JcRole.parent => {
+          l10n.commonRelationship: data.relationship,
+          l10n.reviewSon: data.sonName,
+          l10n.commonStudentId: data.studentId,
+          if (data.anotherSonName.isNotEmpty)
+            l10n.reviewAnotherSon: data.anotherSonName,
+        },
+        JcRole.teacher => {
+          l10n.commonStaffId: data.staffId,
+          l10n.commonSchoolEmail: data.schoolEmail,
+          l10n.commonAddress: data.address,
+          l10n.reviewRole: data.teacherRole,
+        },
+        JcRole.oldBoy => {
+          l10n.commonGraduationYear: data.graduationYear,
+          l10n.reviewLastGrade: data.lastGrade,
+          l10n.commonHouse: data.house,
+          l10n.reviewFormerStudentId: data.studentId,
+          l10n.commonProofOfAttendance: data.proofUploaded
+              ? l10n.reviewSelected
+              : l10n.reviewNotSelected,
+        },
+        null => <String, String>{},
+      };
 
   @override
   Widget build(BuildContext context) => JcScaffold(
     child: ListView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
       children: [
-        const JcProgress(step: 5, total: 5, label: 'Review'),
+        JcProgress(step: 5, total: 5, label: context.l10n.reviewTitle),
         const SizedBox(height: 24),
-        const JcHeading(
-          title: 'Review and submit',
-          description: 'Check your details before we send them to the school for approval.',
+        JcHeading(
+          title: context.l10n.reviewHeading,
+          description: context.l10n.reviewDescription,
         ),
         const SizedBox(height: 24),
         JcSummaryCard(
-          title: 'Account',
+          title: context.l10n.reviewAccount,
           values: {
-            'Full name': data.name,
-            'Email': data.email,
-            'Phone': data.phone,
-            'Role': data.role?.title ?? '',
+            context.l10n.commonFullName: data.name,
+            context.l10n.commonEmailLabel: data.email,
+            context.l10n.reviewPhone: data.phone,
+            context.l10n.reviewRole: data.role?.title(context.l10n) ?? '',
           },
         ),
         const SizedBox(height: 16),
         JcSummaryCard(
-          title: '${data.role?.title ?? 'Member'} details',
-          values: {...roleDetails, 'Status': 'Ready for review'},
+          title: context.l10n.reviewRoleDetails(
+            data.role?.title(context.l10n) ?? context.l10n.reviewMember,
+          ),
+          values: {
+            ..._roleDetails(context.l10n),
+            context.l10n.reviewStatus: context.l10n.reviewReady,
+          },
         ),
         const SizedBox(height: 20),
         JcButton(
-          label: 'Submit application',
+          label: context.l10n.reviewSubmit,
           onPressed: () => pushScreen(context, const SubmittedScreen()),
         ),
       ],

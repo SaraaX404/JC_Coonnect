@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:material_ui/material_ui.dart';
@@ -57,10 +58,10 @@ class _JcAccordionState extends State<JcAccordion> {
             ],
           ),
           if (expanded)
-            const Padding(
-              padding: EdgeInsets.only(top: 12, left: 44),
+            Padding(
+              padding: const EdgeInsets.only(top: 12, left: 44),
               child: Text(
-                'You can add these details after your account is approved.',
+                context.l10n.accordionLaterHelp,
                 style: JcTextStyles.small,
               ),
             ),

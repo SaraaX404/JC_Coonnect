@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/src/features/events/data/mock_events.dart';
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
@@ -23,32 +25,31 @@ class _EventDonationScreenState extends State<EventDonationScreen> {
 
   @override
   Widget build(BuildContext context) => JcScaffold(
-    title: 'Donate to event',
+    title: context.l10n.donationTitle,
     child: ListView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
       children: [
-        const JcProgress(step: 1, total: 2, label: 'Donation'),
+        JcProgress(step: 1, total: 2, label: context.l10n.donationStepTitle),
         const SizedBox(height: 24),
-        const JcHeading(
-          title: 'Support this event',
-          description:
-              'Every contribution helps JC keep community events accessible.',
+        JcHeading(
+          title: context.l10n.donationHeading,
+          description: context.l10n.donationDescription,
         ),
         const SizedBox(height: 20),
         JcSummaryCard(
           title: widget.event.title,
           values: {
-            'Date': widget.event.date,
-            'Location': widget.event.location,
+            context.l10n.commonDate: widget.event.date,
+            context.l10n.commonLocation: widget.event.location,
           },
         ),
         const SizedBox(height: 20),
-        const Text('Choose an amount', style: JcTextStyles.label),
+        Text(context.l10n.donationChooseAmount, style: JcTextStyles.label),
         const SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: ['J\$1,000', 'J\$2,500', 'J\$5,000', 'Other']
+          children: [...mockDonationAmounts, context.l10n.donationOtherAmount]
               .map(
                 (amount) => ChoiceChip(
                   label: Text(amount),
@@ -58,23 +59,26 @@ class _EventDonationScreenState extends State<EventDonationScreen> {
               )
               .toList(),
         ),
-        if (selectedAmount == 'Other') ...[
+        if (selectedAmount == context.l10n.donationOtherAmount) ...[
           const SizedBox(height: 12),
-          const JcInput(label: 'Amount', hint: 'Enter amount'),
+          JcInput(
+            label: context.l10n.donationAmountLabel,
+            hint: context.l10n.donationAmountHint,
+          ),
         ],
         const SizedBox(height: 20),
         if (donated)
-          const Card(
+          Card(
             elevation: 0,
-            color: Color(0xFFEAF8ED),
+            color: const Color(0xFFEAF8ED),
             child: Padding(
-              padding: EdgeInsets.all(14),
+              padding: const EdgeInsets.all(14),
               child: Row(
                 children: [
-                  Icon(Icons.check_circle_outline, color: JcColors.green),
-                  SizedBox(width: 10),
+                  const Icon(Icons.check_circle_outline, color: JcColors.green),
+                  const SizedBox(width: 10),
                   Expanded(
-                    child: Text('Thank you. Your donation has been recorded.'),
+                    child: Text(context.l10n.donationThanksMessage),
                   ),
                 ],
               ),
@@ -82,7 +86,7 @@ class _EventDonationScreenState extends State<EventDonationScreen> {
           )
         else
           JcButton(
-            label: 'Continue to payment',
+            label: context.l10n.donationContinueToPayment,
             enabled: selectedAmount.isNotEmpty,
             onPressed: () => setState(() => donated = true),
           ),

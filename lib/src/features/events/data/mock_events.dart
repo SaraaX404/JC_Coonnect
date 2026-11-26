@@ -76,3 +76,15 @@ const mockEvents = [
     isSport: true,
   ),
 ];
+
+const mockEventComment = 'Can’t wait to see the new robot in action.';
+const mockEventOrganizer = 'JC Robotics Club & IEEE Student Branch';
+const mockEventFundingPurpose =
+    'Robotics kits, arena setup & competition entry fees.';
+const mockCalendarMonth = 'November 2026';
+const mockEventCategories = ['Academic', 'Alumni', 'PTA', 'Sports'];
+const mockDonationAmounts = ['J\$1,000', 'J\$2,500', 'J\$5,000'];
+const mockFundedPercent = 60;
+const mockRaised = '\$1,200';
+const mockGoal = '\$2,000';
+const mockCalendarMonthName = 'November';

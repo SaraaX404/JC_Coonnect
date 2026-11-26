@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/features/events/domain/event_record.dart';
@@ -138,9 +139,9 @@ class EventListCard extends StatelessWidget {
                         color: JcColors.primary,
                         borderRadius: BorderRadius.circular(18),
                       ),
-                      child: const Text(
-                        '+ RSVP',
-                        style: TextStyle(
+                      child: Text(
+                        context.l10n.eventCardRsvp,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 11,
                           fontWeight: FontWeight.w700,

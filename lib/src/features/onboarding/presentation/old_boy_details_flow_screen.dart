@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/src/features/onboarding/data/mock_onboarding.dart';
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
@@ -49,66 +51,66 @@ class _OldBoyDetailsFlowScreenState extends State<OldBoyDetailsFlowScreen> {
   Widget build(BuildContext context) => RoleDetailsScaffold(
     progress: 2,
     total: 4,
-    label: 'Your details',
-    title: 'Your JC years',
-    description: 'Help us confirm you’re an Old Boy of Jamaica College.',
+    label: context.l10n.commonYourDetails,
+    title: context.l10n.oldBoyHeading,
+    description: context.l10n.oldBoyDescription,
     enabled: canContinue,
     onContinue: () => _continue(context),
     children: [
       JcSelect(
-        label: 'Graduation year',
-        hint: 'Select year',
+        label: context.l10n.commonGraduationYear,
+        hint: context.l10n.oldBoySelectYear,
         value: graduationYear,
         options: const ['1990', '2000', '2010', '2020', '2026'],
         onSelected: (value) => setState(() => graduationYear = value),
       ),
       JcSelect(
-        label: 'Last grade completed',
-        hint: 'Select grade',
+        label: context.l10n.oldBoyLastGrade,
+        hint: context.l10n.oldBoySelectGrade,
         value: lastGrade,
-        options: const ['Fifth Form', 'Lower Sixth', 'Upper Sixth'],
+        options: mockOldBoyGrades,
         onSelected: (value) => setState(() => lastGrade = value),
       ),
       JcSelect(
-        label: 'House',
-        hint: 'Select your house',
+        label: context.l10n.commonHouse,
+        hint: context.l10n.oldBoySelectHouse,
         value: house,
-        options: const ['Bell', 'East', 'Hobbs', 'Ricketts'],
+        options: mockHouses,
         onSelected: (value) => setState(() => house = value),
       ),
       JcInput(
-        label: 'Former student ID (optional)',
-        hint: 'e.g. JC-2010-0000',
+        label: context.l10n.oldBoyFormerStudentId,
+        hint: context.l10n.oldBoyFormerStudentIdHint,
         controller: formerStudentId,
-        helper: 'Speeds up verification if you have it.',
+        helper: context.l10n.oldBoyFormerStudentIdHelp,
       ),
       JcFileField(
         selected: proofUploaded,
         onChanged: (value) => setState(() => proofUploaded = value),
       ),
       const Divider(height: 32),
-      const Text('Your Old Boy profile (optional)', style: JcTextStyles.label),
-      const JcAccordion(
-        title: 'Clubs and sports',
-        subtitle: 'Teams and clubs you were part of',
+      Text(context.l10n.oldBoyProfileTitle, style: JcTextStyles.label),
+      JcAccordion(
+        title: context.l10n.oldBoyClubs,
+        subtitle: context.l10n.oldBoyClubsDescription,
         icon: Icons.emoji_events_outlined,
       ),
-      const JcAccordion(
-        title: 'Leadership',
-        subtitle: 'Roles you held at JC',
+      JcAccordion(
+        title: context.l10n.oldBoyLeadership,
+        subtitle: context.l10n.oldBoyLeadershipDescription,
         icon: Icons.star_border,
       ),
-      const JcAccordion(
-        title: 'Career',
-        subtitle: 'What you do today',
+      JcAccordion(
+        title: context.l10n.oldBoyCareer,
+        subtitle: context.l10n.oldBoyCareerDescription,
         icon: Icons.business_center_outlined,
       ),
-      const JcAccordion(
-        title: 'Giving back',
-        subtitle: 'Mentorship, scholarships and events',
+      JcAccordion(
+        title: context.l10n.oldBoyGivingBack,
+        subtitle: context.l10n.oldBoyGivingBackDescription,
         icon: Icons.favorite_border,
       ),
-      const JcHelper('You can add or change these later in your profile.'),
+      JcHelper(context.l10n.oldBoyProfileHelp),
     ],
   );
 }

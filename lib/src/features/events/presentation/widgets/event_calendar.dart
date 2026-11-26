@@ -1,3 +1,6 @@
+import 'package:intl/intl.dart';
+import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/features/events/data/mock_events.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -76,7 +79,7 @@ class _EventCalendarState extends State<EventCalendar> {
         children: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.chevron_left)),
           const Text(
-            'November 2026',
+            mockCalendarMonth,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
           ),
           IconButton(onPressed: () {}, icon: const Icon(Icons.chevron_right)),
@@ -92,16 +95,23 @@ class _EventCalendarState extends State<EventCalendar> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-                  .map(
-                    (day) => SizedBox(
-                      width: 34,
-                      child: Center(
-                        child: Text(day, style: JcTextStyles.small),
-                      ),
-                    ),
-                  )
-                  .toList(),
+              // 2024-01-01 is a Monday, so this yields Mon..Sun initials.
+              children:
+                  List.generate(
+                        7,
+                        (i) => DateFormat.EEEEE(
+                          Localizations.localeOf(context).toString(),
+                        ).format(DateTime(2024, 1, 1 + i)),
+                      )
+                      .map(
+                        (day) => SizedBox(
+                          width: 34,
+                          child: Center(
+                            child: Text(day, style: JcTextStyles.small),
+                          ),
+                        ),
+                      )
+                      .toList(),
             ),
             const SizedBox(height: 8),
             GridView.builder(
@@ -173,13 +183,13 @@ class _EventCalendarState extends State<EventCalendar> {
       ),
       const SizedBox(height: 20),
       Text(
-        'Events on November $selectedDay',
+        context.l10n.calendarEventsOnDay(mockCalendarMonthName, selectedDay),
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       ),
       const SizedBox(height: 10),
       if (selectedEvents.isEmpty)
-        const Text(
-          'No events, sport fixtures or club meetings on this day.',
+        Text(
+          context.l10n.calendarEmptyDay,
           style: JcTextStyles.body,
         )
       else

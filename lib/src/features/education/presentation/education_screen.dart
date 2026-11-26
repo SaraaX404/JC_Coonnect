@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/features/education/data/mock_education.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -21,7 +23,7 @@ class _EducationScreenState extends State<EducationScreen> {
 
   @override
   Widget build(BuildContext context) => JcScaffold(
-    title: 'Education',
+    title: context.l10n.educationTitle,
     child: Column(
       children: [
         Expanded(
@@ -34,7 +36,7 @@ class _EducationScreenState extends State<EducationScreen> {
                     child: TextField(
                       onChanged: (value) => setState(() => query = value),
                       decoration: InputDecoration(
-                        hintText: 'Search lessons, subjects…',
+                        hintText: context.l10n.educationSearchHint,
                         prefixIcon: const Icon(Icons.search, size: 18),
                         contentPadding: EdgeInsets.zero,
                         filled: true,
@@ -64,7 +66,7 @@ class _EducationScreenState extends State<EducationScreen> {
                   (i) => Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: _EducationChip(
-                      label: 'Term ${i + 1}',
+                      label: context.l10n.educationTerm(i + 1),
                       selected: term == i + 1,
                       onTap: () => setState(() => term = i + 1),
                     ),
@@ -72,18 +74,18 @@ class _EducationScreenState extends State<EducationScreen> {
                 ),
               ),
               const SizedBox(height: 14),
-              const EducationSectionHeader('Continue learning'),
+              EducationSectionHeader(context.l10n.educationContinueLearning),
               const SizedBox(height: 8),
               _EducationLessonCard(
-                title: 'Solving quadratic equations by factorising',
-                meta: 'Mathematics · Video · 8 min left',
+                title: mockLessonTitle,
+                meta: mockContinueLessonMeta,
                 percent: '45%',
                 onTap: () => pushScreen(context, const LessonOverviewScreen()),
               ),
               const SizedBox(height: 14),
               EducationSectionHeader(
-                'My subjects · Term $term',
-                action: '8 subjects ›',
+                context.l10n.educationMySubjectsTerm(term),
+                action: mockSubjectsLink,
               ),
               const SizedBox(height: 8),
               GridView.count(
@@ -95,33 +97,33 @@ class _EducationScreenState extends State<EducationScreen> {
                 childAspectRatio: 1.08,
                 children: const [
                   _EducationSubjectCard(
-                    title: 'Mathematics',
-                    type: 'Core · 12 lessons',
-                    completion: '8 of 12 done',
+                    title: mockSubjectMathematics,
+                    type: mockSubjectMathematicsMeta,
+                    completion: mockSubjectMathematicsProgress,
                     percent: 70,
                     icon: Icons.calculate_outlined,
                     tint: JcColors.tintBlue,
                   ),
                   _EducationSubjectCard(
-                    title: 'English Language',
-                    type: 'Core · 10 lessons',
-                    completion: '4 of 10 done',
+                    title: mockSubjectEnglish,
+                    type: mockSubjectEnglishMeta,
+                    completion: mockSubjectEnglishProgress,
                     percent: 40,
                     icon: Icons.menu_book_outlined,
                     tint: JcColors.softYellow,
                   ),
                   _EducationSubjectCard(
-                    title: 'Information Technology',
-                    type: 'Elective · 9 lessons',
-                    completion: '0 of 9 done',
+                    title: mockSubjectIt,
+                    type: mockSubjectItMeta,
+                    completion: mockSubjectItProgress,
                     percent: 0,
                     icon: Icons.desktop_windows_outlined,
                     tint: Color(0xFFE8FBEA),
                   ),
                   _EducationSubjectCard(
-                    title: 'Chemistry',
-                    type: 'Elective · 8 lessons',
-                    completion: '8 of 8 done',
+                    title: mockSubjectChemistry,
+                    type: mockSubjectChemistryMeta,
+                    completion: mockSubjectChemistryProgress,
                     percent: 100,
                     icon: Icons.science_outlined,
                     tint: Color(0xFFFFEEF0),
@@ -129,7 +131,10 @@ class _EducationScreenState extends State<EducationScreen> {
                 ],
               ),
               const SizedBox(height: 14),
-              const EducationSectionHeader('Exams', action: 'View timetable ›'),
+              EducationSectionHeader(
+                context.l10n.educationExams,
+                action: context.l10n.educationViewTimetable,
+              ),
               const SizedBox(height: 8),
               JcPanel(
                 child: Row(
@@ -145,7 +150,7 @@ class _EducationScreenState extends State<EducationScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'DEC',
+                            mockExamMonth,
                             style: TextStyle(
                               fontSize: 10,
                               color: JcColors.primary,
@@ -168,7 +173,7 @@ class _EducationScreenState extends State<EducationScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Term 1 exam   In 4 weeks',
+                            mockExamTitle,
                             style: TextStyle(
                               fontSize: 11,
                               color: Color(0xFF87540C),
@@ -176,14 +181,14 @@ class _EducationScreenState extends State<EducationScreen> {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            'Mathematics',
+                            mockSubjectMathematics,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                           Text(
-                            '◷ Wed, Dec 9 · 9:00 AM · Ashenheim Hall',
+                            mockExamWhen,
                             style: TextStyle(
                               fontSize: 11,
                               color: JcColors.muted,
@@ -197,23 +202,23 @@ class _EducationScreenState extends State<EducationScreen> {
                 ),
               ),
               const SizedBox(height: 14),
-              const EducationSectionHeader('Settings'),
+              EducationSectionHeader(context.l10n.educationSettings),
               const SizedBox(height: 8),
-              const JcPanel(
+              JcPanel(
                 child: Column(
                   children: [
                     _EducationSettingRow(
                       icon: Icons.school_outlined,
-                      title: 'Grade',
-                      detail: 'Grade 10 · from your profile',
-                      action: 'Change',
+                      title: context.l10n.educationGradeSetting,
+                      detail: mockGradeSettingValue,
+                      action: context.l10n.educationChange,
                     ),
-                    Divider(height: 16),
+                    const Divider(height: 16),
                     _EducationSettingRow(
                       icon: Icons.menu_book_outlined,
-                      title: 'My subjects',
-                      detail: '6 subjects',
-                      action: 'Edit',
+                      title: context.l10n.educationMySubjects,
+                      detail: mockMySubjectsCount,
+                      action: context.l10n.commonEdit,
                     ),
                   ],
                 ),
@@ -250,7 +255,7 @@ class _EducationChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
       ),
       child: Text(
-        '${selected ? '✓  ' : ''}$label',
+        selected ? '✓  $label' : label,
         style: TextStyle(
           fontSize: 12,
           color: selected ? JcColors.primary : JcColors.text,
@@ -424,14 +429,21 @@ class _EducationBottomNav extends StatelessWidget {
       color: Colors.white,
       border: Border(top: BorderSide(color: JcColors.border)),
     ),
-    child: const Row(
+    child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        JcNavItem(icon: Icons.rss_feed_outlined, label: 'Feed'),
-        JcNavItem(icon: Icons.chat_bubble_outline, label: 'Chat'),
-        JcNavItem(icon: Icons.home_filled, label: 'Home', selected: true),
-        JcNavItem(icon: Icons.emoji_events_outlined, label: 'Sport'),
-        JcNavItem(icon: Icons.person_outline, label: 'Profile'),
+        JcNavItem(icon: Icons.rss_feed_outlined, label: context.l10n.navFeed),
+        JcNavItem(icon: Icons.chat_bubble_outline, label: context.l10n.navChat),
+        JcNavItem(
+          icon: Icons.home_filled,
+          label: context.l10n.navHome,
+          selected: true,
+        ),
+        JcNavItem(
+          icon: Icons.emoji_events_outlined,
+          label: context.l10n.navSport,
+        ),
+        JcNavItem(icon: Icons.person_outline, label: context.l10n.navProfile),
       ],
     ),
   );

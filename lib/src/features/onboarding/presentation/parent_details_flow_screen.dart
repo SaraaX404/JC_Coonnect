@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
@@ -61,39 +62,44 @@ class _ParentDetailsFlowScreenState extends State<ParentDetailsFlowScreen> {
   Widget build(BuildContext context) => RoleDetailsScaffold(
     progress: 2,
     total: 4,
-    label: 'Your details',
-    title: 'Your son at JC',
-    description:
-        'Link your account to your son so you can follow his school life.',
+    label: context.l10n.commonYourDetails,
+    title: context.l10n.parentHeading,
+    description: context.l10n.parentDescription,
     enabled: canContinue,
     onContinue: () => _continue(context),
     children: [
       JcSelect(
-        label: 'Relationship',
-        hint: 'Select relationship',
+        label: context.l10n.commonRelationship,
+        hint: context.l10n.parentSelectRelationship,
         value: relationship,
-        options: const ['Mother', 'Father', 'Guardian'],
+        options: [
+          context.l10n.parentMother,
+          context.l10n.parentFather,
+          context.l10n.parentGuardian,
+        ],
         onSelected: (value) => setState(() => relationship = value),
       ),
       JcInput(
-        label: 'Son’s full name',
-        hint: 'Kemar Brown',
+        label: context.l10n.parentSonName,
+        hint: context.l10n.commonFullNameExample,
         controller: sonName,
       ),
       JcInput(
-        label: 'Son’s student ID',
-        hint: 'JC-2026-4815',
+        label: context.l10n.parentSonStudentId,
+        hint: context.l10n.parentSonStudentIdHint,
         controller: studentId,
       ),
-      const JcHelper('Ask your son or check his report card.'),
+      JcHelper(context.l10n.parentSonStudentIdHelp),
       if (additionalSon)
         JcInput(
-          label: 'Another son’s name',
-          hint: 'Optional',
+          label: context.l10n.parentAnotherSonName,
+          hint: context.l10n.commonOptional,
           controller: anotherSonName,
         ),
       JcOutlinedAction(
-        label: additionalSon ? 'Remove another son' : 'Add another son',
+        label: additionalSon
+            ? context.l10n.parentRemoveAnotherSon
+            : context.l10n.parentAddAnotherSon,
         icon: additionalSon
             ? Icons.remove_circle_outline
             : Icons.add_circle_outline,

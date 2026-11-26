@@ -1,20 +1,21 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:material_ui/material_ui.dart';
 
 enum JcRole { student, parent, teacher, oldBoy }
 
 extension JcRoleLabel on JcRole {
-  String get title => switch (this) {
-    JcRole.student => 'Student',
-    JcRole.parent => 'Parent or guardian',
-    JcRole.teacher => 'Teacher or coach',
-    JcRole.oldBoy => 'Old Boy',
+  String title(AppLocalizations l10n) => switch (this) {
+    JcRole.student => l10n.roleStudent,
+    JcRole.parent => l10n.roleParent,
+    JcRole.teacher => l10n.roleTeacher,
+    JcRole.oldBoy => l10n.roleOldBoy,
   };
 
-  String get subtitle => switch (this) {
-    JcRole.student => 'I’m currently enrolled at JC',
-    JcRole.parent => 'I have a son at JC',
-    JcRole.teacher => 'I teach or coach at Jamaica College',
-    JcRole.oldBoy => 'I’m a JC alumnus',
+  String subtitle(AppLocalizations l10n) => switch (this) {
+    JcRole.student => l10n.roleStudentDescription,
+    JcRole.parent => l10n.roleParentDescription,
+    JcRole.teacher => l10n.roleTeacherDescription,
+    JcRole.oldBoy => l10n.roleOldBoyDescription,
   };
 
   IconData get icon => switch (this) {

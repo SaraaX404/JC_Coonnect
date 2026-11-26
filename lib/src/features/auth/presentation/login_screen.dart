@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
@@ -33,30 +34,32 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return JcScaffold(
-      title: 'Login',
+      title: context.l10n.loginTitle,
       child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 48, 20, 32),
         children: [
           const JcLogo(),
           const SizedBox(height: 32),
-          const Center(child: Text('Welcome back', style: JcTextStyles.title)),
+          Center(
+            child: Text(context.l10n.loginHeading, style: JcTextStyles.title),
+          ),
           const SizedBox(height: 4),
-          const Center(
+          Center(
             child: Text(
-              'Log in to stay connected to JC.',
+              context.l10n.loginDescription,
               style: JcTextStyles.body,
             ),
           ),
           const SizedBox(height: 32),
           JcInput(
-            label: 'Email',
-            hint: 'Enter your email',
+            label: context.l10n.commonEmailLabel,
+            hint: context.l10n.commonEmailHint,
             controller: email,
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
           JcInput(
-            label: 'Password',
+            label: context.l10n.commonPasswordLabel,
             controller: password,
             obscureText: obscure,
             trailing: IconButton(
@@ -73,19 +76,20 @@ class _LoginScreenState extends State<LoginScreen> {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () => pushScreen(context, const ResetPasswordScreen()),
-              child: const Text('Forgot your password?'),
+              child: Text(context.l10n.loginForgotPassword),
             ),
           ),
           const SizedBox(height: 8),
           JcButton(
-            label: 'Login',
-            onPressed: () => showMessage(context, 'Login is ready to connect.'),
+            label: context.l10n.loginTitle,
+            onPressed: () =>
+                showMessage(context, context.l10n.loginReadyMessage),
           ),
           const SizedBox(height: 32),
-          const JcDivider(label: 'Or Continue With'),
+          JcDivider(label: context.l10n.loginOrContinueWith),
           const SizedBox(height: 16),
           JcSocialButton(
-            label: 'Continue with Google',
+            label: context.l10n.loginContinueWithGoogle,
             icon: const Text(
               'G',
               style: TextStyle(
@@ -94,26 +98,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Color(0xFF4285F4),
               ),
             ),
-            onPressed: () => showMessage(context, 'Google sign-in selected.'),
+            onPressed: () =>
+                showMessage(context, context.l10n.loginGoogleSelectedMessage),
           ),
           const SizedBox(height: 8),
           JcSocialButton(
-            label: 'Continue with Apple',
+            label: context.l10n.loginContinueWithApple,
             icon: const Icon(Icons.apple, size: 22),
-            onPressed: () => showMessage(context, 'Apple sign-in selected.'),
+            onPressed: () =>
+                showMessage(context, context.l10n.loginAppleSelectedMessage),
           ),
           const SizedBox(height: 32),
           Center(
             child: Wrap(
               children: [
-                const Text(
-                  'Don’t have an account? ',
+                Text(
+                  context.l10n.loginNoAccountPrompt,
                   style: JcTextStyles.small,
                 ),
                 TextButton(
                   onPressed: () =>
                       pushScreen(context, SignUpRoleScreen(data: SignUpData())),
-                  child: const Text('Sign Up'),
+                  child: Text(context.l10n.loginSignUpLink),
                 ),
               ],
             ),

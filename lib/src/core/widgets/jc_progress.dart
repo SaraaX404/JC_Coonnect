@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:material_ui/material_ui.dart';
@@ -19,7 +20,10 @@ class JcProgress extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Step $step of $total', style: JcTextStyles.small),
+            Text(
+              context.l10n.commonStepOfTotal(step, total),
+              style: JcTextStyles.small,
+            ),
             Text(
               label,
               style: const TextStyle(

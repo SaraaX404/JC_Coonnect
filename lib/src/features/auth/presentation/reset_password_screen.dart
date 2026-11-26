@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
@@ -25,34 +26,35 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return JcScaffold(
-      title: 'Password reset',
+      title: context.l10n.resetPasswordTitle,
       child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 48, 20, 32),
         children: [
           const JcLogo(),
           const SizedBox(height: 32),
-          const Text(
-            'Reset your password',
+          Text(
+            context.l10n.resetPasswordHeading,
             style: JcTextStyles.title,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 4),
-          const Text(
-            'Enter your email and we’ll send you a reset link.',
+          Text(
+            context.l10n.resetPasswordDescription,
             style: JcTextStyles.body,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
           JcInput(
-            label: 'Email',
-            hint: 'Enter your email',
+            label: context.l10n.commonEmailLabel,
+            hint: context.l10n.commonEmailHint,
             controller: email,
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 24),
           JcButton(
-            label: 'Send reset link',
-            onPressed: () => showMessage(context, 'Reset link requested.'),
+            label: context.l10n.resetPasswordSendButton,
+            onPressed: () =>
+                showMessage(context, context.l10n.resetPasswordSentMessage),
           ),
         ],
       ),

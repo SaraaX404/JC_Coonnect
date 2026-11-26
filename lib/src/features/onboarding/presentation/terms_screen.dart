@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -28,12 +29,11 @@ class _TermsScreenState extends State<TermsScreen> {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(12, 16, 12, 32),
         children: [
-          const JcProgress(step: 4, total: 5, label: 'Terms'),
+          JcProgress(step: 4, total: 5, label: context.l10n.termsTitle),
           const SizedBox(height: 12),
-          const JcHeading(
-            title: 'Terms and privacy',
-            description:
-                'Please read how JC Connect works before you continue.',
+          JcHeading(
+            title: context.l10n.termsHeading,
+            description: context.l10n.termsDescription,
           ),
           const SizedBox(height: 16),
           Card(
@@ -43,34 +43,34 @@ class _TermsScreenState extends State<TermsScreen> {
               borderRadius: BorderRadius.circular(10),
               side: const BorderSide(color: JcColors.track),
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(12),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
               child: Column(
                 children: [
                   JcTerm(
                     number: '1',
-                    title: 'Using the app',
-                    body: 'JC Connect serves as the private collegiate and alumni assembly. Membership is restricted to verified students, faculty, staff, and Old Boys.',
+                    title: context.l10n.termsUsingTitle,
+                    body: context.l10n.termsUsingBody,
                   ),
                   JcTerm(
                     number: '2',
-                    title: 'Community conduct and honor code',
-                    body: 'In adherence to the motto “For Ever Upwards” members pledge respect, integrity, and good faith.',
+                    title: context.l10n.termsConductTitle,
+                    body: context.l10n.termsConductBody,
                   ),
                   JcTerm(
                     number: '3',
-                    title: 'Privacy and data safeguards',
-                    body: 'All member directories, graduation cohort numbers, and academic achievements are protected with multi-layer cryptographic authentication.',
+                    title: context.l10n.termsPrivacyTitle,
+                    body: context.l10n.termsPrivacyBody,
                   ),
                   JcTerm(
                     number: '4',
-                    title: 'Donations and bursary payments',
-                    body: 'Contributions toward collegiate athletic sponsorships, campus restoration, and student bursary grants represent irrevocable settlements overseen by the Board of Trustees.',
+                    title: context.l10n.termsDonationsTitle,
+                    body: context.l10n.termsDonationsBody,
                   ),
                   JcTerm(
                     number: '5',
-                    title: 'Account review and auditing',
-                    body: 'System moderators reserve the authority to verify cohort identity cards, inspect reported behavior, and temporarily restrict feed publishing.',
+                    title: context.l10n.termsReviewTitle,
+                    body: context.l10n.termsReviewBody,
                   ),
                 ],
               ),
@@ -81,9 +81,9 @@ class _TermsScreenState extends State<TermsScreen> {
             onChanged: (value) => setState(() => terms = value ?? false),
             contentPadding: EdgeInsets.zero,
             controlAffinity: ListTileControlAffinity.leading,
-            title: const Text(
-              'I have read and agree to the Terms of Use',
-              style: TextStyle(fontSize: 12),
+            title: Text(
+              context.l10n.termsAgreeTerms,
+              style: const TextStyle(fontSize: 12),
             ),
           ),
           CheckboxListTile(
@@ -91,22 +91,22 @@ class _TermsScreenState extends State<TermsScreen> {
             onChanged: (value) => setState(() => privacy = value ?? false),
             contentPadding: EdgeInsets.zero,
             controlAffinity: ListTileControlAffinity.leading,
-            title: const Text(
-              'I agree to the Privacy Policy and how my collegiate data is stored and utilized',
-              style: TextStyle(fontSize: 12),
+            title: Text(
+              context.l10n.termsAgreePrivacy,
+              style: const TextStyle(fontSize: 12),
             ),
           ),
           const SizedBox(height: 8),
           JcButton(
-            label: 'Agree and continue',
+            label: context.l10n.termsAgreeButton,
             enabled: terms && privacy,
             onPressed: () =>
                 pushScreen(context, ReviewScreen(data: widget.data)),
           ),
           const SizedBox(height: 12),
-          const Center(
+          Center(
             child: Text(
-              'ⓘ  You can review these anytime in Settings',
+              context.l10n.termsReviewLater,
               style: JcTextStyles.small,
             ),
           ),

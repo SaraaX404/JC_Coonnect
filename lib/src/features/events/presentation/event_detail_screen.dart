@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/features/events/data/mock_events.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -20,7 +22,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   bool joined = false;
   int likes = 12;
   final comment = TextEditingController();
-  final comments = <String>['Can’t wait to see the new robot in action.'];
+  final comments = <String>[mockEventComment];
 
   @override
   void dispose() {
@@ -30,7 +32,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
 
   @override
   Widget build(BuildContext context) => JcScaffold(
-    title: 'Event details',
+    title: context.l10n.eventDetailTitle,
     child: ListView(
       padding: const EdgeInsets.fromLTRB(12, 0, 12, 32),
       children: [
@@ -90,25 +92,28 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                 const SizedBox(height: 16),
                 _eventInfoCard(
                   Icons.calendar_today_outlined,
-                  'Date & time',
-                  '${widget.event.date} · ${widget.event.time} EST',
+                  context.l10n.eventDetailDateTime,
+                  context.l10n.eventDetailDateTimeValue(
+                    widget.event.date,
+                    widget.event.time,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 _eventInfoCard(
                   Icons.location_on_outlined,
-                  'Location',
+                  context.l10n.commonLocation,
                   widget.event.location,
                 ),
                 const SizedBox(height: 8),
                 _eventInfoCard(
                   Icons.groups_outlined,
-                  'Organizer',
-                  'JC Robotics Club & IEEE Student Branch',
+                  context.l10n.eventDetailOrganizer,
+                  mockEventOrganizer,
                 ),
                 const SizedBox(height: 18),
-                const Text(
-                  'About this event',
-                  style: TextStyle(
+                Text(
+                  context.l10n.eventDetailAbout,
+                  style: const TextStyle(
                     fontSize: 16,
                     color: JcColors.navyDark,
                     fontWeight: FontWeight.w500,
@@ -125,10 +130,12 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                 ),
                 const SizedBox(height: 16),
                 OutlinedButton.icon(
-                  onPressed: () =>
-                      showMessage(context, 'Event added to your calendar.'),
+                  onPressed: () => showMessage(
+                    context,
+                    context.l10n.eventDetailAddedToCalendar,
+                  ),
                   icon: const Icon(Icons.calendar_month_outlined),
-                  label: const Text('Add to Calendar'),
+                  label: Text(context.l10n.eventDetailAddToCalendar),
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(48),
                     foregroundColor: JcColors.navy,
@@ -144,18 +151,18 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Row(
+                      Row(
                         children: [
                           Expanded(
                             child: Text(
-                              'Are you going?',
-                              style: TextStyle(
+                              context.l10n.eventDetailAreYouGoing,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
-                          JcPill('● Open to All'),
+                          JcPill(context.l10n.eventDetailOpenToAll),
                         ],
                       ),
                       const SizedBox(height: 12),
@@ -168,7 +175,11 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                             joined ? Icons.check : Icons.check,
                             size: 18,
                           ),
-                          label: Text(joined ? 'You’re going' : 'Join Now'),
+                          label: Text(
+                            joined
+                                ? context.l10n.eventDetailYoureGoing
+                                : context.l10n.eventDetailJoinNow,
+                          ),
                           style: FilledButton.styleFrom(
                             backgroundColor: const Color(0xFF0079D4),
                             shape: const StadiumBorder(),
@@ -185,13 +196,13 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              '${widget.event.going} going',
+                              widget.event.going,
                               style: JcTextStyles.small,
                             ),
                           ),
                           TextButton(
                             onPressed: () => setState(() => joined = true),
-                            child: const Text('See all  ›'),
+                            child: Text(context.l10n.eventDetailSeeAll),
                           ),
                         ],
                       ),
@@ -203,41 +214,47 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Row(
+                      Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.volunteer_activism_outlined,
                             color: JcColors.navy,
                           ),
-                          SizedBox(width: 8),
+                          const SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              'Community booster',
-                              style: TextStyle(
+                              context.l10n.eventDetailCommunityBooster,
+                              style: const TextStyle(
                                 color: JcColors.navy,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
-                          Text('60% Funded', style: JcTextStyles.small),
+                          Text(
+                            context.l10n.eventDetailFunded(mockFundedPercent),
+                            style: JcTextStyles.small,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 14),
-                      const Text(
-                        'Help Fund This Event',
-                        style: TextStyle(fontSize: 20),
+                      Text(
+                        context.l10n.eventDetailHelpFund,
+                        style: const TextStyle(fontSize: 20),
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Robotics kits, arena setup & competition entry fees.',
+                        mockEventFundingPurpose,
                         style: JcTextStyles.small,
                       ),
                       const SizedBox(height: 12),
-                      const Row(
+                      Row(
                         children: [
-                          Text('\$1,200 raised'),
-                          Spacer(),
-                          Text('\$2,000 goal', style: JcTextStyles.small),
+                          Text(context.l10n.eventDetailRaised(mockRaised)),
+                          const Spacer(),
+                          Text(
+                            context.l10n.eventDetailGoal(mockGoal),
+                            style: JcTextStyles.small,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -256,7 +273,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                           Icons.volunteer_activism_outlined,
                           size: 18,
                         ),
-                        label: const Text('Donate'),
+                        label: Text(context.l10n.eventDetailDonate),
                         style: FilledButton.styleFrom(
                           backgroundColor: JcColors.gold,
                           foregroundColor: JcColors.navyDark,
@@ -266,9 +283,9 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'Reactions',
-                  style: TextStyle(
+                Text(
+                  context.l10n.eventDetailReactions,
+                  style: const TextStyle(
                     fontSize: 16,
                     color: JcColors.navyDark,
                     fontWeight: FontWeight.w600,
@@ -288,9 +305,12 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                     const Text('👏  8   🎉  5'),
                   ],
                 ),
-                const Text(
-                  'Comments',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                Text(
+                  context.l10n.eventDetailComments,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 TextField(
@@ -298,7 +318,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   minLines: 1,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    hintText: 'Add a comment…',
+                    hintText: context.l10n.eventDetailAddComment,
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.send, color: JcColors.primary),
                       onPressed: () {
@@ -324,7 +344,10 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                       child: Icon(Icons.person, size: 18),
                     ),
                     title: Text(message, style: const TextStyle(fontSize: 13)),
-                    subtitle: const Text('Just now', style: JcTextStyles.small),
+                    subtitle: Text(
+                      context.l10n.eventDetailJustNow,
+                      style: JcTextStyles.small,
+                    ),
                   ),
               ],
             ),

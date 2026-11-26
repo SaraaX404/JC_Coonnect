@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
@@ -30,14 +31,14 @@ class _SignUpRoleScreenState extends State<SignUpRoleScreen> {
               children: [
                 const Center(child: JcLogo()),
                 const SizedBox(height: 24),
-                const Text(
-                  'Join JC Connect',
+                Text(
+                  context.l10n.signUpRoleHeading,
                   style: JcTextStyles.title,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Tell us how you’re connected to Jamaica College.',
+                Text(
+                  context.l10n.signUpRoleDescription,
                   style: JcTextStyles.body,
                   textAlign: TextAlign.center,
                 ),
@@ -60,7 +61,7 @@ class _SignUpRoleScreenState extends State<SignUpRoleScreen> {
             child: Column(
               children: [
                 JcButton(
-                  label: 'Continue',
+                  label: context.l10n.commonContinue,
                   enabled: widget.data.role != null,
                   onPressed: () => pushScreen(
                     context,
@@ -71,13 +72,13 @@ class _SignUpRoleScreenState extends State<SignUpRoleScreen> {
                 Wrap(
                   alignment: WrapAlignment.center,
                   children: [
-                    const Text(
-                      'Already have an account? ',
+                    Text(
+                      context.l10n.signUpRoleHaveAccount,
                       style: JcTextStyles.small,
                     ),
                     TextButton(
                       onPressed: () => pushScreen(context, const LoginScreen()),
-                      child: const Text('Log in'),
+                      child: Text(context.l10n.signUpRoleLogIn),
                     ),
                   ],
                 ),

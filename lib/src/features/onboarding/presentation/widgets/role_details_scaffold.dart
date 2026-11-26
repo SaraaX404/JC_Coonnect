@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_progress.dart';
@@ -36,7 +37,11 @@ class RoleDetailsScaffold extends StatelessWidget {
         const SizedBox(height: 24),
         ...children.expand((child) => [child, const SizedBox(height: 12)]),
         const SizedBox(height: 12),
-        JcButton(label: 'Continue', enabled: enabled, onPressed: onContinue),
+        JcButton(
+          label: context.l10n.commonContinue,
+          enabled: enabled,
+          onPressed: onContinue,
+        ),
       ],
     ),
   );

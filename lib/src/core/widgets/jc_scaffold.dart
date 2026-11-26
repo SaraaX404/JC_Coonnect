@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -84,7 +85,7 @@ class JcAppHeader extends StatelessWidget {
           children: [
             if (showBack)
               IconButton(
-                tooltip: 'Back',
+                tooltip: context.l10n.commonBack,
                 onPressed: () => Navigator.of(context).maybePop(),
                 icon: const Icon(Icons.arrow_back, size: 22),
               ),

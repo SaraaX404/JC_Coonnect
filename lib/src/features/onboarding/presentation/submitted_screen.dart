@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
+import 'package:jc_connect_app/src/features/onboarding/data/mock_onboarding.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -18,10 +20,10 @@ class SubmittedScreen extends StatelessWidget {
       children: [
         const Center(child: JcLogo()),
         const SizedBox(height: 24),
-        const JcHeading(
+        JcHeading(
           align: TextAlign.center,
-          title: 'Thanks, we’ve got your details',
-          description: 'Your account is being reviewed by the JC admin team.',
+          title: context.l10n.submittedHeading,
+          description: context.l10n.submittedDescription,
         ),
         const SizedBox(height: 32),
         Card(
@@ -30,8 +32,8 @@ class SubmittedScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             side: const BorderSide(color: JcColors.border),
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(16),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,33 +41,36 @@ class SubmittedScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Account status',
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      context.l10n.submittedAccountStatus,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
-                    Text('Step 2 of 3', style: JcTextStyles.small),
+                    Text(
+                      context.l10n.commonStepOfTotal(2, 3),
+                      style: JcTextStyles.small,
+                    ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 JcTimelineRow(
                   icon: Icons.check,
                   color: Colors.green,
-                  title: 'Submitted',
-                  meta: 'Nov 03, 2026 · 11:20 AM',
-                  badge: 'Done',
+                  title: context.l10n.submittedStepSubmitted,
+                  meta: mockSubmittedAt,
+                  badge: context.l10n.submittedDone,
                 ),
                 JcTimelineRow(
                   icon: Icons.circle,
-                  color: Color(0xFFFFC400),
-                  title: 'Under review',
-                  meta: 'Usually 1 to 2 business days',
-                  badge: 'In progress',
+                  color: const Color(0xFFFFC400),
+                  title: context.l10n.submittedStepReview,
+                  meta: context.l10n.submittedReviewTime,
+                  badge: context.l10n.submittedInProgress,
                 ),
                 JcTimelineRow(
                   icon: Icons.lock_outline,
                   color: JcColors.muted,
-                  title: 'Account ready',
-                  meta: 'Full access to JC Connect',
-                  badge: 'Upcoming',
+                  title: context.l10n.submittedStepReady,
+                  meta: context.l10n.submittedReadyDescription,
+                  badge: context.l10n.submittedUpcoming,
                   last: true,
                 ),
               ],
@@ -79,28 +84,29 @@ class SubmittedScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             side: const BorderSide(color: JcColors.border),
           ),
-          child: const ListTile(
-            leading: CircleAvatar(
+          child: ListTile(
+            leading: const CircleAvatar(
               backgroundColor: JcColors.primary,
               child: Icon(Icons.mail_outline, color: Colors.white),
             ),
             title: Text(
-              'We’ll keep you posted',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              context.l10n.submittedKeepPosted,
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
             subtitle: Text(
-              'You’ll get an email and a notification as soon as there’s an update.',
+              context.l10n.submittedKeepPostedDescription,
             ),
           ),
         ),
         const SizedBox(height: 90),
         Center(
           child: TextButton.icon(
-            onPressed: () => showMessage(context, 'Support request started.'),
+            onPressed: () =>
+                showMessage(context, context.l10n.submittedSupportMessage),
             icon: const Icon(Icons.mail_outline, color: JcColors.text),
-            label: const Text(
-              'Contact support',
-              style: TextStyle(color: JcColors.text),
+            label: Text(
+              context.l10n.submittedContactSupport,
+              style: const TextStyle(color: JcColors.text),
             ),
           ),
         ),

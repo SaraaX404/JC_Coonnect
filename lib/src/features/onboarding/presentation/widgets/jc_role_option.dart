@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/jc_role.dart';
@@ -47,14 +48,14 @@ class JcRoleOption extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  role.title,
+                  role.title(context.l10n),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 2),
-                Text(role.subtitle, style: JcTextStyles.small),
+                Text(role.subtitle(context.l10n), style: JcTextStyles.small),
               ],
             ),
           ),

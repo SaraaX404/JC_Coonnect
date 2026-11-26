@@ -1,3 +1,4 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/navigation.dart';
@@ -38,14 +39,14 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
         children: [
           const Center(child: JcLogo()),
           const SizedBox(height: 32),
-          const Text(
-            'Verify your email',
+          Text(
+            context.l10n.verifyEmailHeading,
             style: JcTextStyles.title,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 4),
           Text(
-            'We sent a 6-digit code to\n${widget.data.email}',
+            context.l10n.verifyEmailSentTo(widget.data.email),
             style: const TextStyle(
               fontSize: 14,
               height: 1.4,
@@ -57,12 +58,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           JcOtp(controller: otp),
           const SizedBox(height: 24),
           JcButton(
-            label: 'Verify email',
+            label: context.l10n.verifyEmailButton,
             onPressed: () {
               if (otp.text.length == 6) {
                 _openRoleDetails(context);
               } else {
-                showMessage(context, 'Enter the 6-digit code.');
+                showMessage(context, context.l10n.verifyEmailEnterCode);
               }
             },
           ),
@@ -70,23 +71,25 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           Center(
             child: Wrap(
               children: [
-                const Text(
-                  'Didn’t receive the code? ',
+                Text(
+                  context.l10n.verifyEmailNoCodePrompt,
                   style: JcTextStyles.small,
                 ),
                 TextButton(
-                  onPressed: () =>
-                      showMessage(context, 'A new code has been sent.'),
-                  child: const Text('Resend'),
+                  onPressed: () => showMessage(
+                    context,
+                    context.l10n.verifyEmailResentMessage,
+                  ),
+                  child: Text(context.l10n.verifyEmailResend),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 150),
-          const Center(
+          Center(
             child: Text(
-              'Jamaica College • True Blue Secure Access',
-              style: TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
+              context.l10n.verifyEmailFooter,
+              style: const TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
             ),
           ),
         ],

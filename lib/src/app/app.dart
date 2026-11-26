@@ -1,3 +1,5 @@
+import 'package:jc_connect_app/l10n/l10n.dart';
+
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/welcome_screen.dart';
 import 'package:material_ui/material_ui.dart';
@@ -8,7 +10,9 @@ class JcConnectApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'JC Connect',
+      onGenerateTitle: (context) => context.l10n.appName,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
