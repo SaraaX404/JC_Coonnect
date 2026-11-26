@@ -1,79 +1,109 @@
-import 'package:go_router/go_router.dart';
-import 'package:jc_connect_app/src/core/routing/routes.dart';
-
 import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/core/utils/show_message.dart';
+import 'package:jc_connect_app/src/core/network/api.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
+import 'package:jc_connect_app/src/core/utils/validators.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_progress.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
+import 'package:jc_connect_app/src/features/onboarding/data/sign_up_repository.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
+import 'package:jc_connect_app/src/features/onboarding/presentation/sign_up_error.dart';
 import 'package:material_ui/material_ui.dart';
 
-class AccountDetailsScreen extends StatefulWidget {
+/// Sign-up step 1. Continue emails the code that proves the address.
+class AccountDetailsScreen extends ConsumerStatefulWidget {
   const AccountDetailsScreen({super.key, required this.data});
   final SignUpData data;
 
   @override
-  State<AccountDetailsScreen> createState() => _AccountDetailsScreenState();
+  ConsumerState<AccountDetailsScreen> createState() =>
+      _AccountDetailsScreenState();
 }
 
-class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
-  final name = TextEditingController(text: '');
-  final email = TextEditingController(text: '');
-  final phone = TextEditingController(text: '');
-  final password = TextEditingController();
-  final confirm = TextEditingController();
+class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
+  // Filled from the data when the sign-up token ran out and the user is
+  // sent back here.
+  late final name = TextEditingController(text: widget.data.name);
+  late final email = TextEditingController(text: widget.data.email);
+  late final phone = TextEditingController(text: widget.data.phone);
+  late final password = TextEditingController(text: widget.data.password);
+  late final confirm = TextEditingController(text: widget.data.password);
   bool obscure = true;
-  bool canContinue = false;
+  bool busy = false;
+
+  /// The email belongs to a member already (409).
+  String? takenEmail;
+
+  List<TextEditingController> get _fields => [
+    name,
+    email,
+    phone,
+    password,
+    confirm,
+  ];
+
+  bool get _phoneInvalid =>
+      phone.text.trim().isNotEmpty && !isValidPhone(phone.text);
+
+  bool get canContinue =>
+      // First and last name: the API wants both.
+      name.text.trim().contains(' ') &&
+      isValidEmail(email.text) &&
+      email.text.trim() != takenEmail &&
+      isValidPhone(phone.text) &&
+      password.text.length >= 8 &&
+      RegExp(r'[A-Z]').hasMatch(password.text) &&
+      RegExp(r'\d').hasMatch(password.text) &&
+      RegExp(r'[^A-Za-z0-9]').hasMatch(password.text) &&
+      password.text == confirm.text;
 
   @override
   void initState() {
     super.initState();
-    for (final controller in [name, email, phone, password, confirm]) {
-      controller.addListener(_syncContinue);
+    for (final controller in _fields) {
+      controller.addListener(_refresh);
     }
   }
 
-  void _syncContinue() {
-    final nextValue =
-        name.text.trim().isNotEmpty &&
-        RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email.text.trim()) &&
-        phone.text.trim().isNotEmpty &&
-        password.text.length >= 8 &&
-        RegExp(r'[A-Z]').hasMatch(password.text) &&
-        RegExp(r'\d').hasMatch(password.text) &&
-        RegExp(r'[^A-Za-z0-9]').hasMatch(password.text) &&
-        password.text == confirm.text;
-    if (nextValue != canContinue) setState(() => canContinue = nextValue);
-  }
+  void _refresh() => setState(() {});
 
   @override
   void dispose() {
-    for (final controller in [name, email, phone, password, confirm]) {
-      controller.removeListener(_syncContinue);
-    }
-    for (final c in [name, email, phone, password, confirm]) {
-      c.dispose();
+    for (final controller in _fields) {
+      controller.removeListener(_refresh);
+      controller.dispose();
     }
     super.dispose();
   }
 
-  void next() {
-    if (name.text.trim().isEmpty ||
-        email.text.trim().isEmpty ||
-        password.text.length < 8 ||
-        password.text != confirm.text) {
-      showMessage(context, context.l10n.accountRequiredFieldsMessage);
-      return;
+  Future<void> next() async {
+    final address = email.text.trim();
+    setState(() => busy = true);
+    try {
+      await ref.read(signUpRepositoryProvider).sendCode(address);
+      if (!mounted) return;
+      widget.data
+        ..name = name.text.trim()
+        ..email = address
+        ..phone = phone.text.trim()
+        ..password = password.text;
+      unawaited(context.push(Routes.signUpVerify, extra: widget.data));
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      if (e.status == 409) {
+        setState(() => takenEmail = address);
+      } else {
+        showSignUpError(context, e, widget.data);
+      }
+    } finally {
+      if (mounted) setState(() => busy = false);
     }
-    widget.data.name = name.text.trim();
-    widget.data.email = email.text.trim();
-    widget.data.phone = phone.text.trim();
-    unawaited(context.push(Routes.signUpVerify, extra: widget.data));
   }
 
   @override
@@ -100,6 +130,9 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
             hint: context.l10n.accountEmailHint,
             controller: email,
             keyboardType: TextInputType.emailAddress,
+            errorText: email.text.trim() == takenEmail
+                ? context.l10n.accountEmailTaken
+                : null,
           ),
           const SizedBox(height: 16),
           JcInput(
@@ -107,6 +140,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
             hint: '+1 876 000 0000',
             controller: phone,
             keyboardType: TextInputType.phone,
+            errorText: _phoneInvalid ? context.l10n.commonPhoneInvalid : null,
           ),
           const SizedBox(height: 16),
           JcInput(
@@ -139,8 +173,8 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           const SizedBox(height: 24),
           JcButton(
             label: context.l10n.commonContinue,
-            enabled: canContinue,
-            onPressed: next,
+            enabled: canContinue && !busy,
+            onPressed: () => unawaited(next()),
           ),
         ],
       ),

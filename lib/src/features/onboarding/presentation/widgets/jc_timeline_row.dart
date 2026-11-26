@@ -43,11 +43,13 @@ class JcTimelineRow extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     Container(

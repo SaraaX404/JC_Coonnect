@@ -71,7 +71,7 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 - Use the generated models directly where they fit (`SchoolChoice`); add a domain type only when the UI needs a different shape (`LoginNeedsCode`). No 1:1 mappers, no hand-parsed JSON.
 - Calls go through a repository in `features/<f>/data/`, wrapped in `apiCall` (from `jcApiProvider`). Repositories throw only `ApiException(status, code)`: `status == null` offline, `0` unreadable response. Screens map it to copy; `ApiException.message` is the fallback.
 - State: `flutter_riverpod` plain providers (no codegen yet). Screens that call the API are `ConsumerStatefulWidget`s and read the repository with `ref.read`. Tests override the repository provider with a fake (`test/helpers/fake_auth_repository.dart`); never hit a real server in tests.
-- `API_ORIGIN` (scheme + host, no `/api/v1`: the generated paths include it) comes from `env/<env>.json` via `--dart-define-from-file`.
+- `API_ORIGIN` (scheme + host, no `/api/v1`: the generated paths include it) and `SCHOOL_ID` (the school's uuid, which sign-up needs) come from `env/<env>.json` via `--dart-define-from-file`.
 
 ### Localisation
 - **No hard-coded user-facing strings.** Every visible or spoken string comes from `lib/l10n/app_en.arb` through `context.l10n`. `tool/check_strings.dart` fails `make check` otherwise.

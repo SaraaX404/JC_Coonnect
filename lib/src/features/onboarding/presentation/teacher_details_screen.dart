@@ -48,6 +48,8 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
       ..staffId = staffId.text.trim()
       ..schoolEmail = schoolEmail.text.trim()
       ..address = address.text.trim()
+      ..isTeacher = teacher
+      ..isCoach = coach
       ..teacherRole = context.l10n.teacherRoleSummary(
         teacher && coach
             ? 'both'

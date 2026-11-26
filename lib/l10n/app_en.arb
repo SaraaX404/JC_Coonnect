@@ -20,6 +20,10 @@
   "@accountEmailHint": {
     "description": "Account details screen: email hint."
   },
+  "accountEmailTaken": "Email already in use. Log in or try another.",
+  "@accountEmailTaken": {
+    "description": "Account details screen: the email already belongs to a member (409 email_exists)."
+  },
   "accountFullNameHint": "e.g. Kemar Brown",
   "@accountFullNameHint": {
     "description": "Account details screen: full name hint."
@@ -155,6 +159,10 @@
   "commonPasswordLabel": "Password",
   "@commonPasswordLabel": {
     "description": "Shared: password label."
+  },
+  "commonPhoneInvalid": "Enter the number with its country code, like +1 876 555 0142.",
+  "@commonPhoneInvalid": {
+    "description": "Shared: phone field error when the number is not in international form."
   },
   "commonProofOfAttendance": "Proof of attendance",
   "@commonProofOfAttendance": {
@@ -838,6 +846,10 @@
   "@parentHeading": {
     "description": "Parent details screen: heading."
   },
+  "parentIdNoMatch": "This ID doesn’t match the name. Check and try again.",
+  "@parentIdNoMatch": {
+    "description": "Parent details screen: the son’s ID and name don’t match the school register."
+  },
   "parentMother": "Mother",
   "@parentMother": {
     "description": "Parent details screen: mother."
@@ -914,6 +926,10 @@
   "@reviewMember": {
     "description": "Review screen: role name used when no role was chosen."
   },
+  "reviewNotAccepted": "Some details weren’t accepted. Go back and check them.",
+  "@reviewNotAccepted": {
+    "description": "Review screen: the server refused the application (400)."
+  },
   "reviewNotSelected": "Not selected",
   "@reviewNotSelected": {
     "description": "Review screen: not selected."
@@ -921,6 +937,10 @@
   "reviewPhone": "Phone",
   "@reviewPhone": {
     "description": "Review screen: phone."
+  },
+  "reviewPhoneTaken": "Phone number already in use. Log in or try another.",
+  "@reviewPhoneTaken": {
+    "description": "Review screen: the phone already belongs to a member (409 phone_exists)."
   },
   "reviewReady": "Ready for review",
   "@reviewReady": {
@@ -991,6 +1011,10 @@
   "@roleTeacherDescription": {
     "description": "Sign-up role option: teacher description."
   },
+  "signUpExpired": "Your sign-up session expired. Verify your email again.",
+  "@signUpExpired": {
+    "description": "Sign-up: the 30-minute sign-up token ran out; the user starts again from account details."
+  },
   "signUpRoleDescription": "Tell us how you’re connected to Jamaica College.",
   "@signUpRoleDescription": {
     "description": "Sign-up role screen: description."
@@ -1011,6 +1035,10 @@
   "@studentDateOfBirthHint": {
     "description": "Student details screen: date of birth hint."
   },
+  "studentDateOfBirthInvalid": "Enter a real date, like 14 / 03 / 2010.",
+  "@studentDateOfBirthInvalid": {
+    "description": "Student details screen: date of birth error."
+  },
   "studentDescription": "We’ll match this with school records to confirm you’re a JC student.",
   "@studentDescription": {
     "description": "Student details screen: description."
@@ -1026,6 +1054,10 @@
   "studentIdHint": "e.g. JC-2026-0000",
   "@studentIdHint": {
     "description": "Student details screen: id hint."
+  },
+  "studentIdNotFound": "Student ID not found. Check your school ID card.",
+  "@studentIdNotFound": {
+    "description": "Student details screen: the ID is not on the school register."
   },
   "studentSelectAcademicTrack": "Select academic track",
   "@studentSelectAcademicTrack": {
@@ -1046,6 +1078,20 @@
   "submittedAccountStatus": "Account status",
   "@submittedAccountStatus": {
     "description": "Submitted screen: account status."
+  },
+  "submittedAt": "{date} · {time}",
+  "@submittedAt": {
+    "description": "Submitted screen: when the application was received.",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      },
+      "time": {
+        "type": "DateTime",
+        "format": "jm"
+      }
+    }
   },
   "submittedDescription": "Your account is being reviewed by the JC admin team.",
   "@submittedDescription": {
@@ -1285,6 +1331,10 @@
   "verifyEmailHeading": "Verify your email",
   "@verifyEmailHeading": {
     "description": "Verify email screen: heading."
+  },
+  "verifyEmailIncorrectCode": "That code isn’t right. Check it and try again.",
+  "@verifyEmailIncorrectCode": {
+    "description": "Verify email screen: wrong or expired code."
   },
   "verifyEmailNoCodePrompt": "Didn’t receive the code?",
   "@verifyEmailNoCodePrompt": {

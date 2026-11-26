@@ -3,7 +3,6 @@ import 'package:jc_connect_app/src/core/routing/routes.dart';
 
 import 'dart:async';
 
-import 'package:jc_connect_app/src/features/onboarding/data/mock_onboarding.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
@@ -28,17 +27,19 @@ class _OldBoyDetailsFlowScreenState extends State<OldBoyDetailsFlowScreen> {
   final formerStudentId = TextEditingController();
   String graduationYear = '';
   String lastGrade = '';
-  String house = '';
+  late final options = widget.data.options;
   bool proofUploaded = false;
 
   bool get canContinue =>
-      graduationYear.isNotEmpty && lastGrade.isNotEmpty && house.isNotEmpty;
+      graduationYear.isNotEmpty &&
+      // Required only when the school has the lists set up.
+      (lastGrade.isNotEmpty || (options?.grades.isEmpty ?? true)) &&
+      (widget.data.house != null || (options?.houses.isEmpty ?? true));
 
   void _continue(BuildContext context) {
     widget.data
       ..graduationYear = graduationYear
       ..lastGrade = lastGrade
-      ..house = house
       ..studentId = formerStudentId.text.trim()
       ..proofUploaded = proofUploaded;
     unawaited(context.push(Routes.signUpTerms, extra: widget.data));
@@ -64,22 +65,28 @@ class _OldBoyDetailsFlowScreenState extends State<OldBoyDetailsFlowScreen> {
         label: context.l10n.commonGraduationYear,
         hint: context.l10n.oldBoySelectYear,
         value: graduationYear,
-        options: const ['1990', '2000', '2010', '2020', '2026'],
+        options: [
+          for (var year = DateTime.now().year; year >= 1940; year--) '$year',
+        ],
         onSelected: (value) => setState(() => graduationYear = value),
       ),
       JcSelect(
         label: context.l10n.oldBoyLastGrade,
         hint: context.l10n.oldBoySelectGrade,
         value: lastGrade,
-        options: mockOldBoyGrades,
+        options: [...?options?.grades.map((item) => item.name)],
         onSelected: (value) => setState(() => lastGrade = value),
       ),
       JcSelect(
         label: context.l10n.commonHouse,
         hint: context.l10n.oldBoySelectHouse,
-        value: house,
-        options: mockHouses,
-        onSelected: (value) => setState(() => house = value),
+        value: widget.data.house?.name,
+        options: [...?options?.houses.map((item) => item.name)],
+        onSelected: (name) => setState(
+          () => widget.data.house = options!.houses.firstWhere(
+            (h) => h.name == name,
+          ),
+        ),
       ),
       JcInput(
         label: context.l10n.oldBoyFormerStudentId,

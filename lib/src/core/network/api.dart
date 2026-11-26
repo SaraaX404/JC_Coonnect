@@ -1,10 +1,27 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jc_api/jc_api.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 
-/// From `--dart-define-from-file=env/<env>.json`.
-const apiOrigin = String.fromEnvironment('API_ORIGIN');
+/// From `--dart-define-from-file=env/<env>.json`, as [originFor] adjusts it.
+String get apiOrigin => originFor(
+  const String.fromEnvironment('API_ORIGIN'),
+  defaultTargetPlatform,
+);
+
+/// The Android emulator reaches the Mac's `localhost` at 10.0.2.2 (adb
+/// reverse turned out unreliable). Other origins are left alone.
+// ponytail: a USB Android phone can't reach 10.0.2.2; point API_ORIGIN at
+// the Mac's LAN address for that.
+@visibleForTesting
+String originFor(String origin, TargetPlatform platform) =>
+    platform == TargetPlatform.android
+    ? origin.replaceFirst('://localhost', '://10.0.2.2')
+    : origin;
+
+/// The school this app is for. Sign-up needs it before there is an account.
+const schoolId = String.fromEnvironment('SCHOOL_ID');
 
 /// The backend checks `X-Client` against the token audience on every call.
 final dioProvider = Provider<Dio>(
