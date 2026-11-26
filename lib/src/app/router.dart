@@ -6,6 +6,7 @@ import 'package:jc_connect_app/src/features/auth/presentation/login_screen.dart'
 import 'package:jc_connect_app/src/features/auth/presentation/mfa_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/reset_password_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/welcome_screen.dart';
+import 'package:jc_connect_app/src/features/calendar/presentation/my_calendar_screen.dart';
 import 'package:jc_connect_app/src/features/education/presentation/education_screen.dart';
 import 'package:jc_connect_app/src/features/education/presentation/lesson_overview_screen.dart';
 import 'package:jc_connect_app/src/features/events/data/mock_events.dart';
@@ -115,6 +116,10 @@ GoRouter createRouter() => GoRouter(
     GoRoute(
       path: Routes.lesson,
       builder: (_, _) => const LessonOverviewScreen(),
+    ),
+    GoRoute(
+      path: Routes.calendar,
+      builder: (_, _) => const MyCalendarScreen(),
     ),
   ],
 );

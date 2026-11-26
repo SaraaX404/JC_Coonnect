@@ -166,6 +166,18 @@ abstract class AppLocalizations {
   /// **'Account details'**
   String get accountTitle;
 
+  /// My calendar screen: status on a sport card.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned'**
+  String get calendarAssigned;
+
+  /// My calendar screen: empty day button that opens events.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse events'**
+  String get calendarBrowseEvents;
+
   /// Events calendar: empty day.
   ///
   /// In en, this message translates to:
@@ -177,6 +189,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Events on {month} {day}'**
   String calendarEventsOnDay(String month, int day);
+
+  /// My calendar screen: filter chip showing every kind.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get calendarFilterAll;
+
+  /// My calendar screen: status on an event card.
+  ///
+  /// In en, this message translates to:
+  /// **'Going'**
+  String get calendarGoing;
+
+  /// My calendar screen: how many items a day has.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 item} other{{count} items}}'**
+  String calendarItems(int count);
+
+  /// My calendar screen: status on a club card.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get calendarJoined;
+
+  /// My calendar screen: filter chip and legend: meetings of clubs the user is in.
+  ///
+  /// In en, this message translates to:
+  /// **'Clubs'**
+  String get calendarKindClubs;
+
+  /// My calendar screen: filter chip and legend: events the user joined.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get calendarKindEvents;
+
+  /// My calendar screen: filter chip and legend: sport fixtures the user is assigned to.
+  ///
+  /// In en, this message translates to:
+  /// **'Sport'**
+  String get calendarKindSport;
+
+  /// My calendar screen: tooltip of the arrow to the next week or month.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get calendarNext;
+
+  /// My calendar screen: empty day text.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no events, sport fixtures or club meetings on this day.'**
+  String get calendarNothingBody;
+
+  /// My calendar screen: empty day heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing scheduled'**
+  String get calendarNothingHeading;
+
+  /// My calendar screen: people going to an event.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} going'**
+  String calendarPeopleGoing(int count);
+
+  /// My calendar screen: members of a club.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} members'**
+  String calendarPeopleMembers(int count);
+
+  /// My calendar screen: players in a sport squad.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} in squad'**
+  String calendarPeopleSquad(int count);
+
+  /// My calendar screen: tooltip of the arrow to the previous week or month.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get calendarPrevious;
+
+  /// My calendar screen: accessibility label of the handle that expands the week to a month.
+  ///
+  /// In en, this message translates to:
+  /// **'Show month'**
+  String get calendarShowMonth;
+
+  /// My calendar screen: accessibility label of the handle that collapses the month to a week.
+  ///
+  /// In en, this message translates to:
+  /// **'Show week'**
+  String get calendarShowWeek;
+
+  /// My calendar screen: when an item starts and ends.
+  ///
+  /// In en, this message translates to:
+  /// **'{start} – {end}'**
+  String calendarTimeRange(DateTime start, DateTime end);
+
+  /// My calendar screen: title.
+  ///
+  /// In en, this message translates to:
+  /// **'My calendar'**
+  String get calendarTitle;
+
+  /// My calendar screen: week header when the week is in one month, like "Nov 16 – 22, 2026".
+  ///
+  /// In en, this message translates to:
+  /// **'{start} – {endDay}, {year}'**
+  String calendarWeekSameMonth(DateTime start, DateTime endDay, DateTime year);
+
+  /// My calendar screen: week header when the week spans two months, like "Nov 29 – Dec 5, 2026".
+  ///
+  /// In en, this message translates to:
+  /// **'{start} – {end}, {year}'**
+  String calendarWeekTwoMonths(DateTime start, DateTime end, DateTime year);
 
   /// Shared: academic track.
   ///
