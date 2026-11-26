@@ -441,6 +441,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enter the 6-digit code from\nyour authenticator app';
 
   @override
+  String get mfaCodeSent => 'Code sent';
+
+  @override
   String get mfaEnterCode => 'Enter the 6-digit code.';
 
   @override
@@ -460,11 +463,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mfaLostPhonePrompt => 'Lost your phone?';
 
   @override
+  String get mfaNoCodePrompt => 'Didn’t receive the code?';
+
+  @override
   String get mfaRecoveryCodeLabel => 'Recovery code';
 
   @override
   String get mfaRecoveryPrompt =>
       'Enter one of the recovery codes\nyou saved when you set up 2FA';
+
+  @override
+  String get mfaResend => 'Resend';
+
+  @override
+  String mfaResendCooldown(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'You can resend a code in $seconds seconds.',
+      one: 'You can resend a code in 1 second.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mfaSentTo(String email) {
+    return 'We sent a 6-digit code to\nyour email $email';
+  }
 
   @override
   String get mfaUseAppLink => 'Use authenticator app';

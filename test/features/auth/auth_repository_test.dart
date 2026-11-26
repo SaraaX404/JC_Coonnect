@@ -24,7 +24,10 @@ class _Adapter implements HttpClientAdapter {
   ) async {
     request = options;
     return ResponseBody.fromString(
-      jsonEncode(body),
+      switch (body) {
+        final String raw => raw,
+        _ => jsonEncode(body),
+      },
       status,
       headers: {
         Headers.contentTypeHeader: [Headers.jsonContentType],
@@ -46,44 +49,51 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => FlutterSecureStorage.setMockInitialValues({}));
 
-  test('login with tokens saves them and sends email and password', () async {
+  test('login returns the challenge and its method', () async {
     final adapter = _Adapter(200, {
       'data': {
-        'tokens': {'access': 'a1', 'refresh': 'r1'},
-        'mfa': null,
+        'mfa': {'challenge': 'c1', 'method': 'email', 'expires_in': 300},
         'schools': null,
       },
     });
 
-    final result = await _repo(adapter).login(email: 'm@x.co', password: 'pw');
+    final result = await _repo(
+      adapter,
+    ).login(email: 'm@x.co', password: 'pw');
 
-    expect(result, isA<LoginSignedIn>());
     expect(adapter.request.path, '/auth/login');
     expect(adapter.request.data, {'email': 'm@x.co', 'password': 'pw'});
+    result as LoginNeedsCode;
+    expect(result.challenge, 'c1');
+    expect(result.method, CodeMethod.email);
+    expect(result.email, 'm@x.co');
+  });
+
+  test('verify saves the tokens', () async {
+    final adapter = _Adapter(200, {
+      'data': {'access': 'a1', 'refresh': 'r1'},
+    });
+
+    await _repo(adapter).verify(challenge: 'c1', code: '123456');
+
+    expect(adapter.request.data, {'challenge': 'c1', 'code': '123456'});
     expect(
       await const FlutterSecureStorage().read(key: 'refresh_token'),
       'r1',
     );
   });
 
-  test('login with 2FA returns the challenge', () async {
-    final adapter = _Adapter(200, {
-      'data': {
-        'tokens': null,
-        'mfa': {'challenge': 'c1', 'expires_in': 300},
-        'schools': null,
-      },
-    });
+  test('resend accepts an empty 204', () async {
+    final adapter = _Adapter(204, '');
 
-    final result = await _repo(adapter).login(email: 'm@x.co', password: 'pw');
+    await _repo(adapter).resend('c1');
 
-    expect((result as LoginNeedsCode).challenge, 'c1');
+    expect(adapter.request.path, '/auth/login/resend');
   });
 
   test('login in several schools returns them', () async {
     final adapter = _Adapter(200, {
       'data': {
-        'tokens': null,
         'mfa': null,
         'schools': [
           {'id': 's1', 'name': 'Jamaica College', 'code': 'jc'},

@@ -4,8 +4,9 @@ import 'package:jc_connect_app/src/core/network/api.dart';
 import 'package:jc_connect_app/src/core/session/token_store.dart';
 import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
 
-/// Login against `/auth/login` and `/auth/login/verify` (backend ADR 0005,
-/// 0009). Throws [ApiException].
+/// Login against `/auth/login`, `/auth/login/verify` and
+/// `/auth/login/resend` (backend ADR 0005, 0009, 0010). Throws
+/// [ApiException].
 class AuthRepository {
   const AuthRepository(this._dio, this._tokens);
   final Dio _dio;
@@ -21,9 +22,6 @@ class AuthRepository {
       'password': password,
       'school_id': ?schoolId,
     });
-    if (data['mfa'] case {'challenge': final String challenge}) {
-      return LoginNeedsCode(challenge);
-    }
     if (data['schools'] case final List<Object?> schools) {
       return LoginPickSchool([
         for (final school in schools)
@@ -31,8 +29,12 @@ class AuthRepository {
             School(id: id, name: name),
       ]);
     }
-    await _save(data['tokens']! as Map<String, Object?>);
-    return const LoginSignedIn();
+    final mfa = data['mfa']! as Map<String, Object?>;
+    return LoginNeedsCode(
+      challenge: mfa['challenge']! as String,
+      method: mfa['method'] == 'totp' ? CodeMethod.totp : CodeMethod.email,
+      email: email,
+    );
   }
 
   /// Exactly one of [code] (authenticator) or [recoveryCode].
@@ -48,6 +50,10 @@ class AuthRepository {
     });
     await _save(tokens);
   }
+
+  /// Emails a new code for an email challenge; the old code stops working.
+  Future<void> resend(String challenge) =>
+      apiPost(_dio, '/auth/login/resend', {'challenge': challenge});
 
   Future<void> _save(Map<String, Object?> tokens) => _tokens.save(
     access: tokens['access']! as String,

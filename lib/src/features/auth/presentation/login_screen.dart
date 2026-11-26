@@ -23,8 +23,8 @@ import 'package:jc_connect_app/src/features/auth/presentation/widgets/school_pic
 import 'package:material_ui/material_ui.dart';
 
 /// Figma: Login / Empty, Filled, Invalid Email, Password Required,
-/// Incorrect Credentials. Signs in with `POST /auth/login`; with 2FA on it
-/// continues to [Routes.loginVerify].
+/// Incorrect Credentials. `POST /auth/login`, then always the code step at
+/// [Routes.loginVerify].
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
@@ -72,10 +72,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           );
       if (!mounted) return;
       switch (result) {
-        case LoginSignedIn():
-          context.go(Routes.events);
-        case LoginNeedsCode(:final challenge):
-          unawaited(context.push(Routes.loginVerify, extra: challenge));
+        case LoginNeedsCode():
+          unawaited(context.push(Routes.loginVerify, extra: result));
         case LoginPickSchool(:final schools):
           final id = await showModalBottomSheet<String>(
             context: context,

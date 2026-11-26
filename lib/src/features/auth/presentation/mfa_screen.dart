@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/network/api.dart';
@@ -8,6 +9,7 @@ import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/show_message.dart';
+import 'package:jc_connect_app/src/core/utils/validators.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
@@ -15,33 +17,61 @@ import 'package:jc_connect_app/src/core/widgets/jc_otp.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_prompt_link.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/features/auth/data/auth_repository.dart';
+import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
 import 'package:material_ui/material_ui.dart';
 
-/// Errors on the verify step. [enterCode] is the only one the app raises
-/// itself; POST /auth/login/verify returns `invalid_code` (incorrect) and
-/// 429 (too many attempts).
+/// Errors on the code step. [enterCode] is the only one the app raises
+/// itself; the API returns `invalid_code` (incorrect) and 429 (too many
+/// attempts). An emailed code dies after 5 wrong tries: that reads as
+/// incorrect, and Resend gets a new one.
 enum MfaError { enterCode, incorrectCode, tooManyAttempts }
 
-/// Login step 2 (ADR 0005): a code from the authenticator app, or one of
-/// the recovery codes if the phone is lost.
-class MfaScreen extends ConsumerStatefulWidget {
-  const MfaScreen({super.key, required this.challenge});
+/// What the line under the button shows for an emailed code.
+sealed class MfaResend {
+  const MfaResend();
+}
 
-  /// From `POST /auth/login` (`mfa.challenge`).
-  final String challenge;
+/// "Didn’t receive the code? Resend".
+class MfaResendAvailable extends MfaResend {
+  const MfaResendAvailable();
+}
+
+/// "✓ Code sent", right after a resend.
+class MfaResendSent extends MfaResend {
+  const MfaResendSent();
+}
+
+/// "You can resend a code in N seconds."
+class MfaResendCooldown extends MfaResend {
+  const MfaResendCooldown(this.seconds);
+  final int seconds;
+}
+
+/// Login step 2 (backend ADR 0010): an emailed code (Figma "MFA
+/// Verification"), or the authenticator app / a recovery code for users who
+/// set one up.
+class MfaScreen extends ConsumerStatefulWidget {
+  const MfaScreen({super.key, required this.login});
+  final LoginNeedsCode login;
 
   @override
   ConsumerState<MfaScreen> createState() => _MfaScreenState();
 }
 
 class _MfaScreenState extends ConsumerState<MfaScreen> {
+  static const _sentFor = Duration(seconds: 2);
+  static const _cooldownSeconds = 30;
+
   final code = TextEditingController();
   bool recovery = false;
   bool busy = false;
   MfaError? error;
+  MfaResend resend = const MfaResendAvailable();
+  Timer? _timer;
 
   @override
   void dispose() {
+    _timer?.cancel();
     code.dispose();
     super.dispose();
   }
@@ -55,17 +85,51 @@ class _MfaScreenState extends ConsumerState<MfaScreen> {
     unawaited(_verify(text));
   }
 
-  Future<void> _verify(String text) async {
+  Future<void> _verify(String text) => _call(() async {
+    await ref
+        .read(authRepositoryProvider)
+        .verify(
+          challenge: widget.login.challenge,
+          code: recovery ? null : text,
+          recoveryCode: recovery ? text : null,
+        );
+    if (mounted) context.go(Routes.events);
+  });
+
+  void _onResend() => unawaited(
+    _call(() async {
+      await ref.read(authRepositoryProvider).resend(widget.login.challenge);
+      if (mounted) _startCooldown();
+    }),
+  );
+
+  void _startCooldown() {
+    _timer?.cancel();
+    setState(() {
+      resend = const MfaResendSent();
+      error = null;
+    });
+    _timer = Timer(_sentFor, () {
+      var left = _cooldownSeconds;
+      setState(() => resend = MfaResendCooldown(left));
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        left--;
+        setState(
+          () => resend = left > 0
+              ? MfaResendCooldown(left)
+              : const MfaResendAvailable(),
+        );
+        if (left == 0) timer.cancel();
+      });
+    });
+  }
+
+  /// Runs a verify or resend call and maps its errors to the screen.
+  Future<void> _call(Future<void> Function() request) async {
+    if (busy) return;
     setState(() => busy = true);
     try {
-      await ref
-          .read(authRepositoryProvider)
-          .verify(
-            challenge: widget.challenge,
-            code: recovery ? null : text,
-            recoveryCode: recovery ? text : null,
-          );
-      if (mounted) context.go(Routes.events);
+      await request();
     } on ApiException catch (e) {
       if (!mounted) return;
       switch (e) {
@@ -88,16 +152,20 @@ class _MfaScreenState extends ConsumerState<MfaScreen> {
 
   @override
   Widget build(BuildContext context) => MfaView(
+    method: widget.login.method,
+    maskedEmail: maskEmail(widget.login.email),
     code: code,
     recovery: recovery,
     busy: busy,
     error: error,
+    resend: resend,
     // Any edit clears the error; after a lockout the server answers 429
     // again if the minute isn't up.
     onCodeChanged: (_) {
       if (error != null) setState(() => error = null);
     },
     onVerify: _onVerify,
+    onResend: _onResend,
     onToggleRecovery: () => setState(() {
       recovery = !recovery;
       code.clear();
@@ -106,29 +174,37 @@ class _MfaScreenState extends ConsumerState<MfaScreen> {
   );
 }
 
-/// The verify screen in any of its states.
+/// The code screen in any of its states.
 class MfaView extends StatelessWidget {
   const MfaView({
     super.key,
+    required this.method,
+    required this.maskedEmail,
     required this.code,
     required this.onCodeChanged,
     required this.onVerify,
+    required this.onResend,
     required this.onToggleRecovery,
     this.recovery = false,
     this.busy = false,
     this.error,
+    this.resend = const MfaResendAvailable(),
   });
+  final CodeMethod method;
+  final String maskedEmail;
   final TextEditingController code;
   final ValueChanged<String> onCodeChanged;
   final VoidCallback onVerify;
+  final VoidCallback onResend;
   final VoidCallback onToggleRecovery;
 
-  /// Recovery code instead of the authenticator code.
+  /// Recovery code instead of the authenticator code ([CodeMethod.totp]).
   final bool recovery;
 
-  /// A verify call is running.
+  /// A verify or resend call is running.
   final bool busy;
   final MfaError? error;
+  final MfaResend resend;
 
   bool get _locked => error == MfaError.tooManyAttempts;
 
@@ -137,6 +213,12 @@ class MfaView extends StatelessWidget {
       recovery ? l10n.mfaEnterRecoveryCode : l10n.mfaEnterCode,
     MfaError.incorrectCode => l10n.mfaIncorrectCode,
     MfaError.tooManyAttempts => l10n.commonTooManyAttempts,
+  };
+
+  String _subtitle(AppLocalizations l10n) => switch (method) {
+    CodeMethod.email => l10n.mfaSentTo(maskedEmail),
+    CodeMethod.totp when recovery => l10n.mfaRecoveryPrompt,
+    CodeMethod.totp => l10n.mfaAppPrompt,
   };
 
   @override
@@ -163,7 +245,7 @@ class MfaView extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    recovery ? l10n.mfaRecoveryPrompt : l10n.mfaAppPrompt,
+                    _subtitle(l10n),
                     textAlign: TextAlign.center,
                     style: JcTextStyles.input.copyWith(color: JcColors.muted),
                   ),
@@ -195,16 +277,23 @@ class MfaView extends StatelessWidget {
                     onPressed: onVerify,
                   ),
                   const SizedBox(height: 24),
-                  JcPromptLink(
-                    prompt: recovery
-                        ? l10n.mfaHaveAppPrompt
-                        : l10n.mfaLostPhonePrompt,
-                    link: recovery
-                        ? l10n.mfaUseAppLink
-                        : l10n.mfaUseRecoveryLink,
-                    promptColor: JcColors.muted,
-                    onTap: onToggleRecovery,
-                  ),
+                  switch (method) {
+                    CodeMethod.email when _locked => const SizedBox.shrink(),
+                    CodeMethod.email => _ResendLine(
+                      resend: resend,
+                      onResend: onResend,
+                    ),
+                    CodeMethod.totp => JcPromptLink(
+                      prompt: recovery
+                          ? l10n.mfaHaveAppPrompt
+                          : l10n.mfaLostPhonePrompt,
+                      link: recovery
+                          ? l10n.mfaUseAppLink
+                          : l10n.mfaUseRecoveryLink,
+                      promptColor: JcColors.muted,
+                      onTap: onToggleRecovery,
+                    ),
+                  },
                   const Spacer(),
                   const SizedBox(height: 32),
                   Text(
@@ -220,4 +309,48 @@ class MfaView extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ResendLine extends StatelessWidget {
+  const _ResendLine({required this.resend, required this.onResend});
+  final MfaResend resend;
+  final VoidCallback onResend;
+
+  static const _style = TextStyle(
+    fontSize: 12,
+    height: 16 / 12,
+    color: JcColors.muted,
+  );
+
+  @override
+  Widget build(BuildContext context) => switch (resend) {
+    MfaResendAvailable() => JcPromptLink(
+      prompt: context.l10n.mfaNoCodePrompt,
+      link: context.l10n.mfaResend,
+      promptColor: JcColors.muted,
+      onTap: onResend,
+    ),
+    MfaResendSent() => Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox.square(
+          dimension: 20,
+          child: Center(
+            child: SvgPicture.asset(
+              'assets/icons/checkmark_circle.svg',
+              width: 16.667,
+              height: 16.667,
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Text(context.l10n.mfaCodeSent, style: _style),
+      ],
+    ),
+    MfaResendCooldown(:final seconds) => Text(
+      context.l10n.mfaResendCooldown(seconds),
+      textAlign: TextAlign.center,
+      style: _style,
+    ),
+  };
 }

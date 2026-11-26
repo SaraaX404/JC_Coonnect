@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_system_state.dart';
+import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/login_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/mfa_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/reset_password_screen.dart';
@@ -34,8 +35,9 @@ GoRouter createRouter() => GoRouter(
     GoRoute(
       path: Routes.loginVerify,
       // The challenge comes from the login call; a cold deep link has none.
-      redirect: (_, state) => state.extra is String ? null : Routes.login,
-      builder: (_, state) => MfaScreen(challenge: state.extra! as String),
+      redirect: (_, state) =>
+          state.extra is LoginNeedsCode ? null : Routes.login,
+      builder: (_, state) => MfaScreen(login: state.extra! as LoginNeedsCode),
     ),
     GoRoute(
       path: Routes.sessionExpired,

@@ -34,8 +34,8 @@ class ApiException implements Exception {
   String toString() => 'ApiException($status, $code)';
 }
 
-/// POSTs [body] and returns the envelope's `data`; every failure becomes an
-/// [ApiException].
+/// POSTs [body] and returns the envelope's `data` (empty for a 204); every
+/// failure becomes an [ApiException].
 Future<Map<String, Object?>> apiPost(
   Dio dio,
   String path,
@@ -43,7 +43,7 @@ Future<Map<String, Object?>> apiPost(
 ) async {
   try {
     final response = await dio.post<Map<String, Object?>>(path, data: body);
-    return response.data!['data']! as Map<String, Object?>;
+    return response.data?['data'] as Map<String, Object?>? ?? const {};
   } on DioException catch (e) {
     final status = e.response?.statusCode;
     final code = switch (e.response?.data) {

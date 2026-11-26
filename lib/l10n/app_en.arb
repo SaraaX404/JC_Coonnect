@@ -583,6 +583,10 @@
   "@mfaAppPrompt": {
     "description": "MFA screen: subtitle when entering the authenticator app code."
   },
+  "mfaCodeSent": "Code sent",
+  "@mfaCodeSent": {
+    "description": "MFA screen: confirmation right after a new code was sent."
+  },
   "mfaEnterCode": "Enter the 6-digit code.",
   "@mfaEnterCode": {
     "description": "MFA screen: error when fewer than six digits were entered."
@@ -607,6 +611,10 @@
   "@mfaLostPhonePrompt": {
     "description": "MFA screen: prompt before the link that switches to a recovery code."
   },
+  "mfaNoCodePrompt": "Didn’t receive the code?",
+  "@mfaNoCodePrompt": {
+    "description": "MFA screen: prompt before the resend link."
+  },
   "mfaRecoveryCodeLabel": "Recovery code",
   "@mfaRecoveryCodeLabel": {
     "description": "MFA screen: label of the recovery code field."
@@ -614,6 +622,28 @@
   "mfaRecoveryPrompt": "Enter one of the recovery codes\nyou saved when you set up 2FA",
   "@mfaRecoveryPrompt": {
     "description": "MFA screen: subtitle when entering a recovery code."
+  },
+  "mfaResend": "Resend",
+  "@mfaResend": {
+    "description": "MFA screen: link that sends a new code."
+  },
+  "mfaResendCooldown": "{seconds, plural, =1{You can resend a code in 1 second.} other{You can resend a code in {seconds} seconds.}}",
+  "@mfaResendCooldown": {
+    "description": "MFA screen: wait before another resend is allowed.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "mfaSentTo": "We sent a 6-digit code to\nyour email {email}",
+  "@mfaSentTo": {
+    "description": "MFA screen: where the code went; the email is masked (m***@jc.edu.jm).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
   },
   "mfaUseAppLink": "Use authenticator app",
   "@mfaUseAppLink": {

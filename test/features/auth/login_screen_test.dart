@@ -52,7 +52,7 @@ void main() {
     expect(find.text(_invalidEmail), findsNothing);
   });
 
-  testWidgets('log in with valid credentials signs in and opens events', (
+  testWidgets('log in with valid credentials opens the code step', (
     tester,
   ) async {
     final auth = FakeAuthRepository();
@@ -69,7 +69,11 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(auth.logins.single.email, 'm.sterling@jc.edu.jm');
-    expect(router.state.uri.path, Routes.events);
+    expect(router.state.uri.path, Routes.loginVerify);
+    expect(
+      find.text('We sent a 6-digit code to\nyour email m***@jc.edu.jm'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('log in with wrong credentials shows the Figma error', (
@@ -122,7 +126,7 @@ void main() {
               School(id: 's1', name: 'Jamaica College'),
               School(id: 's2', name: 'Test Prep School'),
             ])
-          : const LoginSignedIn(),
+          : emailCodeLogin,
     );
     final router = await pumpRouter(
       tester,
@@ -137,6 +141,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(auth.logins.map((l) => l.schoolId), [null, 's1']);
-    expect(router.state.uri.path, Routes.events);
+    expect(router.state.uri.path, Routes.loginVerify);
   });
 }

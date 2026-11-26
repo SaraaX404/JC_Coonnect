@@ -880,6 +880,12 @@ abstract class AppLocalizations {
   /// **'Enter the 6-digit code from\nyour authenticator app'**
   String get mfaAppPrompt;
 
+  /// MFA screen: confirmation right after a new code was sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Code sent'**
+  String get mfaCodeSent;
+
   /// MFA screen: error when fewer than six digits were entered.
   ///
   /// In en, this message translates to:
@@ -916,6 +922,12 @@ abstract class AppLocalizations {
   /// **'Lost your phone?'**
   String get mfaLostPhonePrompt;
 
+  /// MFA screen: prompt before the resend link.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn’t receive the code?'**
+  String get mfaNoCodePrompt;
+
   /// MFA screen: label of the recovery code field.
   ///
   /// In en, this message translates to:
@@ -927,6 +939,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter one of the recovery codes\nyou saved when you set up 2FA'**
   String get mfaRecoveryPrompt;
+
+  /// MFA screen: link that sends a new code.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get mfaResend;
+
+  /// MFA screen: wait before another resend is allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds, plural, =1{You can resend a code in 1 second.} other{You can resend a code in {seconds} seconds.}}'**
+  String mfaResendCooldown(int seconds);
+
+  /// MFA screen: where the code went; the email is masked (m***@jc.edu.jm).
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a 6-digit code to\nyour email {email}'**
+  String mfaSentTo(String email);
 
   /// MFA screen: link that switches back to the authenticator code.
   ///
