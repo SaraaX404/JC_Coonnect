@@ -27,6 +27,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountEmailHint => 'you@example.com';
 
   @override
+  String get accountEmailTaken =>
+      'Email already in use. Log in or try another.';
+
+  @override
   String get accountFullNameHint => 'e.g. Kemar Brown';
 
   @override
@@ -126,6 +130,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonPasswordLabel => 'Password';
+
+  @override
+  String get commonPhoneInvalid =>
+      'Enter the number with its country code, like +1 876 555 0142.';
 
   @override
   String get commonProofOfAttendance => 'Proof of attendance';
@@ -642,6 +650,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get parentHeading => 'Your son at JC';
 
   @override
+  String get parentIdNoMatch =>
+      'This ID doesn’t match the name. Check and try again.';
+
+  @override
   String get parentMother => 'Mother';
 
   @override
@@ -701,10 +713,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviewMember => 'Member';
 
   @override
+  String get reviewNotAccepted =>
+      'Some details weren’t accepted. Go back and check them.';
+
+  @override
   String get reviewNotSelected => 'Not selected';
 
   @override
   String get reviewPhone => 'Phone';
+
+  @override
+  String get reviewPhoneTaken =>
+      'Phone number already in use. Log in or try another.';
 
   @override
   String get reviewReady => 'Ready for review';
@@ -757,6 +777,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get roleTeacherDescription => 'I teach or coach at Jamaica College';
 
   @override
+  String get signUpExpired =>
+      'Your sign-up session expired. Verify your email again.';
+
+  @override
   String get signUpRoleDescription =>
       'Tell us how you’re connected to Jamaica College.';
 
@@ -773,6 +797,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get studentDateOfBirthHint => 'DD / MM / YYYY';
 
   @override
+  String get studentDateOfBirthInvalid =>
+      'Enter a real date, like 14 / 03 / 2010.';
+
+  @override
   String get studentDescription =>
       'We’ll match this with school records to confirm you’re a JC student.';
 
@@ -784,6 +812,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get studentIdHint => 'e.g. JC-2026-0000';
+
+  @override
+  String get studentIdNotFound =>
+      'Student ID not found. Check your school ID card.';
 
   @override
   String get studentSelectAcademicTrack => 'Select academic track';
@@ -799,6 +831,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get submittedAccountStatus => 'Account status';
+
+  @override
+  String submittedAt(DateTime date, DateTime time) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+    final intl.DateFormat timeDateFormat = intl.DateFormat.jm(localeName);
+    final String timeString = timeDateFormat.format(time);
+
+    return '$dateString · $timeString';
+  }
 
   @override
   String get submittedDescription =>
@@ -998,6 +1040,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get verifyEmailHeading => 'Verify your email';
+
+  @override
+  String get verifyEmailIncorrectCode =>
+      'That code isn’t right. Check it and try again.';
 
   @override
   String get verifyEmailNoCodePrompt => 'Didn’t receive the code?';

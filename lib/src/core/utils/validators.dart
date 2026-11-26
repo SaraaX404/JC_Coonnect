@@ -10,3 +10,9 @@ String maskEmail(String email) {
   if (at < 1) return email;
   return '${email[0]}***${email.substring(at)}';
 }
+
+/// "+1 876 555 0142" -> "+18765550142": the API takes E.164.
+String toE164(String phone) => phone.replaceAll(RegExp(r'[\s\-().]'), '');
+
+bool isValidPhone(String phone) =>
+    RegExp(r'^\+[1-9]\d{6,14}$').hasMatch(toE164(phone));

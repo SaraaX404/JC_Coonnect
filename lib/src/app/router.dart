@@ -93,7 +93,9 @@ GoRouter createRouter() => GoRouter(
     ),
     GoRoute(
       path: Routes.signUpSubmitted,
-      builder: (_, _) => const SubmittedScreen(),
+      builder: (_, state) => SubmittedScreen(
+        submittedAt: _signUpData(state).submittedAt ?? DateTime.now(),
+      ),
     ),
     GoRoute(path: Routes.events, builder: (_, _) => const EventsScreen()),
     GoRoute(

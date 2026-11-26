@@ -1,4 +1,5 @@
 {
   "APP_ENV": "dev",
-  "API_ORIGIN": "http://localhost:8000"
+  "API_ORIGIN": "http://localhost:8000",
+  "SCHOOL_ID": "01a2186c-7858-7597-b2dc-6ddd78df1218"
 }

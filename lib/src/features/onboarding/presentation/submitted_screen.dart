@@ -1,5 +1,4 @@
 import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/features/onboarding/data/mock_onboarding.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
 import 'package:jc_connect_app/src/core/utils/show_message.dart';
@@ -10,7 +9,10 @@ import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_t
 import 'package:material_ui/material_ui.dart';
 
 class SubmittedScreen extends StatelessWidget {
-  const SubmittedScreen({super.key});
+  const SubmittedScreen({super.key, required this.submittedAt});
+
+  /// When the school received the application.
+  final DateTime submittedAt;
 
   @override
   Widget build(BuildContext context) => JcScaffold(
@@ -40,9 +42,11 @@ class SubmittedScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      context.l10n.submittedAccountStatus,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    Expanded(
+                      child: Text(
+                        context.l10n.submittedAccountStatus,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
                     ),
                     Text(
                       context.l10n.commonStepOfTotal(2, 3),
@@ -55,7 +59,7 @@ class SubmittedScreen extends StatelessWidget {
                   icon: Icons.check,
                   color: Colors.green,
                   title: context.l10n.submittedStepSubmitted,
-                  meta: mockSubmittedAt,
+                  meta: context.l10n.submittedAt(submittedAt, submittedAt),
                   badge: context.l10n.submittedDone,
                 ),
                 JcTimelineRow(

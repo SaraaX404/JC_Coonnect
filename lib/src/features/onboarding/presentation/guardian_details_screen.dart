@@ -42,11 +42,16 @@ class _GuardianDetailsScreenState extends State<GuardianDetailsScreen> {
       email.text.trim().isNotEmpty &&
       email.text.trim().toLowerCase() == widget.data.email.trim().toLowerCase();
 
+  /// Optional, but in international form when given.
+  bool get _phoneInvalid =>
+      phone.text.trim().isNotEmpty && !isValidPhone(phone.text);
+
   bool get _formValid =>
       name.text.trim().isNotEmpty &&
       relationship.isNotEmpty &&
       isValidEmail(email.text) &&
-      !_ownEmail;
+      !_ownEmail &&
+      !_phoneInvalid;
 
   @override
   void initState() {
@@ -74,7 +79,7 @@ class _GuardianDetailsScreenState extends State<GuardianDetailsScreen> {
         fullName: name.text.trim(),
         relationship: relationship,
         email: email.text.trim(),
-        phone: phone.text.trim(),
+        phone: toE164(phone.text.trim()),
       ),
     );
     _clearForm();
@@ -172,6 +177,7 @@ class _GuardianDetailsScreenState extends State<GuardianDetailsScreen> {
             hint: l10n.guardianPhoneHint,
             controller: phone,
             keyboardType: TextInputType.phone,
+            errorText: _phoneInvalid ? l10n.commonPhoneInvalid : null,
           ),
         ],
         // Figma hides it while a second guardian's form is open.

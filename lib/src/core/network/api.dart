@@ -6,6 +6,9 @@ import 'package:jc_connect_app/l10n/l10n.dart';
 /// From `--dart-define-from-file=env/<env>.json`.
 const apiOrigin = String.fromEnvironment('API_ORIGIN');
 
+/// The school this app is for. Sign-up needs it before there is an account.
+const schoolId = String.fromEnvironment('SCHOOL_ID');
+
 /// The backend checks `X-Client` against the token audience on every call.
 final dioProvider = Provider<Dio>(
   (ref) => Dio(

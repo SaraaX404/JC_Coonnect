@@ -124,6 +124,12 @@ abstract class AppLocalizations {
   /// **'you@example.com'**
   String get accountEmailHint;
 
+  /// Account details screen: the email already belongs to a member (409 email_exists).
+  ///
+  /// In en, this message translates to:
+  /// **'Email already in use. Log in or try another.'**
+  String get accountEmailTaken;
+
   /// Account details screen: full name hint.
   ///
   /// In en, this message translates to:
@@ -315,6 +321,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password'**
   String get commonPasswordLabel;
+
+  /// Shared: phone field error when the number is not in international form.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the number with its country code, like +1 876 555 0142.'**
+  String get commonPhoneInvalid;
 
   /// Shared: proof of attendance.
   ///
@@ -1240,6 +1252,12 @@ abstract class AppLocalizations {
   /// **'Your son at JC'**
   String get parentHeading;
 
+  /// Parent details screen: the son’s ID and name don’t match the school register.
+  ///
+  /// In en, this message translates to:
+  /// **'This ID doesn’t match the name. Check and try again.'**
+  String get parentIdNoMatch;
+
   /// Parent details screen: mother.
   ///
   /// In en, this message translates to:
@@ -1354,6 +1372,12 @@ abstract class AppLocalizations {
   /// **'Member'**
   String get reviewMember;
 
+  /// Review screen: the server refused the application (400).
+  ///
+  /// In en, this message translates to:
+  /// **'Some details weren’t accepted. Go back and check them.'**
+  String get reviewNotAccepted;
+
   /// Review screen: not selected.
   ///
   /// In en, this message translates to:
@@ -1365,6 +1389,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Phone'**
   String get reviewPhone;
+
+  /// Review screen: the phone already belongs to a member (409 phone_exists).
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number already in use. Log in or try another.'**
+  String get reviewPhoneTaken;
 
   /// Review screen: ready.
   ///
@@ -1462,6 +1492,12 @@ abstract class AppLocalizations {
   /// **'I teach or coach at Jamaica College'**
   String get roleTeacherDescription;
 
+  /// Sign-up: the 30-minute sign-up token ran out; the user starts again from account details.
+  ///
+  /// In en, this message translates to:
+  /// **'Your sign-up session expired. Verify your email again.'**
+  String get signUpExpired;
+
   /// Sign-up role screen: description.
   ///
   /// In en, this message translates to:
@@ -1492,6 +1528,12 @@ abstract class AppLocalizations {
   /// **'DD / MM / YYYY'**
   String get studentDateOfBirthHint;
 
+  /// Student details screen: date of birth error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a real date, like 14 / 03 / 2010.'**
+  String get studentDateOfBirthInvalid;
+
   /// Student details screen: description.
   ///
   /// In en, this message translates to:
@@ -1515,6 +1557,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'e.g. JC-2026-0000'**
   String get studentIdHint;
+
+  /// Student details screen: the ID is not on the school register.
+  ///
+  /// In en, this message translates to:
+  /// **'Student ID not found. Check your school ID card.'**
+  String get studentIdNotFound;
 
   /// Student details screen: select academic track.
   ///
@@ -1545,6 +1593,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Account status'**
   String get submittedAccountStatus;
+
+  /// Submitted screen: when the application was received.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} · {time}'**
+  String submittedAt(DateTime date, DateTime time);
 
   /// Submitted screen: description.
   ///
@@ -1887,6 +1941,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verify your email'**
   String get verifyEmailHeading;
+
+  /// Verify email screen: wrong or expired code.
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn’t right. Check it and try again.'**
+  String get verifyEmailIncorrectCode;
 
   /// Verify email screen: no code prompt.
   ///
