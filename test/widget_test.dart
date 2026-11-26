@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:jc_connect_app/main.dart';
 
@@ -74,7 +74,7 @@ void main() {
     await tester.tap(eventCard.last);
     await tester.pumpAndSettle();
     expect(find.text('Event details'), findsOneWidget);
-    expect(find.text('Join event'), findsOneWidget);
+    expect(find.text('Join Now'), findsOneWidget);
     await tester.pageBack();
     await tester.pumpAndSettle();
 

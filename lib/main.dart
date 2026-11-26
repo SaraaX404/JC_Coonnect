@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(const JcConnectApp());
@@ -206,8 +206,7 @@ const _events = [
     date: 'Nov 18, 2026',
     time: '10:00 AM – 1:00 PM',
     location: 'Ashenheim Annex STEM Lab',
-    description:
-        'See the Jamaica College robotics team demonstrate their autonomous build and meet the students behind it.',
+    description: 'See the Jamaica College robotics team demonstrate their autonomous build and meet the students behind it.',
     going: '+62 going',
     isSport: false,
   ),
@@ -220,8 +219,7 @@ const _events = [
     date: 'Nov 19, 2026',
     time: '8:00 AM – 10:30 AM',
     location: 'Karl Hendrickson Auditorium',
-    description:
-        'Connect with JC Old Boys working across technology, medicine, business, and the creative industries.',
+    description: 'Connect with JC Old Boys working across technology, medicine, business, and the creative industries.',
     going: '+95 going',
   ),
   EventRecord(
@@ -233,8 +231,7 @@ const _events = [
     date: 'Nov 20, 2026',
     time: '5:00 PM – 7:30 PM',
     location: 'Ashenheim Hall & Main Campus',
-    description:
-        'A dedicated afternoon for parents and teachers to meet, share updates, and plan student support.',
+    description: 'A dedicated afternoon for parents and teachers to meet, share updates, and plan student support.',
     going: '+140 going',
   ),
   EventRecord(
@@ -246,8 +243,7 @@ const _events = [
     date: 'Nov 21, 2026',
     time: '10:00 AM – 3:00 PM',
     location: 'JC Science Block',
-    description:
-        'Interactive exhibits, student experiments, and hands-on activities for the whole JC community.',
+    description: 'Interactive exhibits, student experiments, and hands-on activities for the whole JC community.',
     going: '+205 going',
   ),
   EventRecord(
@@ -259,8 +255,7 @@ const _events = [
     date: 'Nov 22, 2026',
     time: '6:00 PM – 8:00 PM',
     location: 'Manning Theatre',
-    description:
-        'An evening of reflection, music, and community conversations before the Christmas break.',
+    description: 'An evening of reflection, music, and community conversations before the Christmas break.',
     going: '+74 going',
   ),
   EventRecord(
@@ -272,8 +267,7 @@ const _events = [
     date: 'Nov 23, 2026',
     time: '2:00 PM – 5:00 PM',
     location: 'JC Playing Field',
-    description:
-        'Support the team from the stands as Jamaica College hosts the annual True Blue football fixture.',
+    description: 'Support the team from the stands as Jamaica College hosts the annual True Blue football fixture.',
     going: '+312 going',
     isSport: true,
   ),
@@ -328,31 +322,33 @@ class _EventsScreenState extends State<EventsScreen> {
       builder: (context) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Filter events', style: JcTextStyles.title),
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              ...categories.map(
-                (category) => RadioListTile<String>(
-                  value: category,
-                  groupValue: selectedCategory,
-                  title: Text(category),
-                  contentPadding: EdgeInsets.zero,
-                  onChanged: (value) => Navigator.pop(context, value),
+          child: RadioGroup<String>(
+            groupValue: selectedCategory,
+            onChanged: (value) => Navigator.pop(context, value),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Filter events', style: JcTextStyles.title),
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 8),
+                ...categories.map(
+                  (category) => RadioListTile<String>(
+                    value: category,
+                    title: Text(category),
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -577,7 +573,7 @@ class _EventsBottomNav extends StatelessWidget {
       color: Colors.white,
       border: Border(top: BorderSide(color: JcColors.border)),
     ),
-    child: Row(
+    child: const Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _EventNavItem(icon: Icons.rss_feed_outlined, label: 'Feed'),
@@ -834,9 +830,9 @@ class _EventAvatarStack extends StatelessWidget {
     height: 22,
     child: Stack(
       children: [
-        _EventAvatar(left: 0, color: const Color(0xFFCAA18A), initial: 'K'),
-        _EventAvatar(left: 14, color: const Color(0xFF425B7A), initial: 'M'),
-        _EventAvatar(left: 28, color: const Color(0xFF8FBCB5), initial: 'J'),
+        const _EventAvatar(left: 0, color: Color(0xFFCAA18A), initial: 'K'),
+        const _EventAvatar(left: 14, color: Color(0xFF425B7A), initial: 'M'),
+        const _EventAvatar(left: 28, color: Color(0xFF8FBCB5), initial: 'J'),
         Positioned(
           left: 37,
           child: Container(
@@ -1017,12 +1013,12 @@ class _EmptyEventsState extends StatelessWidget {
   const _EmptyEventsState();
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
     child: Padding(
-      padding: const EdgeInsets.all(32),
+      padding: EdgeInsets.all(32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Icon(Icons.event_busy_outlined, size: 48, color: JcColors.primary),
           SizedBox(height: 16),
           Text(
@@ -1424,14 +1420,14 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      const Row(
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.volunteer_activism_outlined,
                             color: Color(0xFF0033A0),
                           ),
-                          const SizedBox(width: 8),
-                          const Expanded(
+                          SizedBox(width: 8),
+                          Expanded(
                             child: Text(
                               'Community booster',
                               style: TextStyle(
@@ -1810,7 +1806,7 @@ class _EducationScreenState extends State<EducationScreen> {
               _eduSectionHeader('Settings'),
               const SizedBox(height: 8),
               _eventPanel(
-                child: Column(
+                child: const Column(
                   children: [
                     _EducationSettingRow(
                       icon: Icons.school_outlined,
@@ -1818,7 +1814,7 @@ class _EducationScreenState extends State<EducationScreen> {
                       detail: 'Grade 10 · from your profile',
                       action: 'Change',
                     ),
-                    const Divider(height: 16),
+                    Divider(height: 16),
                     _EducationSettingRow(
                       icon: Icons.menu_book_outlined,
                       title: 'My subjects',
@@ -1868,10 +1864,10 @@ class LessonOverviewScreen extends StatelessWidget {
         const Text('Mr. Williams · Updated Nov 12', style: JcTextStyles.small),
         const SizedBox(height: 14),
         _eventPanel(
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
                   Expanded(
                     child: Text(
@@ -1882,14 +1878,14 @@ class LessonOverviewScreen extends StatelessWidget {
                   Text('2 of 5 parts', style: JcTextStyles.small),
                 ],
               ),
-              const SizedBox(height: 8),
-              const LinearProgressIndicator(
+              SizedBox(height: 8),
+              LinearProgressIndicator(
                 value: .4,
                 minHeight: 8,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
-              const SizedBox(height: 6),
-              const Row(
+              SizedBox(height: 6),
+              Row(
                 children: [
                   Expanded(
                     child: Text(
@@ -1909,28 +1905,28 @@ class LessonOverviewScreen extends StatelessWidget {
         const SizedBox(height: 16),
         _eduSectionHeader('Lesson content'),
         const SizedBox(height: 8),
-        _LessonPart(
+        const _LessonPart(
           icon: Icons.videocam_outlined,
           title: 'Factorising basics — watch first',
           meta: 'Video · 11 min',
           done: true,
         ),
         const SizedBox(height: 10),
-        _LessonPart(
+        const _LessonPart(
           icon: Icons.article_outlined,
           title: 'Key terms and rules',
           meta: 'Article · 5 min read',
           done: true,
         ),
         const SizedBox(height: 10),
-        _LessonPart(
+        const _LessonPart(
           icon: Icons.image_outlined,
           title: 'Worked example diagrams',
           meta: 'Images · 3 of 8 viewed',
           progress: '45%',
         ),
         const SizedBox(height: 10),
-        _LessonPart(
+        const _LessonPart(
           icon: Icons.headphones_outlined,
           title: 'Teacher’s audio recap',
           meta: 'Audio · 6 min',
@@ -2260,9 +2256,9 @@ class _EducationBottomNav extends StatelessWidget {
       color: Colors.white,
       border: Border(top: BorderSide(color: JcColors.border)),
     ),
-    child: Row(
+    child: const Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: const [
+      children: [
         _EventNavItem(icon: Icons.rss_feed_outlined, label: 'Feed'),
         _EventNavItem(icon: Icons.chat_bubble_outline, label: 'Chat'),
         _EventNavItem(icon: Icons.home_filled, label: 'Home', selected: true),
@@ -2328,10 +2324,10 @@ class _EventDonationScreenState extends State<EventDonationScreen> {
         ],
         const SizedBox(height: 20),
         if (donated)
-          Card(
+          const Card(
             elevation: 0,
-            color: const Color(0xFFEAF8ED),
-            child: const Padding(
+            color: Color(0xFFEAF8ED),
+            child: Padding(
               padding: EdgeInsets.all(14),
               child: Row(
                 children: [
@@ -2710,8 +2706,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                 size: 18,
               ),
             ),
-            helper:
-                'At least 8 characters, with an uppercase letter, a number and a symbol.',
+            helper: 'At least 8 characters, with an uppercase letter, a number and a symbol.',
           ),
           const SizedBox(height: 16),
           JcInput(
@@ -2890,6 +2885,8 @@ class _StudentDetailsFlowScreenState extends State<StudentDetailsFlowScreen> {
     title: 'Student details',
     description:
         'We’ll match this with school records to confirm you’re a JC student.',
+    enabled: canContinue,
+    onContinue: () => _continue(context),
     children: [
       JcInput(
         label: 'Student ID',
@@ -2944,8 +2941,6 @@ class _StudentDetailsFlowScreenState extends State<StudentDetailsFlowScreen> {
         controller: address,
       ),
     ],
-    enabled: canContinue,
-    onContinue: () => _continue(context),
   );
 }
 
@@ -3006,6 +3001,8 @@ class _ParentDetailsFlowScreenState extends State<ParentDetailsFlowScreen> {
     title: 'Your son at JC',
     description:
         'Link your account to your son so you can follow his school life.',
+    enabled: canContinue,
+    onContinue: () => _continue(context),
     children: [
       JcSelect(
         label: 'Relationship',
@@ -3039,8 +3036,6 @@ class _ParentDetailsFlowScreenState extends State<ParentDetailsFlowScreen> {
         onPressed: () => setState(() => additionalSon = !additionalSon),
       ),
     ],
-    enabled: canContinue,
-    onContinue: () => _continue(context),
   );
 }
 
@@ -3086,6 +3081,8 @@ class _OldBoyDetailsFlowScreenState extends State<OldBoyDetailsFlowScreen> {
     label: 'Your details',
     title: 'Your JC years',
     description: 'Help us confirm you’re an Old Boy of Jamaica College.',
+    enabled: canContinue,
+    onContinue: () => _continue(context),
     children: [
       JcSelect(
         label: 'Graduation year',
@@ -3142,8 +3139,6 @@ class _OldBoyDetailsFlowScreenState extends State<OldBoyDetailsFlowScreen> {
       ),
       const JcHelper('You can add or change these later in your profile.'),
     ],
-    enabled: canContinue,
-    onContinue: () => _continue(context),
   );
 }
 
@@ -3159,14 +3154,14 @@ class StudentDetailsScreen extends StatelessWidget {
     description:
         'We’ll match this with school records to confirm you’re a JC student.',
     children: [
-      JcInput(label: 'Student ID', hint: 'e.g. JC-2026-0000'),
+      const JcInput(label: 'Student ID', hint: 'e.g. JC-2026-0000'),
       const JcHelper('You’ll find this on your school ID card.'),
       const JcSelect(label: 'Grade', hint: 'Select your grade'),
       const JcSelect(label: 'Class', hint: 'Select your class'),
       const JcSelect(label: 'Academic year', hint: 'Select academic year'),
       const JcSelect(label: 'Academic track', hint: 'Select academic track'),
-      JcInput(label: 'Date of birth', hint: 'DD / MM / YYYY'),
-      JcInput(label: 'Address', hint: 'e.g. 12 Hope Road, Kingston 6'),
+      const JcInput(label: 'Date of birth', hint: 'DD / MM / YYYY'),
+      const JcInput(label: 'Address', hint: 'e.g. 12 Hope Road, Kingston 6'),
     ],
     onContinue: () => _push(context, TermsScreen(data: data)),
   );
@@ -3257,6 +3252,8 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
     label: 'Your details',
     title: 'Teacher or coach details',
     description: 'We’ll confirm your role with the school administration.',
+    enabled: canContinue,
+    onContinue: () => _continue(context),
     children: [
       JcInput(
         label: 'Staff ID',
@@ -3300,8 +3297,6 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
         'Pick at least one. We’ll ask a few questions about each.',
       ),
     ],
-    enabled: canContinue,
-    onContinue: () => _continue(context),
   );
 }
 
@@ -3387,39 +3382,34 @@ class _TermsScreenState extends State<TermsScreen> {
               borderRadius: BorderRadius.circular(10),
               side: const BorderSide(color: Color(0xFFF1F5F9)),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(12),
+            child: const Padding(
+              padding: EdgeInsets.all(12),
               child: Column(
-                children: const [
+                children: [
                   JcTerm(
                     number: '1',
                     title: 'Using the app',
-                    body:
-                        'JC Connect serves as the private collegiate and alumni assembly. Membership is restricted to verified students, faculty, staff, and Old Boys.',
+                    body: 'JC Connect serves as the private collegiate and alumni assembly. Membership is restricted to verified students, faculty, staff, and Old Boys.',
                   ),
                   JcTerm(
                     number: '2',
                     title: 'Community conduct and honor code',
-                    body:
-                        'In adherence to the motto “For Ever Upwards” members pledge respect, integrity, and good faith.',
+                    body: 'In adherence to the motto “For Ever Upwards” members pledge respect, integrity, and good faith.',
                   ),
                   JcTerm(
                     number: '3',
                     title: 'Privacy and data safeguards',
-                    body:
-                        'All member directories, graduation cohort numbers, and academic achievements are protected with multi-layer cryptographic authentication.',
+                    body: 'All member directories, graduation cohort numbers, and academic achievements are protected with multi-layer cryptographic authentication.',
                   ),
                   JcTerm(
                     number: '4',
                     title: 'Donations and bursary payments',
-                    body:
-                        'Contributions toward collegiate athletic sponsorships, campus restoration, and student bursary grants represent irrevocable settlements overseen by the Board of Trustees.',
+                    body: 'Contributions toward collegiate athletic sponsorships, campus restoration, and student bursary grants represent irrevocable settlements overseen by the Board of Trustees.',
                   ),
                   JcTerm(
                     number: '5',
                     title: 'Account review and auditing',
-                    body:
-                        'System moderators reserve the authority to verify cohort identity cards, inspect reported behavior, and temporarily restrict feed publishing.',
+                    body: 'System moderators reserve the authority to verify cohort identity cards, inspect reported behavior, and temporarily restrict feed publishing.',
                   ),
                 ],
               ),
@@ -3509,8 +3499,7 @@ class ReviewScreen extends StatelessWidget {
         const SizedBox(height: 24),
         const JcHeading(
           title: 'Review and submit',
-          description:
-              'Check your details before we send them to the school for approval.',
+          description: 'Check your details before we send them to the school for approval.',
         ),
         const SizedBox(height: 24),
         JcSummaryCard(
@@ -4333,16 +4322,20 @@ class JcFileField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(Icons.upload_file_outlined, size: 18, color: JcColors.text),
-              SizedBox(width: 8),
-              Text(
+              const Icon(
+                Icons.upload_file_outlined,
+                size: 18,
+                color: JcColors.text,
+              ),
+              const SizedBox(width: 8),
+              const Text(
                 'Upload proof',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 selected ? 'Proof selected' : 'No file chosen',
-                style: TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 12),
               ),
             ],
           ),
