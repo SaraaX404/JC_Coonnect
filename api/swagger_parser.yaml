@@ -1,0 +1,15 @@
+# Generates packages/jc_api from openapi.yaml (a copy of ../jsc_be/openapi.yml)
+# via the normalized copy tool/generate_api.sh writes. Run `make api`; never
+# edit the output by hand. Paths are relative to this file.
+swagger_parser:
+  schema_path: openapi.normalized.json
+  output_directory: ../packages/jc_api/lib
+  generation:
+    root_api_class_name: JcApi
+    http_client: retrofit
+    serializer: freezed
+    # A newer backend may add enum values; keep them instead of failing.
+    unknown_enum_values: preserve
+    generate_docs: true
+    page_width: 80
+    prune_unused_models: true

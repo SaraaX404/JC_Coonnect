@@ -1,0 +1,96 @@
+import 'package:jc_connect_app/src/features/events/domain/event_record.dart';
+
+const mockEvents = [
+  EventRecord(
+    id: '1',
+    title: 'FTC Robotics Autonomous Demo',
+    category: 'Academic • STEM',
+    filterCategory: 'Academic',
+    month: 'NOV',
+    day: '18',
+    date: 'Nov 18, 2026',
+    time: '10:00 AM – 1:00 PM',
+    location: 'Ashenheim Annex STEM Lab',
+    description: 'See the Jamaica College robotics team demonstrate their autonomous build and meet the students behind it.',
+    going: '+62 going',
+    isSport: false,
+  ),
+  EventRecord(
+    id: '2',
+    title: 'Sixth Form Career Mentorship Breakfast',
+    category: 'Alumni • JCOBA',
+    filterCategory: 'Alumni',
+    month: 'NOV',
+    day: '19',
+    date: 'Nov 19, 2026',
+    time: '8:00 AM – 10:30 AM',
+    location: 'Karl Hendrickson Auditorium',
+    description: 'Connect with JC Old Boys working across technology, medicine, business, and the creative industries.',
+    going: '+95 going',
+  ),
+  EventRecord(
+    id: '3',
+    title: 'PTA & Teacher Consultation Meet',
+    category: 'PTA • Community',
+    filterCategory: 'PTA',
+    month: 'NOV',
+    day: '20',
+    date: 'Nov 20, 2026',
+    time: '5:00 PM – 7:30 PM',
+    location: 'Ashenheim Hall & Main Campus',
+    description: 'A dedicated afternoon for parents and teachers to meet, share updates, and plan student support.',
+    going: '+140 going',
+  ),
+  EventRecord(
+    id: '4',
+    title: 'Annual STEM & Science Carnival',
+    category: 'Academic • STEM',
+    filterCategory: 'Academic',
+    month: 'NOV',
+    day: '21',
+    date: 'Nov 21, 2026',
+    time: '10:00 AM – 3:00 PM',
+    location: 'JC Science Block',
+    description: 'Interactive exhibits, student experiments, and hands-on activities for the whole JC community.',
+    going: '+205 going',
+  ),
+  EventRecord(
+    id: '5',
+    title: 'True Blue Christmas Symposium',
+    category: 'PTA • Community',
+    filterCategory: 'PTA',
+    month: 'NOV',
+    day: '22',
+    date: 'Nov 22, 2026',
+    time: '6:00 PM – 8:00 PM',
+    location: 'Manning Theatre',
+    description: 'An evening of reflection, music, and community conversations before the Christmas break.',
+    going: '+74 going',
+  ),
+  EventRecord(
+    id: '6',
+    title: 'True Blue Football Fixture',
+    category: 'Sports',
+    filterCategory: 'Sports',
+    month: 'NOV',
+    day: '23',
+    date: 'Nov 23, 2026',
+    time: '2:00 PM – 5:00 PM',
+    location: 'JC Playing Field',
+    description: 'Support the team from the stands as Jamaica College hosts the annual True Blue football fixture.',
+    going: '+312 going',
+    isSport: true,
+  ),
+];
+
+const mockEventComment = 'Can’t wait to see the new robot in action.';
+const mockEventOrganizer = 'JC Robotics Club & IEEE Student Branch';
+const mockEventFundingPurpose =
+    'Robotics kits, arena setup & competition entry fees.';
+const mockCalendarMonth = 'November 2026';
+const mockEventCategories = ['Academic', 'Alumni', 'PTA', 'Sports'];
+const mockDonationAmounts = ['J\$1,000', 'J\$2,500', 'J\$5,000'];
+const mockFundedPercent = 60;
+const mockRaised = '\$1,200';
+const mockGoal = '\$2,000';
+const mockCalendarMonthName = 'November';

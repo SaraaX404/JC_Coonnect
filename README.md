@@ -1,17 +1,36 @@
-# jc_connect_app
+# JC Connect
 
-A new Flutter project.
+The Flutter app for the Jamaica College community: students, parents, teachers/coaches and old boys. Backend: the JSC school platform API (`../jsc_be`).
 
-## Getting Started
+## Setup
 
-This project is a starting point for a Flutter application.
+Requires [fvm](https://fvm.app) and GNU make.
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+fvm install        # Flutter version from .fvmrc
+make get
+make run          # dev (env/dev.json); in VS Code pick "JC Connect (dev)"
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Environments
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`env/dev.json` is committed. `env/prod.json` is git-ignored: copy `env/prod.json.example` and fill in the real values.
+
+`env/dev.json` points at the backend on `localhost:8000` (`cd ../jsc_be && make up`). The iOS simulator reaches it directly. An Android emulator or USB phone needs `adb reverse tcp:8000 tcp:8000`; `make run` and the "JC Connect (dev)" launch do it for you (`make reverse` on its own).
+
+## Everyday commands
+
+| Command | Does |
+| --- | --- |
+| `make run` / `make run-prod` | run with `env/dev.json` (debug) or `env/prod.json` (release) |
+| `make check` | format check, analyze, hard-coded string check, tests (what CI runs) |
+| `make test` | tests; `make test t=test/widget_test.dart` for a subset |
+| `make format` | format hand-written Dart |
+| `make gen` | regenerate localisation code after editing `lib/l10n/app_en.arb` |
+| `make api` | regenerate the API client (`packages/jc_api`) after the backend's `openapi.yml` changes |
+
+## Layout
+
+`lib/src/app` (app shell), `lib/src/core` (theme, shared widgets), `lib/src/features/<feature>/{domain,data,presentation}`. Strings live in `lib/l10n/app_en.arb`.
+
+Conventions and next steps are in [CLAUDE.md](CLAUDE.md).

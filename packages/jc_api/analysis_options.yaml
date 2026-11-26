@@ -1,0 +1,6 @@
+# Generated code (make api): checked for compile errors only, not style.
+analyzer:
+  errors:
+    deprecated_member_use: ignore
+    unused_import: ignore
+    unused_element: ignore

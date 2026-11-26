@@ -1,0 +1,37 @@
+// Demo content shown until the backend provides it. Not translated on purpose.
+const mockLessonTitle = 'Solving quadratic equations by factorising';
+const mockContinueLessonMeta = 'Mathematics · Video · 8 min left';
+const mockSubjectsLink = '8 subjects ›';
+const mockSubjectMathematics = 'Mathematics';
+const mockSubjectMathematicsMeta = 'Core · 12 lessons';
+const mockSubjectMathematicsProgress = '8 of 12 done';
+const mockSubjectEnglish = 'English Language';
+const mockSubjectEnglishMeta = 'Core · 10 lessons';
+const mockSubjectEnglishProgress = '4 of 10 done';
+const mockSubjectIt = 'Information Technology';
+const mockSubjectItMeta = 'Elective · 9 lessons';
+const mockSubjectItProgress = '0 of 9 done';
+const mockSubjectChemistry = 'Chemistry';
+const mockSubjectChemistryMeta = 'Elective · 8 lessons';
+const mockSubjectChemistryProgress = '8 of 8 done';
+const mockExamMonth = 'DEC';
+const mockExamTitle = 'Term 1 exam   In 4 weeks';
+const mockExamWhen = '◷ Wed, Dec 9 · 9:00 AM · Ashenheim Hall';
+const mockGradeSettingValue = 'Grade 10 · from your profile';
+const mockMySubjectsCount = '6 subjects';
+const mockLessonTerm = 'Term 1';
+const mockLessonParts = '5 parts';
+const mockLessonAuthor = 'Mr. Williams · Updated Nov 12';
+const mockLessonProgress = '2 of 5 parts';
+const mockLessonPart1 = 'Factorising basics — watch first';
+const mockLessonPart1Meta = 'Video · 11 min';
+const mockLessonPart2 = 'Key terms and rules';
+const mockLessonPart2Meta = 'Article · 5 min read';
+const mockLessonPart3 = 'Worked example diagrams';
+const mockLessonPart3Meta = 'Images · 3 of 8 viewed';
+const mockLessonPart4 = 'Teacher’s audio recap';
+const mockLessonPart4Meta = 'Audio · 6 min';
+const mockLessonAbout =
+    'Learn to solve quadratic equations by factorising. You’ll practise spotting common factors, using the zero-product property and checking your answers.';
+const mockLessonNextPartMessage = 'Part 3 is ready.';
+const mockLessonContinueLabel = 'Continue · Part 3 of 5';

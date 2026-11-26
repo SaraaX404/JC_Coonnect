@@ -1,0 +1,4 @@
+{
+  "APP_ENV": "prod",
+  "API_ORIGIN": "https://api.example.com"
+}

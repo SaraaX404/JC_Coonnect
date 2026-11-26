@@ -43,3 +43,20 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# FVM (keep .fvmrc, ignore the SDK link)
+.fvm/
+
+# Secrets and per-machine config
+.env
+.env.*
+env/prod.json
+*.jks
+*.keystore
+key.properties
+
+# Gradle output
+android/build/
+
+# Written by tool/generate_api.sh on every run
+api/openapi.normalized.json
