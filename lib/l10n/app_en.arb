@@ -88,6 +88,10 @@
   "@commonClass": {
     "description": "Shared: class."
   },
+  "commonContactSupport": "Contact support",
+  "@commonContactSupport": {
+    "description": "Shared: link that opens support."
+  },
   "commonContinue": "Continue",
   "@commonContinue": {
     "description": "Shared: continue."
@@ -139,6 +143,10 @@
   "commonLocation": "Location",
   "@commonLocation": {
     "description": "Shared: location."
+  },
+  "commonNeedHelp": "Need help?",
+  "@commonNeedHelp": {
+    "description": "Shared: prompt before the contact support link."
   },
   "commonOptional": "Optional",
   "@commonOptional": {
@@ -204,6 +212,10 @@
   "commonStudentId": "Student ID",
   "@commonStudentId": {
     "description": "Shared: student id."
+  },
+  "commonSupportMessage": "Support request started.",
+  "@commonSupportMessage": {
+    "description": "Shared: confirmation after the support link is tapped."
   },
   "commonTagline": "One College. One Community.",
   "@commonTagline": {
@@ -942,10 +954,6 @@
   "@submittedAccountStatus": {
     "description": "Submitted screen: account status."
   },
-  "submittedContactSupport": "Contact support",
-  "@submittedContactSupport": {
-    "description": "Submitted screen: contact support."
-  },
   "submittedDescription": "Your account is being reviewed by the JC admin team.",
   "@submittedDescription": {
     "description": "Submitted screen: description."
@@ -990,13 +998,59 @@
   "@submittedStepSubmitted": {
     "description": "Submitted screen: step submitted."
   },
-  "submittedSupportMessage": "Support request started.",
-  "@submittedSupportMessage": {
-    "description": "Submitted screen: support message."
-  },
   "submittedUpcoming": "Upcoming",
   "@submittedUpcoming": {
     "description": "Submitted screen: upcoming."
+  },
+  "systemCheckAgain": "Check again",
+  "@systemCheckAgain": {
+    "description": "System screen: maintenance retry button."
+  },
+  "systemLogInAgain": "Log in again",
+  "@systemLogInAgain": {
+    "description": "System screen: session expired button."
+  },
+  "systemMaintenanceMessage": "JC Connect is down for scheduled maintenance. We expect to be back by {time}.",
+  "@systemMaintenanceMessage": {
+    "description": "System screen: scheduled maintenance, message with the end time.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "6:00 AM"
+      }
+    }
+  },
+  "systemMaintenanceTitle": "Under maintenance",
+  "@systemMaintenanceTitle": {
+    "description": "System screen: scheduled maintenance, heading."
+  },
+  "systemOfflineMessage": "Check your internet connection and try again.",
+  "@systemOfflineMessage": {
+    "description": "System screen: no internet connection, message."
+  },
+  "systemOfflineTitle": "You're offline",
+  "@systemOfflineTitle": {
+    "description": "System screen: no internet connection, heading."
+  },
+  "systemServerErrorMessage": "We couldn’t connect to our servers. Try again in a few moments.",
+  "@systemServerErrorMessage": {
+    "description": "System screen: server unreachable, message."
+  },
+  "systemServerErrorTitle": "Something went wrong",
+  "@systemServerErrorTitle": {
+    "description": "System screen: server unreachable, heading."
+  },
+  "systemSessionExpiredMessage": "For your security, we logged you out after a period of inactivity.",
+  "@systemSessionExpiredMessage": {
+    "description": "System screen: signed out after inactivity, message."
+  },
+  "systemSessionExpiredTitle": "Session expired",
+  "@systemSessionExpiredTitle": {
+    "description": "System screen: signed out after inactivity, heading."
+  },
+  "systemTryAgain": "Try again",
+  "@systemTryAgain": {
+    "description": "System screen: retry button."
   },
   "teacherCoach": "Coach",
   "@teacherCoach": {

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
+import 'package:jc_connect_app/src/core/widgets/jc_system_state.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/login_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/mfa_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/reset_password_screen.dart';
@@ -36,6 +37,13 @@ GoRouter createRouter() => GoRouter(
       // to verify, so a cold deep link goes back to login.
       redirect: (_, state) => state.extra is String ? null : Routes.login,
       builder: (_, state) => MfaScreen(email: state.extra! as String),
+    ),
+    GoRoute(
+      path: Routes.sessionExpired,
+      builder: (context, _) => JcSystemState(
+        kind: JcSystemStateKind.sessionExpired,
+        onAction: () => context.go(Routes.login),
+      ),
     ),
     GoRoute(
       path: Routes.resetPassword,

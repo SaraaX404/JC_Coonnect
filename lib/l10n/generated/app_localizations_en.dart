@@ -77,6 +77,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonClass => 'Class';
 
   @override
+  String get commonContactSupport => 'Contact support';
+
+  @override
   String get commonContinue => 'Continue';
 
   @override
@@ -114,6 +117,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonLocation => 'Location';
+
+  @override
+  String get commonNeedHelp => 'Need help?';
 
   @override
   String get commonOptional => 'Optional';
@@ -157,6 +163,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonStudentId => 'Student ID';
+
+  @override
+  String get commonSupportMessage => 'Support request started.';
 
   @override
   String get commonTagline => 'One College. One Community.';
@@ -720,9 +729,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get submittedAccountStatus => 'Account status';
 
   @override
-  String get submittedContactSupport => 'Contact support';
-
-  @override
   String get submittedDescription =>
       'Your account is being reviewed by the JC admin team.';
 
@@ -758,10 +764,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get submittedStepSubmitted => 'Submitted';
 
   @override
-  String get submittedSupportMessage => 'Support request started.';
+  String get submittedUpcoming => 'Upcoming';
 
   @override
-  String get submittedUpcoming => 'Upcoming';
+  String get systemCheckAgain => 'Check again';
+
+  @override
+  String get systemLogInAgain => 'Log in again';
+
+  @override
+  String systemMaintenanceMessage(String time) {
+    return 'JC Connect is down for scheduled maintenance. We expect to be back by $time.';
+  }
+
+  @override
+  String get systemMaintenanceTitle => 'Under maintenance';
+
+  @override
+  String get systemOfflineMessage =>
+      'Check your internet connection and try again.';
+
+  @override
+  String get systemOfflineTitle => 'You\'re offline';
+
+  @override
+  String get systemServerErrorMessage =>
+      'We couldn’t connect to our servers. Try again in a few moments.';
+
+  @override
+  String get systemServerErrorTitle => 'Something went wrong';
+
+  @override
+  String get systemSessionExpiredMessage =>
+      'For your security, we logged you out after a period of inactivity.';
+
+  @override
+  String get systemSessionExpiredTitle => 'Session expired';
+
+  @override
+  String get systemTryAgain => 'Try again';
 
   @override
   String get teacherCoach => 'Coach';

@@ -214,6 +214,12 @@ abstract class AppLocalizations {
   /// **'Class'**
   String get commonClass;
 
+  /// Shared: link that opens support.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact support'**
+  String get commonContactSupport;
+
   /// Shared: continue.
   ///
   /// In en, this message translates to:
@@ -292,6 +298,12 @@ abstract class AppLocalizations {
   /// **'Location'**
   String get commonLocation;
 
+  /// Shared: prompt before the contact support link.
+  ///
+  /// In en, this message translates to:
+  /// **'Need help?'**
+  String get commonNeedHelp;
+
   /// Shared: optional.
   ///
   /// In en, this message translates to:
@@ -369,6 +381,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Student ID'**
   String get commonStudentId;
+
+  /// Shared: confirmation after the support link is tapped.
+  ///
+  /// In en, this message translates to:
+  /// **'Support request started.'**
+  String get commonSupportMessage;
 
   /// Shared: tagline under the product name.
   ///
@@ -1396,12 +1414,6 @@ abstract class AppLocalizations {
   /// **'Account status'**
   String get submittedAccountStatus;
 
-  /// Submitted screen: contact support.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact support'**
-  String get submittedContactSupport;
-
   /// Submitted screen: description.
   ///
   /// In en, this message translates to:
@@ -1468,17 +1480,77 @@ abstract class AppLocalizations {
   /// **'Submitted'**
   String get submittedStepSubmitted;
 
-  /// Submitted screen: support message.
-  ///
-  /// In en, this message translates to:
-  /// **'Support request started.'**
-  String get submittedSupportMessage;
-
   /// Submitted screen: upcoming.
   ///
   /// In en, this message translates to:
   /// **'Upcoming'**
   String get submittedUpcoming;
+
+  /// System screen: maintenance retry button.
+  ///
+  /// In en, this message translates to:
+  /// **'Check again'**
+  String get systemCheckAgain;
+
+  /// System screen: session expired button.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in again'**
+  String get systemLogInAgain;
+
+  /// System screen: scheduled maintenance, message with the end time.
+  ///
+  /// In en, this message translates to:
+  /// **'JC Connect is down for scheduled maintenance. We expect to be back by {time}.'**
+  String systemMaintenanceMessage(String time);
+
+  /// System screen: scheduled maintenance, heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Under maintenance'**
+  String get systemMaintenanceTitle;
+
+  /// System screen: no internet connection, message.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your internet connection and try again.'**
+  String get systemOfflineMessage;
+
+  /// System screen: no internet connection, heading.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline'**
+  String get systemOfflineTitle;
+
+  /// System screen: server unreachable, message.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t connect to our servers. Try again in a few moments.'**
+  String get systemServerErrorMessage;
+
+  /// System screen: server unreachable, heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get systemServerErrorTitle;
+
+  /// System screen: signed out after inactivity, message.
+  ///
+  /// In en, this message translates to:
+  /// **'For your security, we logged you out after a period of inactivity.'**
+  String get systemSessionExpiredMessage;
+
+  /// System screen: signed out after inactivity, heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Session expired'**
+  String get systemSessionExpiredTitle;
+
+  /// System screen: retry button.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get systemTryAgain;
 
   /// Teacher details screen: coach option.
   ///

@@ -11,11 +11,15 @@ class JcButton extends StatelessWidget {
     required this.onPressed,
     this.outlined = false,
     this.enabled = true,
+    this.showIcon = true,
   });
   final String label;
   final VoidCallback onPressed;
   final bool outlined;
   final bool enabled;
+
+  /// Figma system screens use a label-only button.
+  final bool showIcon;
 
   static const _shape = RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -33,14 +37,16 @@ class JcButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Flexible(child: Text(label, style: _labelStyle)),
-        const SizedBox(width: 6),
-        SvgPicture.asset(
-          outlined
-              ? 'assets/icons/chevron_right.svg'
-              : 'assets/icons/arrow_right.svg',
-          width: 16,
-          height: 16,
-        ),
+        if (showIcon) ...[
+          const SizedBox(width: 6),
+          SvgPicture.asset(
+            outlined
+                ? 'assets/icons/chevron_right.svg'
+                : 'assets/icons/arrow_right.svg',
+            width: 16,
+            height: 16,
+          ),
+        ],
       ],
     );
     return DecoratedBox(

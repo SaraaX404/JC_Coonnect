@@ -102,10 +102,10 @@ class SubmittedScreen extends StatelessWidget {
         Center(
           child: TextButton.icon(
             onPressed: () =>
-                showMessage(context, context.l10n.submittedSupportMessage),
+                showMessage(context, context.l10n.commonSupportMessage),
             icon: const Icon(Icons.mail_outline, color: JcColors.text),
             label: Text(
-              context.l10n.submittedContactSupport,
+              context.l10n.commonContactSupport,
               style: const TextStyle(color: JcColors.text),
             ),
           ),
