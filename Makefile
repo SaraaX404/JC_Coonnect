@@ -7,7 +7,7 @@ t ?= test
 # Hand-written Dart only: generated files keep the generator's formatting.
 SOURCES = $$(find lib test tool -name '*.dart' ! -path 'lib/l10n/generated/*' 2>/dev/null)
 
-.PHONY: get gen format format-check analyze test check run
+.PHONY: get gen format format-check analyze test check run run-prod
 
 get:
 	$(FLUTTER) pub get
@@ -35,4 +35,7 @@ check:
 	$(MAKE) test
 
 run:
-	$(FLUTTER) run
+	$(FLUTTER) run --dart-define-from-file=env/dev.json
+
+run-prod:
+	$(FLUTTER) run --release --dart-define-from-file=env/prod.json

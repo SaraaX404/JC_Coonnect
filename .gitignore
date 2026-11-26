@@ -50,8 +50,10 @@ app.*.map.json
 # Secrets and per-machine config
 .env
 .env.*
-env/*.json
-!env/*.json.example
+env/prod.json
 *.jks
 *.keystore
 key.properties
+
+# Gradle output
+android/build/

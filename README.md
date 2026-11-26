@@ -9,13 +9,18 @@ Requires [fvm](https://fvm.app) and GNU make.
 ```bash
 fvm install        # Flutter version from .fvmrc
 make get
-make run
+make run          # dev (env/dev.json); in VS Code pick "JC Connect (dev)"
 ```
+
+## Environments
+
+`env/dev.json` is committed. `env/prod.json` is git-ignored: copy `env/prod.json.example` and fill in the real values.
 
 ## Everyday commands
 
 | Command | Does |
 | --- | --- |
+| `make run` / `make run-prod` | run with `env/dev.json` (debug) or `env/prod.json` (release) |
 | `make check` | format check, analyze, hard-coded string check, tests (what CI runs) |
 | `make test` | tests; `make test t=test/widget_test.dart` for a subset |
 | `make format` | format hand-written Dart |
