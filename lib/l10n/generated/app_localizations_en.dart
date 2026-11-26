@@ -425,14 +425,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginSignUpLink => 'Sign up';
 
   @override
-  String get mfaCodeSent => 'Code sent';
+  String get mfaAppPrompt =>
+      'Enter the 6-digit code from\nyour authenticator app';
 
   @override
   String get mfaEnterCode => 'Enter the 6-digit code.';
 
   @override
-  String get mfaExpiredCode =>
-      'This code has expired. Tap Resend to get a new one.';
+  String get mfaEnterRecoveryCode => 'Enter a recovery code.';
+
+  @override
+  String get mfaHaveAppPrompt => 'Have your phone?';
 
   @override
   String get mfaHeading => 'Verify your identity';
@@ -442,34 +445,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'That code isn’t right. Check it and try again.';
 
   @override
-  String get mfaNoCodePrompt => 'Didn’t receive the code?';
+  String get mfaLostPhonePrompt => 'Lost your phone?';
 
   @override
-  String get mfaResend => 'Resend';
+  String get mfaRecoveryCodeLabel => 'Recovery code';
 
   @override
-  String mfaResendCooldown(int seconds) {
-    String _temp0 = intl.Intl.pluralLogic(
-      seconds,
-      locale: localeName,
-      other: 'You can resend a code in $seconds seconds.',
-      one: 'You can resend a code in 1 second.',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get mfaResendLimit =>
-      'You’ve reached the resend limit. Try again later.';
-
-  @override
-  String mfaSentTo(String email) {
-    return 'We sent a 6-digit code to\nyour email $email';
-  }
+  String get mfaRecoveryPrompt =>
+      'Enter one of the recovery codes\nyou saved when you set up 2FA';
 
   @override
   String get mfaTooManyAttempts =>
-      'Too many incorrect attempts. Try again in 15 minutes.';
+      'Too many attempts. Wait a minute and try again.';
+
+  @override
+  String get mfaUseAppLink => 'Use authenticator app';
+
+  @override
+  String get mfaUseRecoveryLink => 'Use a recovery code';
 
   @override
   String get mfaVerifyButton => 'Verify and log in';

@@ -567,17 +567,21 @@
   "@loginSignUpLink": {
     "description": "Login screen: sign up link."
   },
-  "mfaCodeSent": "Code sent",
-  "@mfaCodeSent": {
-    "description": "MFA screen: confirmation right after a new code was sent."
+  "mfaAppPrompt": "Enter the 6-digit code from\nyour authenticator app",
+  "@mfaAppPrompt": {
+    "description": "MFA screen: subtitle when entering the authenticator app code."
   },
   "mfaEnterCode": "Enter the 6-digit code.",
   "@mfaEnterCode": {
     "description": "MFA screen: error when fewer than six digits were entered."
   },
-  "mfaExpiredCode": "This code has expired. Tap Resend to get a new one.",
-  "@mfaExpiredCode": {
-    "description": "MFA screen: error for an expired code."
+  "mfaEnterRecoveryCode": "Enter a recovery code.",
+  "@mfaEnterRecoveryCode": {
+    "description": "MFA screen: error when the recovery code field is empty."
+  },
+  "mfaHaveAppPrompt": "Have your phone?",
+  "@mfaHaveAppPrompt": {
+    "description": "MFA screen: prompt before the link that switches back to the authenticator code."
   },
   "mfaHeading": "Verify your identity",
   "@mfaHeading": {
@@ -587,39 +591,29 @@
   "@mfaIncorrectCode": {
     "description": "MFA screen: error for a wrong code."
   },
-  "mfaNoCodePrompt": "Didn’t receive the code?",
-  "@mfaNoCodePrompt": {
-    "description": "MFA screen: prompt before the resend link."
+  "mfaLostPhonePrompt": "Lost your phone?",
+  "@mfaLostPhonePrompt": {
+    "description": "MFA screen: prompt before the link that switches to a recovery code."
   },
-  "mfaResend": "Resend",
-  "@mfaResend": {
-    "description": "MFA screen: link that sends a new code."
+  "mfaRecoveryCodeLabel": "Recovery code",
+  "@mfaRecoveryCodeLabel": {
+    "description": "MFA screen: label of the recovery code field."
   },
-  "mfaResendCooldown": "{seconds, plural, =1{You can resend a code in 1 second.} other{You can resend a code in {seconds} seconds.}}",
-  "@mfaResendCooldown": {
-    "description": "MFA screen: wait before another resend is allowed.",
-    "placeholders": {
-      "seconds": {
-        "type": "int"
-      }
-    }
+  "mfaRecoveryPrompt": "Enter one of the recovery codes\nyou saved when you set up 2FA",
+  "@mfaRecoveryPrompt": {
+    "description": "MFA screen: subtitle when entering a recovery code."
   },
-  "mfaResendLimit": "You’ve reached the resend limit. Try again later.",
-  "@mfaResendLimit": {
-    "description": "MFA screen: no more resends allowed for now."
-  },
-  "mfaSentTo": "We sent a 6-digit code to\nyour email {email}",
-  "@mfaSentTo": {
-    "description": "MFA screen: where the code went; the email is masked (m***@jc.edu.jm).",
-    "placeholders": {
-      "email": {
-        "type": "String"
-      }
-    }
-  },
-  "mfaTooManyAttempts": "Too many incorrect attempts. Try again in 15 minutes.",
+  "mfaTooManyAttempts": "Too many attempts. Wait a minute and try again.",
   "@mfaTooManyAttempts": {
     "description": "MFA screen: lockout after too many wrong codes."
+  },
+  "mfaUseAppLink": "Use authenticator app",
+  "@mfaUseAppLink": {
+    "description": "MFA screen: link that switches back to the authenticator code."
+  },
+  "mfaUseRecoveryLink": "Use a recovery code",
+  "@mfaUseRecoveryLink": {
+    "description": "MFA screen: link that switches to entering a recovery code."
   },
   "mfaVerifyButton": "Verify and log in",
   "@mfaVerifyButton": {

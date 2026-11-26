@@ -15,11 +15,4 @@ void main() {
       expect(isValidEmail(input), expected, reason: input);
     });
   });
-
-  test('maskEmail keeps the first letter and the domain', () {
-    expect(maskEmail('m.sterling@jc.edu.jm'), 'm***@jc.edu.jm');
-    expect(maskEmail('a@b.co'), 'a***@b.co');
-    expect(maskEmail('not-an-email'), 'not-an-email');
-    expect(maskEmail('@jc.edu.jm'), '@jc.edu.jm');
-  });
 }

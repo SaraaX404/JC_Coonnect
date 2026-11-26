@@ -7,14 +7,10 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/pump_app.dart';
 
-const _resend = 'Resend';
 const _verify = 'Verify and log in';
+const _useRecovery = 'Use a recovery code';
 
-Future<void> _pumpView(
-  WidgetTester tester, {
-  MfaError? error,
-  MfaResend resend = const MfaResendAvailable(),
-}) async {
+Future<void> _pumpView(WidgetTester tester, {MfaError? error}) async {
   final code = TextEditingController(text: '111111');
   addTearDown(code.dispose);
   await tester.pumpWidget(
@@ -23,13 +19,11 @@ Future<void> _pumpView(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: MfaView(
-        maskedEmail: 'm***@jc.edu.jm',
         code: code,
         error: error,
-        resend: resend,
         onCodeChanged: (_) {},
         onVerify: () {},
-        onResend: () {},
+        onToggleRecovery: () {},
       ),
     ),
   );
@@ -46,7 +40,9 @@ bool _verifyEnabled(WidgetTester tester) => tester
     .enabled;
 
 void main() {
-  testWidgets('valid login opens MFA with the masked email', (tester) async {
+  testWidgets('valid login opens MFA asking for the authenticator code', (
+    tester,
+  ) async {
     await pumpRouter(tester, location: Routes.login);
     await tester.enterText(
       find.byType(TextField).at(0),
@@ -58,24 +54,15 @@ void main() {
 
     expect(find.text('Verify your identity'), findsOneWidget);
     expect(
-      find.text('We sent a 6-digit code to\nyour email m***@jc.edu.jm'),
+      find.text('Enter the 6-digit code from\nyour authenticator app'),
       findsOneWidget,
     );
-  });
-
-  testWidgets('MFA without a login email redirects to login', (tester) async {
-    await pumpRouter(tester, location: Routes.loginVerify);
-
-    expect(find.text('Verify your identity'), findsNothing);
-    expect(find.text('Forgot your password?'), findsOneWidget);
   });
 
   testWidgets('verify with an incomplete code asks for six digits', (
     tester,
   ) async {
-    final router = await pumpRouter(tester);
-    router.go(Routes.loginVerify, extra: 'm.sterling@jc.edu.jm');
-    await tester.pumpAndSettle();
+    await pumpRouter(tester, location: Routes.loginVerify);
     await tester.enterText(find.byType(TextField), '123');
     await tester.tap(find.text(_verify));
     await tester.pump();
@@ -87,29 +74,26 @@ void main() {
     expect(find.text('Enter the 6-digit code.'), findsNothing);
   });
 
-  testWidgets('resend shows code sent, then a 30 second cooldown', (
+  testWidgets('recovery link switches to a recovery code field and back', (
     tester,
   ) async {
-    final router = await pumpRouter(tester);
-    router.go(Routes.loginVerify, extra: 'm.sterling@jc.edu.jm');
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text(_resend));
+    await pumpRouter(tester, location: Routes.loginVerify);
+    await tester.tap(find.text(_useRecovery));
     await tester.pump();
-    expect(find.text('Code sent'), findsOneWidget);
-    expect(find.text(_resend), findsNothing);
 
-    await tester.pump(const Duration(seconds: 2));
-    expect(find.text('You can resend a code in 30 seconds.'), findsOneWidget);
+    expect(find.text('Recovery code'), findsOneWidget);
+    await tester.tap(find.text(_verify));
+    await tester.pump();
+    expect(find.text('Enter a recovery code.'), findsOneWidget);
 
-    await tester.pump(const Duration(seconds: 29));
-    expect(find.text('You can resend a code in 1 second.'), findsOneWidget);
-
-    await tester.pump(const Duration(seconds: 1));
-    expect(find.text(_resend), findsOneWidget);
+    await tester.tap(find.text('Use authenticator app'));
+    await tester.pump();
+    expect(find.text('Recovery code'), findsNothing);
+    expect(find.text('Enter a recovery code.'), findsNothing);
+    expect(find.text(_useRecovery), findsOneWidget);
   });
 
-  testWidgets('incorrect code shows its error and keeps resend', (
+  testWidgets('incorrect code shows its error and keeps verify enabled', (
     tester,
   ) async {
     await _pumpView(tester, error: MfaError.incorrectCode);
@@ -118,41 +102,16 @@ void main() {
       find.text('That code isn’t right. Check it and try again.'),
       findsOneWidget,
     );
-    expect(find.text(_resend), findsOneWidget);
     expect(_verifyEnabled(tester), isTrue);
   });
 
-  testWidgets('expired code shows its error and keeps resend', (tester) async {
-    await _pumpView(tester, error: MfaError.expiredCode);
-
-    expect(
-      find.text('This code has expired. Tap Resend to get a new one.'),
-      findsOneWidget,
-    );
-    expect(find.text(_resend), findsOneWidget);
-  });
-
-  testWidgets('too many attempts disables verify and hides resend', (
-    tester,
-  ) async {
+  testWidgets('too many attempts disables verify', (tester) async {
     await _pumpView(tester, error: MfaError.tooManyAttempts);
 
     expect(
-      find.text('Too many incorrect attempts. Try again in 15 minutes.'),
+      find.text('Too many attempts. Wait a minute and try again.'),
       findsOneWidget,
     );
-    expect(find.text(_resend), findsNothing);
-    expect(_verifyEnabled(tester), isFalse);
-  });
-
-  testWidgets('resend limit disables verify and hides resend', (tester) async {
-    await _pumpView(tester, error: MfaError.resendLimit);
-
-    expect(
-      find.text('You’ve reached the resend limit. Try again later.'),
-      findsOneWidget,
-    );
-    expect(find.text(_resend), findsNothing);
     expect(_verifyEnabled(tester), isFalse);
   });
 }

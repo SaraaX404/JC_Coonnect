@@ -856,11 +856,11 @@ abstract class AppLocalizations {
   /// **'Sign up'**
   String get loginSignUpLink;
 
-  /// MFA screen: confirmation right after a new code was sent.
+  /// MFA screen: subtitle when entering the authenticator app code.
   ///
   /// In en, this message translates to:
-  /// **'Code sent'**
-  String get mfaCodeSent;
+  /// **'Enter the 6-digit code from\nyour authenticator app'**
+  String get mfaAppPrompt;
 
   /// MFA screen: error when fewer than six digits were entered.
   ///
@@ -868,11 +868,17 @@ abstract class AppLocalizations {
   /// **'Enter the 6-digit code.'**
   String get mfaEnterCode;
 
-  /// MFA screen: error for an expired code.
+  /// MFA screen: error when the recovery code field is empty.
   ///
   /// In en, this message translates to:
-  /// **'This code has expired. Tap Resend to get a new one.'**
-  String get mfaExpiredCode;
+  /// **'Enter a recovery code.'**
+  String get mfaEnterRecoveryCode;
+
+  /// MFA screen: prompt before the link that switches back to the authenticator code.
+  ///
+  /// In en, this message translates to:
+  /// **'Have your phone?'**
+  String get mfaHaveAppPrompt;
 
   /// MFA screen: heading.
   ///
@@ -886,41 +892,41 @@ abstract class AppLocalizations {
   /// **'That code isn’t right. Check it and try again.'**
   String get mfaIncorrectCode;
 
-  /// MFA screen: prompt before the resend link.
+  /// MFA screen: prompt before the link that switches to a recovery code.
   ///
   /// In en, this message translates to:
-  /// **'Didn’t receive the code?'**
-  String get mfaNoCodePrompt;
+  /// **'Lost your phone?'**
+  String get mfaLostPhonePrompt;
 
-  /// MFA screen: link that sends a new code.
+  /// MFA screen: label of the recovery code field.
   ///
   /// In en, this message translates to:
-  /// **'Resend'**
-  String get mfaResend;
+  /// **'Recovery code'**
+  String get mfaRecoveryCodeLabel;
 
-  /// MFA screen: wait before another resend is allowed.
+  /// MFA screen: subtitle when entering a recovery code.
   ///
   /// In en, this message translates to:
-  /// **'{seconds, plural, =1{You can resend a code in 1 second.} other{You can resend a code in {seconds} seconds.}}'**
-  String mfaResendCooldown(int seconds);
-
-  /// MFA screen: no more resends allowed for now.
-  ///
-  /// In en, this message translates to:
-  /// **'You’ve reached the resend limit. Try again later.'**
-  String get mfaResendLimit;
-
-  /// MFA screen: where the code went; the email is masked (m***@jc.edu.jm).
-  ///
-  /// In en, this message translates to:
-  /// **'We sent a 6-digit code to\nyour email {email}'**
-  String mfaSentTo(String email);
+  /// **'Enter one of the recovery codes\nyou saved when you set up 2FA'**
+  String get mfaRecoveryPrompt;
 
   /// MFA screen: lockout after too many wrong codes.
   ///
   /// In en, this message translates to:
-  /// **'Too many incorrect attempts. Try again in 15 minutes.'**
+  /// **'Too many attempts. Wait a minute and try again.'**
   String get mfaTooManyAttempts;
+
+  /// MFA screen: link that switches back to the authenticator code.
+  ///
+  /// In en, this message translates to:
+  /// **'Use authenticator app'**
+  String get mfaUseAppLink;
+
+  /// MFA screen: link that switches to entering a recovery code.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a recovery code'**
+  String get mfaUseRecoveryLink;
 
   /// MFA screen: button that checks the code and signs in.
   ///

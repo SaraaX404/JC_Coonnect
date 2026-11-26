@@ -33,10 +33,7 @@ GoRouter createRouter() => GoRouter(
     GoRoute(path: Routes.login, builder: (_, _) => const LoginScreen()),
     GoRoute(
       path: Routes.loginVerify,
-      // The email comes from the login form; without it there is nothing
-      // to verify, so a cold deep link goes back to login.
-      redirect: (_, state) => state.extra is String ? null : Routes.login,
-      builder: (_, state) => MfaScreen(email: state.extra! as String),
+      builder: (_, _) => const MfaScreen(),
     ),
     GoRoute(
       path: Routes.sessionExpired,

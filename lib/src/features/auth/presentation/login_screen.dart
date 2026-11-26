@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (emailError != null || passwordError != null) return;
     // shortcut: no auth call yet, so every valid form goes to the code step
     // (the Figma flow). POST /auth/login decides this once it is wired.
-    unawaited(context.push(Routes.loginVerify, extra: email.text.trim()));
+    unawaited(context.push(Routes.loginVerify));
   }
 
   @override
