@@ -1,8 +1,8 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/features/events/domain/event_record.dart';
-import 'package:jc_connect_app/src/features/events/presentation/event_detail_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EventListCard extends StatelessWidget {
@@ -12,7 +12,7 @@ class EventListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => InkWell(
-    onTap: () => pushScreen(context, EventDetailScreen(event: event)),
+    onTap: () => context.push(Routes.event(event.id)),
     borderRadius: BorderRadius.circular(12),
     child: Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),

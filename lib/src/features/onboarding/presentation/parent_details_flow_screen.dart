@@ -1,8 +1,11 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
+
+import 'dart:async';
+
 import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/terms_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_helper.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_outlined_action.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_select.dart';
@@ -45,7 +48,7 @@ class _ParentDetailsFlowScreenState extends State<ParentDetailsFlowScreen> {
       ..sonName = sonName.text.trim()
       ..studentId = studentId.text.trim()
       ..anotherSonName = anotherSonName.text.trim();
-    pushScreen(context, TermsScreen(data: widget.data));
+    unawaited(context.push(Routes.signUpTerms, extra: widget.data));
   }
 
   @override

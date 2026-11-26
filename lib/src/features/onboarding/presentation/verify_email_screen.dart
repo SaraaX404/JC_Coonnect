@@ -1,16 +1,17 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
+
+import 'dart:async';
+
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
+import 'package:jc_connect_app/src/core/utils/show_message.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/jc_role.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/old_boy_details_flow_screen.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/parent_details_flow_screen.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/student_details_flow_screen.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/teacher_details_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_otp.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -98,12 +99,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   }
 
   void _openRoleDetails(BuildContext context) {
-    final screen = switch (widget.data.role!) {
-      JcRole.student => StudentDetailsFlowScreen(data: widget.data),
-      JcRole.parent => ParentDetailsFlowScreen(data: widget.data),
-      JcRole.teacher => TeacherDetailsScreen(data: widget.data),
-      JcRole.oldBoy => OldBoyDetailsFlowScreen(data: widget.data),
+    final route = switch (widget.data.role!) {
+      JcRole.student => Routes.signUpStudent,
+      JcRole.parent => Routes.signUpParent,
+      JcRole.teacher => Routes.signUpTeacher,
+      JcRole.oldBoy => Routes.signUpOldBoy,
     };
-    pushScreen(context, screen);
+    unawaited(context.push(route, extra: widget.data));
   }
 }

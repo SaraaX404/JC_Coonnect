@@ -1,13 +1,13 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_progress.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/review_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_term.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -101,7 +101,7 @@ class _TermsScreenState extends State<TermsScreen> {
             label: context.l10n.termsAgreeButton,
             enabled: terms && privacy,
             onPressed: () =>
-                pushScreen(context, ReviewScreen(data: widget.data)),
+                context.push(Routes.signUpReview, extra: widget.data),
           ),
           const SizedBox(height: 12),
           Center(

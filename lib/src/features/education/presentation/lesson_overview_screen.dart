@@ -2,7 +2,7 @@ import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/features/education/data/mock_education.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
+import 'package:jc_connect_app/src/core/utils/show_message.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_panel.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_pill.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';

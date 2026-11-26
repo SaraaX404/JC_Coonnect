@@ -1,5 +1,6 @@
 class EventRecord {
   const EventRecord({
+    required this.id,
     required this.title,
     required this.category,
     required this.filterCategory,
@@ -12,6 +13,7 @@ class EventRecord {
     required this.going,
     this.isSport = false,
   });
+  final String id;
   final String title;
   final String category;
   final String filterCategory;

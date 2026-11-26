@@ -1,15 +1,14 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
+import 'package:jc_connect_app/src/core/utils/show_message.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
-import 'package:jc_connect_app/src/features/auth/presentation/reset_password_screen.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/widgets/jc_divider.dart';
 import 'package:jc_connect_app/src/features/auth/presentation/widgets/jc_social_button.dart';
-import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/sign_up_role_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -75,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: () => pushScreen(context, const ResetPasswordScreen()),
+              onPressed: () => context.push(Routes.resetPassword),
               child: Text(context.l10n.loginForgotPassword),
             ),
           ),
@@ -117,8 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: JcTextStyles.small,
                 ),
                 TextButton(
-                  onPressed: () =>
-                      pushScreen(context, SignUpRoleScreen(data: SignUpData())),
+                  onPressed: () => context.push(Routes.signUp),
                   child: Text(context.l10n.loginSignUpLink),
                 ),
               ],

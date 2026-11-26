@@ -1,13 +1,12 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
-import 'package:jc_connect_app/src/features/auth/presentation/login_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/jc_role.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/account_details_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_role_option.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -63,10 +62,8 @@ class _SignUpRoleScreenState extends State<SignUpRoleScreen> {
                 JcButton(
                   label: context.l10n.commonContinue,
                   enabled: widget.data.role != null,
-                  onPressed: () => pushScreen(
-                    context,
-                    AccountDetailsScreen(data: widget.data),
-                  ),
+                  onPressed: () =>
+                      context.push(Routes.signUpAccount, extra: widget.data),
                 ),
                 const SizedBox(height: 16),
                 Wrap(
@@ -77,7 +74,7 @@ class _SignUpRoleScreenState extends State<SignUpRoleScreen> {
                       style: JcTextStyles.small,
                     ),
                     TextButton(
-                      onPressed: () => pushScreen(context, const LoginScreen()),
+                      onPressed: () => context.push(Routes.login),
                       child: Text(context.l10n.signUpRoleLogIn),
                     ),
                   ],

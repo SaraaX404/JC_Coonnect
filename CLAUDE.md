@@ -28,11 +28,13 @@ lib/
   main.dart                     runApp only
   l10n/                         app_en.arb, l10n.dart (context.l10n), generated/ (committed, never edited)
   src/
-    app/app.dart                MaterialApp: theme, localisation, home
+    app/app.dart                MaterialApp.router: theme, localisation
+    app/router.dart             GoRouter: every route and its screen
     core/                       generic building blocks, no feature knowledge
       theme/                    JcColors, JcTextStyles
       widgets/                  Jc* components used by 2+ features (JcScaffold, JcButton, JcInput, JcPanel…)
-      utils/navigation.dart     pushScreen, showMessage
+      routing/routes.dart       Routes: every path (Routes.event(id))
+      utils/show_message.dart   showMessage (snackbar)
     features/<name>/
       domain/                   pure Dart types (JcRole, SignUpData, EventRecord)
       data/                     data sources; today only mock_<name>.dart demo content
@@ -51,6 +53,7 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 
 ### Structure
 - Import direction: `app` → `features` → `core`. `core` never imports a feature.
+- Navigate with go_router: `context.push(Routes.x)`. A feature never imports another feature's screens; add the path to `Routes` and the `GoRoute` to `app/router.dart`. Pass ids in the path, not objects (`Routes.event(id)`). Dialogs and sheets still close with `Navigator.pop`.
 - A widget used by two or more features lives in `core/widgets`; otherwise in the feature's `presentation/widgets`. Search before writing a new one; extend the existing widget instead of copying it.
 - One public widget or class per file (small private helpers can stay). Files `snake_case.dart`; screens end in `Screen`.
 - Widgets are classes, not functions returning widgets.

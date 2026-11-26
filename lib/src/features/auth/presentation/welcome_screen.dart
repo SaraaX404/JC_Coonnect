@@ -1,15 +1,11 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
-import 'package:jc_connect_app/src/features/auth/presentation/login_screen.dart';
-import 'package:jc_connect_app/src/features/education/presentation/education_screen.dart';
-import 'package:jc_connect_app/src/features/events/presentation/events_screen.dart';
-import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/sign_up_role_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -37,23 +33,22 @@ class WelcomeScreen extends StatelessWidget {
           const Spacer(flex: 4),
           JcButton(
             label: context.l10n.welcomeLoginButton,
-            onPressed: () => pushScreen(context, const LoginScreen()),
+            onPressed: () => context.push(Routes.login),
           ),
           const SizedBox(height: 12),
           JcButton(
             label: context.l10n.welcomeJoinButton,
             outlined: true,
-            onPressed: () =>
-                pushScreen(context, SignUpRoleScreen(data: SignUpData())),
+            onPressed: () => context.push(Routes.signUp),
           ),
           const SizedBox(height: 10),
           TextButton.icon(
-            onPressed: () => pushScreen(context, const EventsScreen()),
+            onPressed: () => context.push(Routes.events),
             icon: const Icon(Icons.event_outlined, size: 18),
             label: Text(context.l10n.welcomeBrowseEvents),
           ),
           TextButton.icon(
-            onPressed: () => pushScreen(context, const EducationScreen()),
+            onPressed: () => context.push(Routes.education),
             icon: const Icon(Icons.school_outlined, size: 18),
             label: Text(context.l10n.welcomeOpenEducation),
           ),

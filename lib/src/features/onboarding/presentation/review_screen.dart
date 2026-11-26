@@ -1,5 +1,6 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_progress.dart';
@@ -7,7 +8,6 @@ import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_summary_card.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/jc_role.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/submitted_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class ReviewScreen extends StatelessWidget {
@@ -84,7 +84,7 @@ class ReviewScreen extends StatelessWidget {
         const SizedBox(height: 20),
         JcButton(
           label: context.l10n.reviewSubmit,
-          onPressed: () => pushScreen(context, const SubmittedScreen()),
+          onPressed: () => context.push(Routes.signUpSubmitted),
         ),
       ],
     ),

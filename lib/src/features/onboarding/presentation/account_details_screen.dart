@@ -1,12 +1,16 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
+
+import 'dart:async';
+
 import 'package:jc_connect_app/l10n/l10n.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
+import 'package:jc_connect_app/src/core/utils/show_message.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_heading.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_progress.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/verify_email_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class AccountDetailsScreen extends StatefulWidget {
@@ -69,7 +73,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     widget.data.name = name.text.trim();
     widget.data.email = email.text.trim();
     widget.data.phone = phone.text.trim();
-    pushScreen(context, VerifyEmailScreen(data: widget.data));
+    unawaited(context.push(Routes.signUpVerify, extra: widget.data));
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
+import 'package:jc_connect_app/src/core/utils/show_message.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_button.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_logo.dart';

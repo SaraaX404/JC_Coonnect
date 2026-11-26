@@ -1,12 +1,12 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/features/education/data/mock_education.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_nav_item.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_panel.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
-import 'package:jc_connect_app/src/features/education/presentation/lesson_overview_screen.dart';
 import 'package:jc_connect_app/src/features/education/presentation/widgets/education_section_header.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -80,7 +80,7 @@ class _EducationScreenState extends State<EducationScreen> {
                 title: mockLessonTitle,
                 meta: mockContinueLessonMeta,
                 percent: '45%',
-                onTap: () => pushScreen(context, const LessonOverviewScreen()),
+                onTap: () => context.push(Routes.lesson),
               ),
               const SizedBox(height: 14),
               EducationSectionHeader(

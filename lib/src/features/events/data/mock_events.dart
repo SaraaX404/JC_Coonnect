@@ -2,6 +2,7 @@ import 'package:jc_connect_app/src/features/events/domain/event_record.dart';
 
 const mockEvents = [
   EventRecord(
+    id: '1',
     title: 'FTC Robotics Autonomous Demo',
     category: 'Academic • STEM',
     filterCategory: 'Academic',
@@ -15,6 +16,7 @@ const mockEvents = [
     isSport: false,
   ),
   EventRecord(
+    id: '2',
     title: 'Sixth Form Career Mentorship Breakfast',
     category: 'Alumni • JCOBA',
     filterCategory: 'Alumni',
@@ -27,6 +29,7 @@ const mockEvents = [
     going: '+95 going',
   ),
   EventRecord(
+    id: '3',
     title: 'PTA & Teacher Consultation Meet',
     category: 'PTA • Community',
     filterCategory: 'PTA',
@@ -39,6 +42,7 @@ const mockEvents = [
     going: '+140 going',
   ),
   EventRecord(
+    id: '4',
     title: 'Annual STEM & Science Carnival',
     category: 'Academic • STEM',
     filterCategory: 'Academic',
@@ -51,6 +55,7 @@ const mockEvents = [
     going: '+205 going',
   ),
   EventRecord(
+    id: '5',
     title: 'True Blue Christmas Symposium',
     category: 'PTA • Community',
     filterCategory: 'PTA',
@@ -63,6 +68,7 @@ const mockEvents = [
     going: '+74 going',
   ),
   EventRecord(
+    id: '6',
     title: 'True Blue Football Fixture',
     category: 'Sports',
     filterCategory: 'Sports',

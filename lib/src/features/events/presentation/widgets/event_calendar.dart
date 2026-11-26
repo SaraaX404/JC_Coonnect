@@ -1,11 +1,11 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:intl/intl.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/features/events/data/mock_events.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/features/events/domain/event_record.dart';
-import 'package:jc_connect_app/src/features/events/presentation/event_detail_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EventCalendar extends StatefulWidget {
@@ -209,7 +209,7 @@ class _EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => InkWell(
-    onTap: () => pushScreen(context, EventDetailScreen(event: event)),
+    onTap: () => context.push(Routes.event(event.id)),
     borderRadius: BorderRadius.circular(14),
     child: Container(
       padding: const EdgeInsets.all(14),

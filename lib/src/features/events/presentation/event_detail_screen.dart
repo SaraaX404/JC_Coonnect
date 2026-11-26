@@ -1,13 +1,14 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/features/events/data/mock_events.dart';
 import 'package:jc_connect_app/src/core/theme/jc_colors.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
+import 'package:jc_connect_app/src/core/utils/show_message.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_panel.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_pill.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_scaffold.dart';
 import 'package:jc_connect_app/src/features/events/domain/event_record.dart';
-import 'package:jc_connect_app/src/features/events/presentation/event_donation_screen.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EventDetailScreen extends StatefulWidget {
@@ -265,10 +266,8 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                       ),
                       const SizedBox(height: 12),
                       FilledButton.icon(
-                        onPressed: () => pushScreen(
-                          context,
-                          EventDonationScreen(event: widget.event),
-                        ),
+                        onPressed: () =>
+                            context.push(Routes.eventDonate(widget.event.id)),
                         icon: const Icon(
                           Icons.volunteer_activism_outlined,
                           size: 18,

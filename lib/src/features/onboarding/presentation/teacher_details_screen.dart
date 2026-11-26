@@ -1,9 +1,12 @@
+import 'package:go_router/go_router.dart';
+import 'package:jc_connect_app/src/core/routing/routes.dart';
+
+import 'dart:async';
+
 import 'package:jc_connect_app/l10n/l10n.dart';
 import 'package:jc_connect_app/src/core/theme/jc_text_styles.dart';
-import 'package:jc_connect_app/src/core/utils/navigation.dart';
 import 'package:jc_connect_app/src/core/widgets/jc_input.dart';
 import 'package:jc_connect_app/src/features/onboarding/domain/sign_up_data.dart';
-import 'package:jc_connect_app/src/features/onboarding/presentation/terms_screen.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_check_card.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/jc_helper.dart';
 import 'package:jc_connect_app/src/features/onboarding/presentation/widgets/role_details_scaffold.dart';
@@ -50,7 +53,7 @@ class _TeacherDetailsScreenState extends State<TeacherDetailsScreen> {
             ? 'both'
             : (teacher ? 'teacher' : (coach ? 'coach' : 'none')),
       );
-    pushScreen(context, TermsScreen(data: widget.data));
+    unawaited(context.push(Routes.signUpTerms, extra: widget.data));
   }
 
   @override
