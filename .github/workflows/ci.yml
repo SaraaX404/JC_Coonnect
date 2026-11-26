@@ -22,4 +22,10 @@ jobs:
           cache: true
 
       - run: flutter pub get
+
+      - name: API client matches api/openapi.yaml
+        run: |
+          FVM= tool/generate_api.sh
+          git diff --exit-code packages/jc_api
+
       - run: make check FVM=

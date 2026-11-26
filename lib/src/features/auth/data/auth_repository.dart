@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jc_api/jc_api.dart' as api;
 import 'package:jc_connect_app/src/core/network/api.dart';
 import 'package:jc_connect_app/src/core/session/token_store.dart';
 import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
@@ -8,8 +8,8 @@ import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
 /// `/auth/login/resend` (backend ADR 0005, 0009, 0010). Throws
 /// [ApiException].
 class AuthRepository {
-  const AuthRepository(this._dio, this._tokens);
-  final Dio _dio;
+  const AuthRepository(this._api, this._tokens);
+  final api.JcApi _api;
   final TokenStore _tokens;
 
   Future<LoginResult> login({
@@ -17,51 +17,53 @@ class AuthRepository {
     required String password,
     String? schoolId,
   }) async {
-    final data = await apiPost(_dio, '/auth/login', {
-      'email': email,
-      'password': password,
-      'school_id': ?schoolId,
-    });
-    if (data['schools'] case final List<Object?> schools) {
-      return LoginPickSchool([
-        for (final school in schools)
-          if (school case {'id': final String id, 'name': final String name})
-            School(id: id, name: name),
-      ]);
-    }
-    final mfa = data['mfa']! as Map<String, Object?>;
+    final result = (await apiCall(
+      () => _api.auth.authLoginCreate(
+        body: api.LoginRequest(
+          email: email,
+          password: password,
+          schoolId: schoolId,
+        ),
+      ),
+    )).data;
+    if (result.schools case final schools?) return LoginPickSchool(schools);
+    final mfa = result.mfa!;
     return LoginNeedsCode(
-      challenge: mfa['challenge']! as String,
-      method: mfa['method'] == 'totp' ? CodeMethod.totp : CodeMethod.email,
+      challenge: mfa.challenge,
+      method: mfa.method == api.MethodEnum.totp
+          ? CodeMethod.totp
+          : CodeMethod.email,
       email: email,
     );
   }
 
-  /// Exactly one of [code] (authenticator) or [recoveryCode].
+  /// Exactly one of [code] (authenticator or emailed) or [recoveryCode].
   Future<void> verify({
     required String challenge,
     String? code,
     String? recoveryCode,
   }) async {
-    final tokens = await apiPost(_dio, '/auth/login/verify', {
-      'challenge': challenge,
-      'code': ?code,
-      'recovery_code': ?recoveryCode,
-    });
-    await _save(tokens);
+    final tokens = (await apiCall(
+      () => _api.auth.authLoginVerifyCreate(
+        body: api.MfaVerifyRequest(
+          challenge: challenge,
+          code: code,
+          recoveryCode: recoveryCode,
+        ),
+      ),
+    )).data;
+    await _tokens.save(access: tokens.access, refresh: tokens.refresh);
   }
 
   /// Emails a new code for an email challenge; the old code stops working.
-  Future<void> resend(String challenge) =>
-      apiPost(_dio, '/auth/login/resend', {'challenge': challenge});
-
-  Future<void> _save(Map<String, Object?> tokens) => _tokens.save(
-    access: tokens['access']! as String,
-    refresh: tokens['refresh']! as String,
+  Future<void> resend(String challenge) => apiCall(
+    () => _api.auth.authLoginResendCreate(
+      body: api.ChallengeRequest(challenge: challenge),
+    ),
   );
 }
 
 final authRepositoryProvider = Provider<AuthRepository>(
   (ref) =>
-      AuthRepository(ref.watch(dioProvider), ref.watch(tokenStoreProvider)),
+      AuthRepository(ref.watch(jcApiProvider), ref.watch(tokenStoreProvider)),
 );

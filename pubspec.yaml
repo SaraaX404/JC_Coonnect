@@ -7,6 +7,9 @@ environment:
   sdk: ^3.14.0
   flutter: 3.50.1
 
+workspace:
+  - packages/jc_api
+
 dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.11.1
@@ -19,6 +22,8 @@ dependencies:
   flutter_svg: ^2.5.0
   go_router: ^18.1.4
   intl: any
+  jc_api:
+    path: packages/jc_api
   material_ui: ^1.11.1
 
 dev_dependencies:

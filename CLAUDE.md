@@ -13,6 +13,7 @@ Flutter and Dart run through **fvm** (version pinned in `.fvmrc`, 3.50.1).
 ```bash
 make get        # fvm flutter pub get
 make gen        # regenerate lib/l10n/generated from the ARB file
+make api        # copy ../jsc_be/openapi.yml and regenerate packages/jc_api (commit both)
 make format     # dart format (hand-written code only)
 make check      # format check, analyze (infos are fatal), check_strings, tests. CI runs this.
 make test       # all tests; make test t=test/some_test.dart for a subset
@@ -42,6 +43,9 @@ lib/
       data/                     <name>_repository.dart (API calls + its provider), mock_<name>.dart demo content
       presentation/             screens; presentation/widgets/ for widgets only this feature uses
 tool/check_strings.dart         fails CI on hard-coded user-facing strings
+tool/generate_api.sh            make api: openapi.yaml → packages/jc_api
+api/                            openapi.yaml (copy of the backend's), swagger_parser.yaml
+packages/jc_api/                GENERATED API client (never edit)
 ```
 
 Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up flow: role → account → verify → role details → terms → review → submitted), `events` (list, calendar, detail, donation), `education` (subjects, lesson overview).
@@ -63,9 +67,11 @@ Features today: `auth` (welcome, login, reset password), `onboarding` (sign-up f
 
 ### API and state
 - Backend contract: `../jsc_be/openapi.yml`. Every response is an envelope `{data, error: {code, detail}, meta}`.
-- Calls go through a repository in `features/<f>/data/` using `apiPost` (add `apiGet` etc. the same way when needed). Repositories throw only `ApiException(status, code)`; `status == null` means offline. Screens map it to copy; `ApiException.message` is the fallback.
+- **The API client is generated**, never hand-written: `packages/jc_api` (swagger_parser → Retrofit + freezed). `make api` copies `../jsc_be/openapi.yml` to `api/openapi.yaml` and regenerates; commit both. Never edit `packages/jc_api` by hand; CI fails if it doesn't match `api/openapi.yaml`. Calls look like `api.auth.authLoginCreate(body: LoginRequest(...))` (operation id minus `api_v1_`).
+- Use the generated models directly where they fit (`SchoolChoice`); add a domain type only when the UI needs a different shape (`LoginNeedsCode`). No 1:1 mappers, no hand-parsed JSON.
+- Calls go through a repository in `features/<f>/data/`, wrapped in `apiCall` (from `jcApiProvider`). Repositories throw only `ApiException(status, code)`: `status == null` offline, `0` unreadable response. Screens map it to copy; `ApiException.message` is the fallback.
 - State: `flutter_riverpod` plain providers (no codegen yet). Screens that call the API are `ConsumerStatefulWidget`s and read the repository with `ref.read`. Tests override the repository provider with a fake (`test/helpers/fake_auth_repository.dart`); never hit a real server in tests.
-- `API_BASE_URL` comes from `env/<env>.json` via `--dart-define-from-file`.
+- `API_ORIGIN` (scheme + host, no `/api/v1`: the generated paths include it) comes from `env/<env>.json` via `--dart-define-from-file`.
 
 ### Localisation
 - **No hard-coded user-facing strings.** Every visible or spoken string comes from `lib/l10n/app_en.arb` through `context.l10n`. `tool/check_strings.dart` fails `make check` otherwise.

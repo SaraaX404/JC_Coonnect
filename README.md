@@ -27,6 +27,7 @@ make run          # dev (env/dev.json); in VS Code pick "JC Connect (dev)"
 | `make test` | tests; `make test t=test/widget_test.dart` for a subset |
 | `make format` | format hand-written Dart |
 | `make gen` | regenerate localisation code after editing `lib/l10n/app_en.arb` |
+| `make api` | regenerate the API client (`packages/jc_api`) after the backend's `openapi.yml` changes |
 
 ## Layout
 

@@ -9,7 +9,7 @@ ADB ?= $(shell command -v adb || echo $(HOME)/Library/Android/sdk/platform-tools
 # Hand-written Dart only: generated files keep the generator's formatting.
 SOURCES = $$(find lib test tool -name '*.dart' ! -path 'lib/l10n/generated/*' 2>/dev/null)
 
-.PHONY: get gen format format-check analyze test check run run-prod reverse
+.PHONY: get gen api format format-check analyze test check run run-prod reverse
 
 get:
 	$(FLUTTER) pub get
@@ -17,6 +17,10 @@ get:
 # Regenerates lib/l10n/generated from the ARB files.
 gen:
 	$(FLUTTER) gen-l10n
+
+# Copies ../jsc_be/openapi.yml and regenerates packages/jc_api. Commit both.
+api:
+	FVM=$(FVM) tool/generate_api.sh
 
 format:
 	$(DART) format $(SOURCES)

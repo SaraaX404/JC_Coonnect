@@ -57,3 +57,6 @@ key.properties
 
 # Gradle output
 android/build/
+
+# Written by tool/generate_api.sh on every run
+api/openapi.normalized.json

@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jc_api/jc_api.dart';
 import 'package:jc_connect_app/src/core/network/api.dart';
 import 'package:jc_connect_app/src/core/routing/routes.dart';
 import 'package:jc_connect_app/src/features/auth/domain/login_result.dart';
@@ -123,8 +124,8 @@ void main() {
     final auth = FakeAuthRepository(
       onLogin: (schoolId) async => schoolId == null
           ? const LoginPickSchool([
-              School(id: 's1', name: 'Jamaica College'),
-              School(id: 's2', name: 'Test Prep School'),
+              SchoolChoice(id: 's1', name: 'Jamaica College', code: 'jc'),
+              SchoolChoice(id: 's2', name: 'Test Prep School', code: 'tp'),
             ])
           : emailCodeLogin,
     );

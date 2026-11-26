@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jc_api/jc_api.dart';
 import 'package:jc_connect_app/src/core/network/api.dart';
 import 'package:jc_connect_app/src/core/session/token_store.dart';
 import 'package:jc_connect_app/src/features/auth/data/auth_repository.dart';
@@ -40,8 +41,7 @@ class _Adapter implements HttpClientAdapter {
 }
 
 AuthRepository _repo(_Adapter adapter) => AuthRepository(
-  Dio(BaseOptions(headers: {'X-Client': 'mobile'}))
-    ..httpClientAdapter = adapter,
+  JcApi(Dio()..httpClientAdapter = adapter),
   const TokenStore(FlutterSecureStorage()),
 );
 
@@ -61,7 +61,7 @@ void main() {
       adapter,
     ).login(email: 'm@x.co', password: 'pw');
 
-    expect(adapter.request.path, '/auth/login');
+    expect(adapter.request.path, '/api/v1/auth/login');
     expect(adapter.request.data, {'email': 'm@x.co', 'password': 'pw'});
     result as LoginNeedsCode;
     expect(result.challenge, 'c1');
@@ -71,7 +71,12 @@ void main() {
 
   test('verify saves the tokens', () async {
     final adapter = _Adapter(200, {
-      'data': {'access': 'a1', 'refresh': 'r1'},
+      'data': {
+        'access': 'a1',
+        'refresh': 'r1',
+        'token_type': 'Bearer',
+        'expires_in': 900,
+      },
     });
 
     await _repo(adapter).verify(challenge: 'c1', code: '123456');
@@ -88,7 +93,7 @@ void main() {
 
     await _repo(adapter).resend('c1');
 
-    expect(adapter.request.path, '/auth/login/resend');
+    expect(adapter.request.path, '/api/v1/auth/login/resend');
   });
 
   test('login in several schools returns them', () async {
@@ -104,6 +109,17 @@ void main() {
     final result = await _repo(adapter).login(email: 'm@x.co', password: 'pw');
 
     expect((result as LoginPickSchool).schools.single.name, 'Jamaica College');
+  });
+
+  test('a response missing required fields becomes an ApiException', () async {
+    final adapter = _Adapter(200, {
+      'data': {'access': 'a1'},
+    });
+
+    await expectLater(
+      _repo(adapter).verify(challenge: 'c1', code: '123456'),
+      throwsA(isA<ApiException>().having((e) => e.status, 'status', 0)),
+    );
   });
 
   test('an error envelope becomes an ApiException with its code', () async {
